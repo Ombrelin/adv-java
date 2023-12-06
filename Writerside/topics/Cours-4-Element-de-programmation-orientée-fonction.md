@@ -292,7 +292,7 @@ Donne le minimum et le maximum du `Stream<T>` à partir d'un `Comparator<T>`.
 
 ## Filtrage par motif (*pattern matching*)
 
-Le pattern matching consiste à tester une expression, pour vérifier si elle a certaines caractéristiques. On peut l'utiliser en Java dans les switch-expression.
+Le *pattern matching* consiste à tester une expression, pour vérifier si elle a certaines caractéristiques. On peut l'utiliser en Java dans les switch-expression.
 
 ### Sur une valeur discrète
 
