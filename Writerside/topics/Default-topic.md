@@ -26,8 +26,8 @@ Programme des séances :
 | Vendredi 19 Janvier 2023 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
 | Lundi 22 Janvier 2023    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
 | Vendredi 26 Janvier 2023 | [Cours 3: Qualité Logicielle](Cours-3-Qualité-Logicielle.md)                                              |
-| Lundi 29 Janvier 2023    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientée-fonction.md) |
-| Vendredi 2 Février 2023  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallèle-et-Asynchrone.md)       |
+| Lundi 29 Janvier 2023    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 2 Février 2023  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
 | Vendredi 16 Février 2023 | [Cours 6: Interfaces Graphiques](Cours 6 : Interfaces Graphiques.md)                                      |
 | Vendredi 23 Février 2023 | TBD                                                                                                       |
 | Vendredi 1 Mars 2023     | TBD                                                                                                       |
@@ -40,8 +40,8 @@ Programme des séances :
 | Vendredi 19 Janvier 2023 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
 | Lundi 22 Janvier 2023    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
 | Jeudi 25 Janvier 2023    | [Cours 3: Qualité Logicielle](Cours-3-Qualité-Logicielle.md)                                              |
-| Lundi 29 Janvier 2023    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientée-fonction.md) |
-| Vendredi 2 Février 2023  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallèle-et-Asynchrone.md)       |
+| Lundi 29 Janvier 2023    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 2 Février 2023  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
 | Vendredi 16 Février 2023 | [Cours 6: Interfaces Graphiques](Cours 6 : Interfaces Graphiques.md)                                      |
 | Vendredi 23 Février 2023 | TBD                                                                                                       |
 | Vendredi 1 Mars 2023     | TBD                                                                                                       |
