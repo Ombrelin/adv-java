@@ -1,10 +1,73 @@
 # Cours 1 : Outillage
 
+## Java
+
+Pour développer en Java, nous avons besoin d'installer un JDK (Java Development Kit). La dernière version LTS (Long Term Support) est la version 21.
+
+### Installation d'OpenJDK
+
+<tabs>
+<tab title="Windows">
+
+1. Télécharger [le setup](https://adoptium.net/temurin/releases/?os=windows&arch=x64).
+2. Exécuter le fichier MSI et suivre les instructions
+</tab>
+<tab title="MacOS">
+
+1. Télécharger [l'installeur PKG](https://adoptium.net/temurin/releases/?os=mac&arch=x64)
+2. Exécuter l'installeur PKG : 
+```Bash
+installer -pkg <path_to_pkg>/<pkg_name>.pkg -target /
+```
+
+</tab>
+<tab title="Linux (Debian/Ubuntu)">
+
+
+
+1. Installer les packages nécessaires : 
+
+```Bash
+apt install -y wget apt-transport-https
+```
+
+2. Installer le dépôt APT de AdoptOpenJDK:
+
+```Bash
+mkdir -p /etc/apt/keyrings
+wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+```
+
+3. Instaler OpenJDK 21 :
+
+```Bash
+apt update 
+apt install temurin-21-jdk
+```
+
+</tab>
+</tabs>
+
+Pour vérifier la bonne installation du JDK : 
+
+```Bash
+java --version
+```
+
+Le résultat devrait ressembler à :
+
+```
+openjdk 21.0.1 2023-10-17 LTS
+OpenJDK Runtime Environment Temurin-21.0.1+12 (build 21.0.1+12-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.1+12 (build 21.0.1+12-LTS, mixed mode, sharing)
+```
+
 ## IntelliJ IDEA
 
 IntelliJ IDEA est un environment de développement intégré (IDE) pour le développement avec les différents langages ciblant la JVM. Il est très puissant et est largement utilisé dans l'industrie.
 
-### Installation
+### Installation d'IntelliJ
 
 <tabs>
 <tab title="Windows (winget)">
@@ -186,4 +249,84 @@ Nous utiliserons l'instance Gitlab suivante : https://gitlab.com. Vous aurez don
 
 ## Gradle
 
-TBD : https://docs.gradle.org/current/samples/sample_building_java_applications.html
+### Installer gradle
+
+<tabs>
+<tab title="Windows">
+
+1. Télécharger [la dernière distribution Gradle](https://gradle.org/releases)
+2. Extraire l'archive à l'endroit où vous souhaitez l'installer (ex : C:/tools/gradle)
+3. Configurer l'environment : ajoutez une variable d'environment système `GRADLE_HOME` à votre `PATH`, avec comme valeur le chemin du répertoire où vous avez extrait l'archive
+
+</tab>
+<tab title="MacOS (Homebrew)">
+
+```Bash
+brew install gradle
+```
+
+</tab>
+<tab title="Linux">
+
+1. Télécharger [la dernière distribution Gradle](https://gradle.org/releases)
+2. Extraire l'archive à l'endroit où vous souhaitez l'installer (ex : /opt/gradle)
+3. Configurer l'environment : ajoutez une variable `GRADLE_HOME` à votre `PATH`, avec comme valeur le chemin du répertoire où vous avez extrait l'archive
+
+</tab>
+</tabs>
+
+Pour vérifier que Gradle fonctionne correctement : 
+
+```Bash
+gradle -v
+```
+
+Le résultat devrait être : 
+
+```Bash
+------------------------------------------------------------
+Gradle 8.5
+------------------------------------------------------------
+
+Build time:   2023-03-03 16:41:37 UTC
+Revision:     7d6581558e226a580d91d399f7dfb9e3095c2b1d
+
+Kotlin:       1.8.10
+Groovy:       3.0.13
+Ant:          Apache Ant(TM) version 1.10.11 compiled on July 10 2021
+JVM:          17.0.6 (Homebrew 17.0.6+0)
+OS:           Mac OS X 13.2.1 aarch64
+```
+
+### Création d'un projet Java avec Gradle
+
+Commencer par créer un dossier pour le projet, puis se positionner dans ce dossier : 
+
+```Bash
+mkdir mon-projet
+cd mon-projet
+```
+
+Ensuite, initialiser le projet avec : 
+
+```Bash
+gradle init
+```
+
+Suivre le script d'installation avec les options suivantes : 
+
+1. Type de projet : `application`
+2. Langage : `Java`
+3. Sous-projets : `no`
+4. Langage de script de build : `Groovy`
+5. Framework de tests : `JUnit Jupiter`
+6. Nom du projet : au choix
+7. Nom du paquet : `fr.<votre prenom suivi de votre non de famille, en miniscule, sans accent collé>`
+8. Version de Java cible : 21
+9. Nouvelles APIs : `no`
+
+## Références du cours
+
+- [Documentation Adoptium (OpenJDK)](https://adoptium.net/installation/)
+- [Documentation Git](https://git-scm.com/doc)
+- [Gradle Documentation](https://docs.gradle.org/current/samples/sample_building_java_applications.html)
