@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <primary-color>halloween</primary-color>
+    </variables>
+    <build-profile instance="hi">
+        <variables>
+            <noindex-content>true</noindex-content>
+        </variables>
+        <footer>
+            <copyright>Ce travail est sous licence CreativeCommons BY-NC-SA 4.0</copyright>
+        </footer>
+    </build-profile>
+
+</buildprofiles>
