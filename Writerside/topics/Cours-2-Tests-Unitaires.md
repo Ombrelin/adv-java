@@ -16,7 +16,7 @@ Les tests automatiques permettent donc, de manière générale, d'augmenter la q
 
 Les tests unitaires sont les tests automatiques comportant le plus fin niveau de granularité, ils sont très proches des détails d'implémentation. Un test unitaire va tester une *Unité* de code spécifique. Une unité peut être, une méthode, une classe, ou un petit groupe de classe ayant un fort lien logique. 
 
-L'objectif des tests unitaire est donc de vérifier de façon précise le comportement du code dans les différent cas d'usage possible.
+L'objectif des tests unitaire est donc de vérifier de façon précise le comportement du code dans les différents cas d'usage possible.
 
 Cependant, les tests ne peuvent pas être exhaustifs. Ils aident à trouver les bugs, mais ne permettent
 pas d’affirmer qu’il n’y a pas de bugs.
@@ -102,11 +102,108 @@ void wordCount_whenMultipleWords_returnsRightCount(){
 
 Vous pouvez exécuter le test en utilisant le petit bouton "Play" dans la marge de l'éditeur.
 
-### Etablir des cas de test
+### Établir des cas de test
+
+### Conception des tests et couplage
+
+Pour avoir des tests de qualité
 
 ### Les pseudo-entités
 
+Les pseudo-entités sont des outils permettant de faciliter l'écriture des tests, en replaçant les dépendances de l'unité que l'on teste par des dépendances fausses ou simulées, que l'on peut manipuler facilement dans le contexte du test, afin de reproduire plus facilement des situations à tester, ou pour ignorer des choses qui ne sont pas pertinentes, mais aussi pour accélérer la vitesse d'exécution des tests, en évitant des interactions inutiles dans ce contexte.
+
+Il existe deux types principaux de pseudo-entités : les faux (*fakes*) et les simulacres (*mocks*).
+
+#### Faux (*Fakes*)
+
+Un faux est une pseudo entité qui va être une vraie implémentation de la dépendance, mais plus simpliste ou avec une encapsulation différente afin de faciliter le test. Exemples : 
+
+- Pour accès à une base de donnée : le faux peut consister à un simple stockage en mémoire
+
+```Java
+public interface UsersRepository {
+    User findByUsername(String username);
+}
+
+public class FakeUsersRepository implements UsersRepository {
+
+    private final Map<String, User> data;
+    
+    public FakeUsersRepository(Map<String, User> data){
+        this.data = data;
+    }
+
+    public User findByUsername(String username){
+        return this.data.get(username);
+    }
+}
+
+```
+
+- Pour une dépendance qui fourni le temps présent, et permet de déclencher un événement à un instant T : le faux sera surement une version pour laquelle on peut manipuler le temps
+
+```Java
+public record Event(Runnable action,  LocalDateTime executionTime);
+
+public interface Clock {
+    LocalDateTime now();
+    void enqueueEvent(Event event);
+}
+
+public class FakeClock implements Clock {
+
+    private LocalDateTime currentTime;
+    private final List<Event> events = new LinkedList<>();
+
+    public FakeClock(LocalDateTime startingTime) {
+        currentTime = startingTime;
+    }
+
+    public LocalDateTime now() {
+        return currentTime;
+    }
+
+    public void enqueueEvent(Event event) {
+        events.add(event);
+    }
+
+    public void advanceTimeBy(Duration duration) {
+        currentTime = currentTime.plus(duration);
+        executeEvents();
+    }
+
+    private void executeEvents() {
+        for (var event : events) {
+            if (event.executionTime().isBefore(currentTime)) {
+                event.action().run();
+                events.remove(event);
+            }
+        }
+    }
+}
+```
+
+#### Simulacres (*mocks*)
+
+Les simulacres sont des pseudo-entités qui ne sont pas des implémentations réelles des dépendances, ce sont simplement des coquilles vides, dont on peut configurer les méthodes pour retourner des valeurs en dur, ou vérifier si elles ont été appelées, combien de fois et comment.
+
+Par exemple, pour tester du code qui dépend d'un appel à une API.
+
+##### Simulacres en Java avec Mockito
+
+Pour installer Mockito, ajouter la dépendance de test à votre projet Gradle : 
+
+```Groovy
+testImplementation "org.mockito:mockito-core:3.+"
+```
+
+#### Faux, simulacre, ou vraie dépendance ?
+
+Il faut utiliser les vraies dépendances si cela est possible
+
 ### La couverture de test
+
+
 
 ## Le développement dirigé par les tests
 

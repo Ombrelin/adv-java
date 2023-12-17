@@ -4,7 +4,7 @@
 
 Pour développer en Java, nous avons besoin d'installer un JDK (Java Development Kit). La dernière version LTS (Long Term Support) est la version 21.
 
-### Installation d'OpenJDK
+### Installation d'OpenJDK 21
 
 <tabs>
 <tab title="Windows">
@@ -65,7 +65,7 @@ OpenJDK 64-Bit Server VM Temurin-21.0.1+12 (build 21.0.1+12-LTS, mixed mode, sha
 
 ## IntelliJ IDEA
 
-IntelliJ IDEA est un environment de développement intégré (IDE) pour le développement avec les différents langages ciblant la JVM. Il est très puissant et est largement utilisé dans l'industrie.
+IntelliJ IDEA est un environment de développement intégré (IDE) pour le développement avec les différents langages ciblant la JVM. Il est très puissant et est largement utilisé dans l'industrie. C'est celui qui sera utilisé pour le cours.
 
 ### Installation d'IntelliJ
 
@@ -232,8 +232,8 @@ Outil du cours : Intégration Git de IntelliJ IDEA.
 
 Autres outils intéressants : 
 
-- GitKraken : https://www.gitkraken.com/
-- SourceTree : <https://www.sourcetreeapp.com/>
+- [GitKraken](https://www.gitkraken.com/)
+- [SourceTree](https://www.sourcetreeapp.com/)
 
 ## Gitlab
 
@@ -242,9 +242,15 @@ permettre à toutes les personnes travaillant sur un projet de synchroniser leur
 
 La revue de code permet de vérifier le code de ses collègues pour vérifier s'il ne contient pas de problème, mais aussi pour suggérer des améliorations de qualité.
 
-Nous utiliserons l'instance Gitlab suivante : https://gitlab.com. Vous aurez donc besoin de créer un compte sur cette dernière.
+Nous utiliserons l'instance Gitlab [GitLab.com](https://gitlab.com). Vous aurez donc besoin de créer un compte sur cette dernière.
 
 ## Gradle
+
+### Qu'est-ce que Gradle ?
+
+Gradle est un outil de build (build tool), il permet de structurer notre projet, de définir comment un projet doit être compilé, packagé, exécuté, et testé.
+
+Gradle est, avec Maven, l'un des outils de build de l'écosystème Java les plus utilisés, il a l'avantage d'être plus moderne que Maven. Il est très (parfois trop) puissant, mais il permet de gagner beaucoup de temps.
 
 ### Installer gradle
 

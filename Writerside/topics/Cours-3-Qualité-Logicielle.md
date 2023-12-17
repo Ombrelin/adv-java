@@ -17,3 +17,7 @@
 niveau d'abstraction
 
 ### Nommer les éléments pour révéler l'intention
+
+## Architecture propre
+
+## Développement dirigé par le domaine
