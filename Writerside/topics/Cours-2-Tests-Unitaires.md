@@ -326,7 +326,7 @@ public class AverageCalculator {
             sum += number;
         }
 
-        System.out.printf("The average is : %d%n", sum / numbers.size());
+        System.out.print("The average is :" + sum / numbers.size());
     }
 }
 ```
@@ -357,7 +357,7 @@ public class AverageCalculatorApplication {
             sum += number;
         }
 
-        System.out.printf("The average is : %d%n", sum / numbers.size());
+        System.out.printf("The average is : + sum / numbers.size());
     }
 }
 ```
@@ -398,7 +398,7 @@ public class AverageCalculatorApplication {
         }
 
         io.print(
-            String.format("The average is : %d%n", sum / numbers.size())
+            String.format("The average is : " + sum / numbers.size())
         );
     }
 }
@@ -537,7 +537,7 @@ public class AverageCalculatorApplication {
         }
 
         final var average = averageCalculator.computeAverage(numbers);
-        io.print(String.format("The average is : %d%n", average));
+        io.print(String.format("The average is :" + average));
     }
 }
 ```
