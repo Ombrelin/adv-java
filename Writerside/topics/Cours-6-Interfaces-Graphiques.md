@@ -1,3 +1,13 @@
-# Cours 6 : Programmation Graphique
+# Cours 7 : Programmation Graphique
 
-Start typing here...
+## Programmation graphique et événementielle
+
+## JavaFX
+
+### Ajouter JavaFX à votre projet Gradle
+
+### Première Application JavaFX
+
+### Le pattern MVVM
+
+### Threading et interfaces graphiques
