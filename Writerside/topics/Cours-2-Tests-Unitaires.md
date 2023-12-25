@@ -128,11 +128,13 @@ Pour avoir des tests de qualité, il faut faire attention de comment on conçoit
 
 Le découpage en unité est important, car il permet de la facilité la compréhension en réduisant la largeur du contexte à comprendre à un instant T quand on lit le code. Il faut rassembler dans une unité des éléments qui ont un grand rapport fonctionnel ou technique entre eux.
 
-Créer des tests à un endroit donné, c'est en quelque sorte "sanctifier" une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code extérieur peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous els tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
+Créer des tests à un endroit donné, c'est en quelque sorte "sanctuariser une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code extérieur peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous els tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
 
 ### Les pseudo-entités
 
 Les pseudo-entités sont des outils permettant de faciliter l'écriture des tests, en replaçant les dépendances de l'unité que l'on teste par des dépendances fausses ou simulées, que l'on peut manipuler facilement dans le contexte du test, afin de reproduire plus facilement des situations à tester, ou pour ignorer des choses qui ne sont pas pertinentes, mais aussi pour accélérer la vitesse d'exécution des tests, en évitant des interactions inutiles dans ce contexte.
+
+Par exemple, pour un système qui va, dans les étapes de son déroulement, envoyer un email, on ne voudrait pas que l'email soit effectivement envoyé pendant l'exécution des tests. On va donc vouloir remplacer la dépendance qui gère l'envoi des mails par une pseudo-entité.
 
 Il existe deux types principaux de pseudo-entités : les faux (*fakes*) et les simulacres (*mocks*).
 

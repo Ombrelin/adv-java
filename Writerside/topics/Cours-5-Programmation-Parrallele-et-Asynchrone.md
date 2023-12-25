@@ -1,5 +1,254 @@
-# Cours 5 : Programmation Parrallèle et Asynchrone
+# Cours 5 : Programmation Parallèle et Asynchrone
 
-## Multithreading
+## Programmation parallèle
 
-## Programming Asynchrone
+La programmation parallèle permet aux ordinateurs d'avoir plusieurs tâches qui s'exécutent en même temps. Cela peut être utile au sein de d'une application dans plusieurs cas de figure
+
+- Améliorer la vitesse d'exécution d'une tâche qui prend beaucoup de temps et qui peut être découpée : découper la tâche en plusieurs sous parties, et exécuter ces différentes parties en parallèle
+- Permettre des cas d'utilisations : par exemple permettre à un serveur de traiter les requêtes de clients en parallèle
+
+### Notion de Thread
+
+Un thread (*thread* veut dire fil en anglais) est un fil d'exécution de code. Les différents threads d'un processus sont différents fils d'exécution parallèles (ils s'exécutent en même temps) tout en partageant la mémoire. Lors du démarrage d'un programme, ce dernier possède un thread dit principal, et il est possible de lancer de nouveaux threads au sein du programme
+
+Attention : la notion de thread est une abstraction issue du système d'exploitation, et non la JVM. Quand on crée un thread en Java, il y a un appel au système d'exploitation, qui va créer un thread. Cette opération est couteuse. C'est pourquoi, lorsqu'on souhaite utiliser de la parallèlisation pour accélérer l'exécution d'une tâche, il faut bien pondérer si cela vaut le coup ou non : si le temps d'exécution économisé par la parallèlisation des tâches est supérieur au temps nécessaire pour lancer le nombre de threads requis.
+
+### Threads en Java
+
+Pour créer un thread en Java, on utilise la classe `Thread` et son constructeur qui prend en argument l'interface fonctionnelle `Runnable`. On peut donc passer au thread son code à exécuter, en utilisant au choix : 
+
+- Une lambda
+- Une référence de méthode
+- Une classe qui implémente l'interface `Runnable` 
+
+Pour lancer le thread, il suffit d'appeler la fonction méthode `start`. Par exemple, si je on veut faire deux threads qui comptent en même temps, l'un compte les nombre impairs (*odd*) l'autre les nombre pairs (*even*) :
+
+```Java
+var oddThread = new Thread(() -> {
+    IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 != 0)
+            .forEach(System.out::println);
+});
+
+var evenThread = new Thread(() -> {
+    IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 == 0)
+            .forEach(System.out::println);
+});
+
+evenThread.start();
+oddThread.start();
+
+Thread.sleep(5000);
+```
+
+`Thread.sleep` permet d'endormir le thread courant pour un certain temps. Ici, on l'utilise pour endormir le thread principal en attendant que nos deux threads aient fini de s'exécuter. Si l'on ne fait pas ça, le thread principal se finirait immédiatement (lui a fini son travail), et on ne verrait pas les résultats de nos deux threads qui comptent.
+
+### Synchronisation de threads
+
+#### Joindre
+
+Dans certaines situations, on peut avoir besoin de coordonner plusieurs threads en eux. Par exemple, un thread pourrait avoir besoin du résultat d'un autre pour continuer son travail, ou on peut vouloir ordonner certaines tâches pour avoir un résultat cohérent. Pour cela, la méthode `join` est utile : le thread courant, c'est-à-dire le thread qui exécute cet appel de méthode, va attendre que le thread sur lequel il appelle la méthode se termine pour continuer.
+
+
+Par exemple, on peut modifier notre programme avec les deux threads compteurs afin que le thread principal n'attende plus les deux threads compteurs un temps donné (ce qui peut être risqué si l'opération prend finalement plus de temps que prévu), en utilisant `join` afin que le thread principal attendre forcément la terminaison des deux threads :
+
+```Java
+var oddThread = new Thread(() -> {
+    IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 != 0)
+            .forEach(System.out::println);
+});
+
+var evenThread = new Thread(() -> {
+    IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 == 0)
+            .forEach(System.out::println);
+});
+
+evenThread.start();
+oddThread.start();
+
+evenThread.join();
+oddThread.join();
+```
+
+#### Ressource partagée et section critique
+
+Une section critique est une partie de code que l'on veut toujours exécuter atomiquement pour un thread, c'est-à-dire qu'on veut éviter que cette partie de code soit exécutée par plusieurs threads en même temps, pour éviter d'avoir des incohérences dans nos données.
+
+Typiquement, quand il y a un test et une modification en fonction de ce test d'une variable partagée entre plusieurs threads.
+
+Par exemple, j'ai une classe `Hotel` qui compte des réservations, on ne doit pas valider plus de réservations de chambre que de chambres dans l'hôtel : 
+
+```Java
+public class Hotel {
+
+    private final int roomsCount;
+    private int bookedRoomsCount = 0;
+
+    public Hotel(int roomsCount) {
+        this.roomsCount = roomsCount;
+    }
+
+    public int getAvailableRoomCount(){
+        return roomsCount - bookedRoomsCount;
+    }
+
+    public void bookRooms(int numberOfBookedRooms){
+        if(getAvailableRoomCount() - numberOfBookedRooms < 0){
+            throw new IllegalArgumentException("Not enough rooms available");
+        }
+        else {
+            bookedRoomsCount += numberOfBookedRooms;
+        }
+    }
+}
+```
+
+Faisons ensuite exécuter ces réservations par différents threads : 
+
+```Java
+var hotel = new Hotel(20);
+
+var reservationThread1 = new Thread(() -> hotel.bookRooms(3));
+var reservationThread2 = new Thread(() -> hotel.bookRooms(7));
+var reservationThread3 = new Thread(() -> hotel.bookRooms(8));
+var reservationThread4= new Thread(() -> hotel.bookRooms(8));
+
+
+reservationThread1.start();
+reservationThread2.start();
+reservationThread3.start();
+reservationThread4.start();
+
+reservationThread1.join();
+reservationThread2.join();
+reservationThread3.join();
+reservationThread4.join();
+```
+
+Dans cette situation, on a un problème : on a aucune assurance qu'après l'exécution de la ligne `getAvailableRoomCount() - numberOfBookedRooms < 0` par un thread, pour vérifier qu'il y a assez de places, on ait la ligne `bookedRoomsCount += numberOfBookedRooms;` d'une autre thread qui soit exécuté, modifiant ainsi le nombre de places réservées sans que le premier thread puisse le savoir, ce dernier va donc procéder à l'iincrémentation `bookedRoomsCount += numberOfBookedRooms;`, potentiellement en excédant la limite de places réservées de l'hôtel. On obtiendrait ainsi une situation logiquement incorrecte. La méthode `bookRooms` de l'hôtel est de ce fait une section critique, on veut que chaque thread exécute les deux instructions à la suite, sans intervention d'un autre thread entre temps.
+
+Afin de protéger les sections critiques, Java fournit le mot-clé `synchronized` pour permet à un thread de "prendre la main" sur un objet le temps de la section critique. On peut donc protéger la section critique dans notre code pour garantir une exécution cohérente : 
+
+```Java
+var hotel = new Hotel(20);
+
+var reservationThread1 = new Thread(() -> {
+    synchronized (hotel) {
+        hotel.bookRooms(3);
+    }
+});
+
+var reservationThread2 = new Thread(() -> {
+    synchronized (hotel) {
+        hotel.bookRooms(7)
+    }
+});
+var reservationThread3 = new Thread(() -> {
+    synchronized (hotel) {
+        hotel.bookRooms(8)
+    }
+});
+var reservationThread4 = new Thread(() -> {
+    synchronized (hotel) {
+        hotel.bookRooms(8)
+    }
+});
+
+
+reservationThread1.start();
+reservationThread2.start();
+reservationThread3.start();
+reservationThread4.start();
+
+reservationThread1.join();
+reservationThread2.join();
+reservationThread3.join();
+reservationThread4.join();
+
+System.out.println(hotel.getAvailableRoomCount());
+```
+
+Ainsi, quand un thread commence la section synchronisée d'un objet, il a la certitude qu'aucun autre thread n'aura accès à cet objet avant qu'il n'ait fini d'exécuter la section synchronisée.
+
+Attention cependant ! La synchronisation coûte en performance, donc il faut la restreindre uniquement aux situations où c'est nécessaire.
+
+Aussi, ici la ressource partagée est un objet à nous (l'hôtel), mais si cette dernière est une structure de donnée comme une liste ou une map, Java fournit des équivalents de ces structures de donnée synchronisées aux endroits où il faut, par exemple : 
+
+```Java
+var synchronizedList = Collections.synchronizedList(new ArrayList<Integer>());
+```
+
+On dit d'un code qui gère bien la synchronisation pour assurer la cohérence des données qu'il est *thread-safe*.
+
+#### Synchroniser
+
+Parfois, on peut avoir besoin de faire s'attendre dynamiquement des threads afin de coordonner leur action en fonction de ressources partagées. Les méthodes `wait` et `notify` sont présentes sur tous les objets Java, et permettent aux threads se passer des signaux concernant ces objets. Quand un thread exécute `wait` sur un objet, il indique qu'il attend d'être notifié que cet objet est disponible pour lui, il va donc attendre jusqu'à ce qu'un autre thread appelle `notify` sur cet objet.
+
+Par exemple, on peut modifier notre programme avec les deux threads compteurs pour qu'ils soient coordonnées, et affichent les nombres dans l'ordre : 
+
+```Java
+var token = new Object();
+
+var oddThread = new Thread(() -> {
+    var oddNumbers = IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 != 0)
+            .toArray();
+
+    for (var oddNumber : oddNumbers) {
+        synchronized (token) {
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(oddNumber);
+            token.notify();
+        }
+    }
+});
+
+var evenThread = new Thread(() -> {
+    var evenNumbers = IntStream
+            .range(0, 100)
+            .filter(number -> number % 2 == 0)
+            .toArray();
+
+    for (var evenNumber : evenNumbers) {
+        System.out.println(evenNumber);
+        synchronized (token) {
+            token.notify();
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+});
+
+evenThread.start();
+oddThread.start();
+
+evenThread.join();
+oddThread.join();
+```
+
+Ici, les deux threads vont utiliser la ressource partager `token` pour s'attendre l'un l'autre à chaque fois qu'il affiche un nombre, chacun leur tour, afin de garantir que les numéros seront affichés bien dans l'ordre par les deux threads.
+
+### Thread Pools
+
+## Programmation Asynchrone
+
+## Références du cours
+
+https://jenkov.com/tutorials/java-multithreaded-servers/thread-pooled-server.html
+https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html
+https://www.baeldung.com/java-asynchronous-programming#bd-asyncJava
