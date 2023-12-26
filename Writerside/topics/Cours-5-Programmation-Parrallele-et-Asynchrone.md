@@ -308,9 +308,9 @@ CompletableFuture<String> task = CompletableFuture.supplyAsync(() -> {
 });
 ```
 
-La méthode que l'on passe à `supplyAsync` sera exécutée de façon asynchrone sur un *thread pool* commune gérée par la JVM.
+La méthode que l'on passe à `supplyAsync` sera exécutée de façon asynchrone sur une *thread pool* commune gérée par la JVM.
 
-On peut ensuite interagir avec le `CompletableFuture` pour accrocher une configuration via les méthodes suivantes : 
+On peut ensuite interagir avec le `CompletableFuture` pour accrocher une continuation via les méthodes suivantes : 
 
 - `thenAccept` : exécute une continuation sur le thread courant
 - `thenAcceptAsync` : exécute une continuation sur la *thread pool* commune
@@ -328,7 +328,7 @@ task.exceptionally(exception -> {
 });
 ```
 
-
+On peut aussi dans certains cas vouloir attendre le résultat d'un `CompletableFuture`, cela peut se faire en utilisant la méthode `get`, qui retourne le résultat, mais en bloquant le thread courant jusqu'à la résolution du `CompletableFuture`.
 
 ## Références du cours
 
