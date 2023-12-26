@@ -25,7 +25,11 @@ La méthode `accept` nous donne la socket pour communiquer spécifique avec le c
 Pour l'entrée, c'est-à-dire le flux de données qui vient du client (envoyée au serveur par le client), on utilise un `BufferedReader` qui nous permet d'écrire simplement du texte ligne par ligne : 
 
 ```Java
-final var streamFromClient = new BufferedReader(new InputStreamReader(connectedClientSocket.getInputStream()));
+final var streamFromClient = new BufferedReader(
+    new InputStreamReader(
+        connectedClientSocket.getInputStream()
+    )
+);
 ```
 
 Pour la sortie, c'est-à-dire le flux de données qui sont envoyées par le serveur au client, on utilise un `PrintWriter`  qui nous permet de lire simplement du texte ligne par ligne :
@@ -49,13 +53,18 @@ De la même façon que pour le serveur, on peut récupérer les flux entrée/sor
 Pour l'entrée, c'est-à-dire le flux de données qui vient du serveur (envoyée au client par le serveur) :
 
 ```Java
-final var streamFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+final var streamFromClient = new BufferedReader(
+    new InputStreamReader(clientSocket.getInputStream())
+);
 ```
 
 Pour la sortie, c'est-à-dire le flux de données qui sont envoyées par le client au serveur :
 
 ```Java
-final var streamToClient = new PrintWriter(clientSocket.getOutputStream(), true);
+final var streamToClient = new PrintWriter(
+    clientSocket.getOutputStream(),
+    true
+);
 ```
 
 ## Communications client-serveur
@@ -72,7 +81,8 @@ Voyons comment on peut faire ça en implémentant une application de chat basiqu
 public class ChatServer {
 
     private final int port;
-    private final List<PrintWriter> connectedClientsOutputStreams = new ArrayList<>();
+    private final List<PrintWriter> connectedClientsOutputStreams =
+     new ArrayList<>();
 
     public ChatServer(int port) {
         this.port = port;
@@ -84,8 +94,12 @@ public class ChatServer {
         System.out.println("Server is running, waiting for clients");
         while (true) {
             final var connectedClient = serverSocket.accept();
-            connectedClientsOutputStreams.add(new PrintWriter(connectedClient.getOutputStream(), true));
-            new Thread(() -> listenForClientMessage(connectedClient)).start();
+            connectedClientsOutputStreams.add(
+                new PrintWriter(connectedClient.getOutputStream(), true)
+            );
+            
+            new Thread(() -> listenForClientMessage(connectedClient))
+                .start();
         }
     }
     
@@ -101,13 +115,15 @@ Pour la gestion des interactions client :
 ```Java
     private void listenForClientMessage(Socket client) {
         System.out.println("New client is connected !");
-        final BufferedReader messagesFromClientStream =  = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        final BufferedReader messagesFromClientStream = new BufferedReader(
+            new InputStreamReader(client.getInputStream())
+        );
         
         while (true) {
-            final var messageFromClient = messageFromClient = messagesFromClientStream.readLine();
-            System.out.println(messageFromClient);
+            final var messageFromClient = messagesFromClientStream
+                .readLine();
 
-            for (final var connectedClientOutputStream : this.connectedClientsOutputStreams) {
+            for (final var connectedClientOutputStream : connectedClientsOutputStreams) {
                 connectedClientOutputStream.println(messageFromClient);
             }
         }
@@ -146,8 +162,13 @@ public class ChatClient {
 
     public void connect() throws IOException {
         final var socket = new Socket(address, port);
-        messagesFromServerStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        messagesToServerStream = new PrintWriter(socket.getOutputStream(), true);
+        messagesFromServerStream = new BufferedReader(
+            new InputStreamReader(socket.getInputStream())
+        );
+        messagesToServerStream = new PrintWriter(
+            socket.getOutputStream(),
+            true
+        );
 
         new Thread(this::listenForMessages).start();
     }
@@ -181,7 +202,12 @@ Et enfin la méthode `main` :
 
 ```Java
     public static void main(String[] args) throws IOException {
-        final var client = new ChatClient(3000, "localhost", new PrintWriter(System.out, true));
+        final var client = new ChatClient(
+            3000,
+            "localhost",
+            new PrintWriter(System.out, true)
+        );
+        
         client.connect();
         final var stdIn = new BufferedReader(new InputStreamReader(System.in));
 
@@ -199,3 +225,8 @@ Et enfin la méthode `main` :
 ```
 
 La logique est de créer le client en lui fournissant comme flux d'affichage `System.in` puis d'attendre continuellement une entrée utilisateur pour envoyer des messages.
+
+## Références du cours
+
+- [Javadoc `Socket`](https://docs.oracle.com/javase/8/docs/api/java/net/Socket.html)
+- [Javadoc `ServerSocket`](https://docs.oracle.com/javase/8/docs/api/java/net/ServerSocket.html)

@@ -332,6 +332,5 @@ On peut aussi dans certains cas vouloir attendre le résultat d'un `CompletableF
 
 ## Références du cours
 
-https://jenkov.com/tutorials/java-multithreaded-servers/thread-pooled-server.html
-https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html
-https://www.baeldung.com/java-asynchronous-programming#bd-asyncJava
+- [Javadoc Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
+- [Baeldung Async Programming](https://www.baeldung.com/java-asynchronous-programming#bd-asyncJava)

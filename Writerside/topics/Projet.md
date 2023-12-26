@@ -10,7 +10,14 @@ L'objectif du projet est, dans un premier temps, d'implémenter une simulation d
 
 ### Livrable 1 : Jets de dés, plateau, déplacement
 
-- Edge case : doubles
+Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, jeu progresse quand il donne l'ordre IDLE, ce qui fait jeter les dés et déplacer le joueur suivant.
+
+La composition du plateau est la suivante : 
+
+- Case 0 : case départ
+- Case 1 : Propriété, Marron 1, 
+
+Voici les règles concernant les dés : on simule le jet de deux dés à six face, le score de déplacement est la somme des deux dés. Les dés ne sont pas testés par mes tests, ils sont remplacés par une pseudo entité, mais je corrigerai la validité de votre implémentation ainsi que comment vous l'avez testée.
 
 ### Livrable 2 : Argent, Achat, Loyers terrain nu, Taxes
 
