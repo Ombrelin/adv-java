@@ -243,9 +243,92 @@ oddThread.join();
 
 Ici, les deux threads vont utiliser la ressource partager `token` pour s'attendre l'un l'autre à chaque fois qu'il affiche un nombre, chacun leur tour, afin de garantir que les numéros seront affichés bien dans l'ordre par les deux threads.
 
-### Thread Pools
-
 ## Programmation Asynchrone
+
+### Définition
+
+La programmation asynchrone est une technique qui consiste à utiliser une abstraction en plus des threads pour organiser le parallèlisme de façon plus optimisée :
+
+- En utilisant moins de threads pour faire la même chose : on passe moins de temps à créer des threads
+- En utilisant des entrées/sorties non bloquantes pour utiliser au maximum le temps CPU
+
+On peut même faire de la programmation asynchrone sur un seul thread, pour les curieux, c'est d'ailleurs [comme ça que fonctionne Node JS](https://nodejs.org/en/guides/event-loop-timers-and-nexttick).
+
+Ce paradigme de programmation être très utile dans plusieurs cas courants : 
+
+- Serveur d'application qui doit gérer de façon concurrente des requêtes de clients tout en intéragissant avec des systèmes externes
+- Application graphique qui a besoin de faire des tâches prenant du temps en arrière-plan, sans pour autant bloquer l'interface graphique
+
+Les abstractions au-dessus des threads propres à la programmation asynchrone sont les suivantes : 
+
+- Promesse : une promesse est une tâche qui va être réalisée de façon asynchrone, dont on aura la confirmation de la résolution plus tard dans le futur. Elle peut avoir ou non une donnée en résultat.
+- Continuation : une continuation est le code qui doit s'exécuter lorsque la promesse a été résolue : elle  implémente de la logique pour réagir au succès ou à l'échec de l'opération, ou alors consommée une donnée produite par la promesse
+
+## Entrées/Sorties Non Bloquantes
+
+Dans un système, il y a deux types d'opération qui prennent beaucoup du temps : 
+
+- Les opérations liées au temps de calcul (CPU-Bound) : temps passé pour que le CPU exécution d'algorithme
+- Les opérations liées aux entrées/sorties (IO-Bound) : temps passé par le CPU à attendre la réponse d'un système externe au processus comme un appel réseau, ou un appel au système de fichier.
+
+Les entrées/sorties non bloquantes consistent à récupérer le temps "gâché" à attendre par les opérations IO-Bound pour faire autre chose en attendant.
+
+Par exemple dans le cas assez courant d'un server HTTP qui gère des requêtes, et qui a besoin de faire des appels à une base de donnée pour honorer ces requêtes. Dans un modèle d'entrée/sorties bloquant, on va avoir un thread qui va gérer chaque nouvelle requête. Ce thread va être bloqué à ne rien faire à cause de l'entrée sortie d'abord au moment d'attendre que la requête du client lui soit transférée, puis à nouveau quand il attend la réponse du serveur de base de donnée. Au contraire, dans un modèle non bloquant, lorsqu'il doit attendre l'entrée/sortie, le thread, au lieu d'être bloquant et ne rien faire en attendant, va faire autre chose d'actif, traiter une autre requête.
+
+L'entrée sortie non bloquante est rendu possible par la programmation asynchrone, car ce modèle qui permet de déférer des traitements pour en consommer le résultat plus tard est bien adaptée à cette logique.
+
+### Programmation Asynchrone en Java
+
+Java ne fournit pas un support très avancé de la programmation asynchrone, mais fournit quand même des outils intéressants.
+
+#### Thread Pool
+
+Une *thread pool* est un petit groupe de threads à qui on peut soumettre des tâches à exécuter de façon asynchrone. Dans la *thread pool*, ces tâches sont organisées dans une file pour être traitées dans l'ordre. Cela permet de gérer le nombre de threads créés par l'application.
+
+![](https://www.baeldung.com/wp-content/uploads/2016/08/2016-08-10_10-16-52-1024x572.png)
+
+On peut créer une *thread pool* comme ceci : 
+
+```Java
+ExecutorService threadPool = Executors.newFixedThreadPool(4); // 4 est le nombre de threads dédiées à la pool
+```
+
+On peut ensuite lui soumettre des `Runnable` à exécuter en utilisant la méthode `submit`.
+
+#### CompletableFuture
+
+`CompletableFuture` est l'implémentation en Java du concept de promesse, il modélise une opération qui se résout de façon asynchrone.
+
+On peut créer un `CompletableFuture` ainsi : 
+
+```Java
+CompletableFuture<String> task = CompletableFuture.supplyAsync(() -> {
+    var result = ... opération longue à exécuter de façon asynchrone...
+    return result;
+});
+```
+
+La méthode que l'on passe à `supplyAsync` sera exécutée de façon asynchrone sur un *thread pool* commune gérée par la JVM.
+
+On peut ensuite interagir avec le `CompletableFuture` pour accrocher une configuration via les méthodes suivantes : 
+
+- `thenAccept` : exécute une continuation sur le thread courant
+- `thenAcceptAsync` : exécute une continuation sur la *thread pool* commune
+
+```Java
+task.thenAccept((String result) -> System.out.println(result));
+```
+
+On peut aussi gérer les erreurs avec `task.exceptionally` : 
+
+```Java
+task.exceptionally(exception -> {
+   exception.printStackTrace();
+   return "";
+});
+```
+
+
 
 ## Références du cours
 
