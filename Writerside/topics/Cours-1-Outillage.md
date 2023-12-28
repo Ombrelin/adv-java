@@ -235,14 +235,14 @@ Autres outils intéressants :
 - [GitKraken](https://www.gitkraken.com/)
 - [SourceTree](https://www.sourcetreeapp.com/)
 
-## Gitlab
+## Github
 
-Gitlab est une des nombreuses options qui existent en tant que serveur git. Un serveur git est un serveur qui va
-permettre à toutes les personnes travaillant sur un projet de synchroniser leur travail, car Gitlab héberge un dépôt distant. Gitlab fournit également des outils de coopération, notamment la revue de code. 
+Github est une des nombreuses options qui existent en tant que serveur git. Un serveur git est un serveur qui va
+permettre à toutes les personnes travaillant sur un projet de synchroniser leur travail, car Github héberge un dépôt distant. Github fournit également des outils de coopération, notamment la revue de code. 
 
 La revue de code permet de vérifier le code de ses collègues pour vérifier s'il ne contient pas de problème, mais aussi pour suggérer des améliorations de qualité.
 
-Nous utiliserons l'instance Gitlab [GitLab.com](https://gitlab.com). Vous aurez donc besoin de créer un compte sur cette dernière.
+Nous utiliserons [GitHub.com](https://github.com). Vous aurez donc besoin de créer un compte dessus.
 
 ## Gradle
 
