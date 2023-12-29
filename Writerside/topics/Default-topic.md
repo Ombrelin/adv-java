@@ -28,9 +28,9 @@ Programme des séances :
 | Vendredi 26 Janvier 2024 | [Cours 3: Qualité Logicielle](Cours-3-Qualité-Logicielle.md)                                              |
 | Lundi 29 Janvier 2024    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
 | Vendredi 2 Février 2024  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 16 Février 2024 | [Cours 6: Interfaces Graphiques](Cours 6 : Interfaces Graphiques.md)                                      |
-| Vendredi 23 Février 2024 | TBD                                                                                                       |
-| Vendredi 1 Mars 2024     | TBD                                                                                                       |
+| Vendredi 16 Février 2024 | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Réseau.md)                                      |
+| Vendredi 23 Février 2024 | Retour sur les éléments du cours donnant le plus de difficultés                                                                                                       |
+| Vendredi 1 Mars 2024     | Examen blanc                                                                                                       |
 
 </tab>
 <tab title="LSI2">
@@ -42,9 +42,9 @@ Programme des séances :
 | Jeudi 25 Janvier 2024    | [Cours 3: Qualité Logicielle](Cours-3-Qualité-Logicielle.md)                                              |
 | Lundi 29 Janvier 2024    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
 | Vendredi 2 Février 2024  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 16 Février 2024 | [Cours 6: Interfaces Graphiques](Cours 6 : Interfaces Graphiques.md)                                      |
-| Vendredi 23 Février 2024 | TBD                                                                                                       |
-| Vendredi 1 Mars 2024     | TBD                                                                                                       |
+| Vendredi 16 Février 2024 | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Réseau.md)                                         |
+| Vendredi 23 Février 2024 | Retour sur les éléments du cours donnant le plus de difficultés                                           |
+| Vendredi 1 Mars 2024     | Examen blanc                                                                                              |
 
 </tab>
 </tabs>
@@ -65,6 +65,6 @@ Un devoir écrit aura lieu le **jeudi 21 mars 2024**. Il comportera des question
 
 Déroulement : 
 
-1. Je fais un petit récap du cours en 5 minutes
+1. Je fais un petit récap du cours en 10 minutes
 2. Séance de Questions & Réponse sur le cours
 3. Travail autonome sur le projet, je suis disponible pour aider

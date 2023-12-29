@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Le Monopoly est un jeu de société très connu. Il n'est pas très fun à jouer, mais il a un intérêt sur le plus pédagogique, car ses règles sont plutôt bien connues et intéressantes à implémenter sous forme de logiciel. Il nous permet aussi d'intégrer facilement les sujets qui nous intéressent dans ce module comme le threading et le réseau.
+Le Monopoly est un jeu de société très connu. Il n'est pas très fun à jouer, mais il a un intérêt sur le plan pédagogique, car ses règles sont plutôt bien connues et intéressantes à implémenter sous forme de logiciel. Il nous permet aussi d'intégrer facilement les sujets qui nous occupent  dans ce module comme le threading et le réseau.
 
-Pour la petite histoire, le Monopoly a été inventé au début du 20e siècle par [Lizzie Magie](https://en.wikipedia.org/wiki/Lizzie_Magie) pour monter le problème de l'accumulation de la propriété foncière. Je recommande [cette vidéo](https://www.youtube.com/watch?v=tpQ9vyUkB4E) sur le sujet de l'origine du Monopoly si cela vous intéresse. 
+Pour la petite histoire, le Monopoly a été inventé au début du 20e siècle par [Lizzie Magie](https://en.wikipedia.org/wiki/Lizzie_Magie) pour montrer le problème de l'accumulation de la propriété foncière. Je recommande [cette vidéo](https://www.youtube.com/watch?v=tpQ9vyUkB4E) sur le sujet de l'origine du Monopoly si cela vous intéresse. 
 
 ## Objectif
 
@@ -48,7 +48,7 @@ Ajoutez-moi ensuite sur votre projet (mon nom d'utilisateur est `Ombrelin`) :
 
 ### Description du dossier du projet
 
-Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Outillage.md#gradle). Il contient un module appelée `core` qui va contenir du code que je fournis : 
+Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Outillage.md#gradle). Il contient un module appelé `core` qui va contenir du code que je fournis : 
 
 1. Des tests d'intégration, qui vérifient de façon automatique que votre code implémente bien les spécifications requises.
 2. Des abstractions (interfaces) qui permettent à mes tests de s'intégrer avec votre code
@@ -129,9 +129,11 @@ test {
 
 ### Livrable 1 : Jets de dés, plateau, déplacement
 
-Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, jeu progresse quand ils donnent l'ordre IDLE (ne rien faire), ce qui fait jeter les dés et déplacer le joueur suivant.
+Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, jeu progresse quand ils donnent l'ordre IDLE (ne rien faire), ce qui fait jeter les dés et déplacer le joueur suivant. Les ordres incohérents avec la situation courante du jeu sont ignorés. Un ordre invalide peut être un ordre d'un joueur pour qui ce n'est pas le tour de jouer, ou alors un ordre qui n'est pas cohérent avec la situation courante du tour.
 
-La composition du plateau est la suivante, est décrite dans le fichier de ressources `monopoly.csv`. Ce fichier est à parser pour créer une représentation en mémoire du plateau. 
+La composition du plateau est la suivante, est décrite dans le fichier de ressources `monopoly.csv` (sous `core/main/resources` dans le projet). Ce fichier est à parser pour créer une représentation en mémoire du plateau. 
+
+![](board.png)
 
 > Pour lire un fichier de ressource, on peut utiliser `getClass().getResourceAsStream("/chemin/du/fichier")`, le chemin à passer étant le chemin du fichier relativement au répertoire `resources` (le premier / est important).
 
@@ -151,14 +153,100 @@ Notre variante de Monopoly n'utilise pas la mise aux enchères systématique.
 
 Dans ce livrable, on va implémenter : 
 
-- Un système de gestion de l'argent des joueurs, et des transactions
+- Un système de gestion de l'argent des joueurs, et des transactions. Chaque joueur commence avec une somme de départ de 1500€.
 - Possibilité pour les joueurs d'acheter des propriétés
-- Les joueurs doivent régler un loyer lorqu'ils arrivent sur une propriété déjà possédée par un autre joueur
+- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété déjà possédée par un autre joueur
 - Les joueurs doivent régler une taxe quand ils tombent sur une case de type taxe
 
-### Livrable 3 : Prison, case départ
+Les loyers terrain nu sont les suivants : 
+
+
+
+| Propriété                                                    | Loyer terrain nu |
+|--------------------------------------------------------------|------------------|
+| <format color="SaddleBrown">Rue Raspail</format>             | 60               |
+| <format color="SaddleBrown">Rue Victor Hugo</format>         | 60               | 
+| <format color="LightBlue">Rue Jean Jaurès</format>           | 100              |
+| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 100              |
+| <format color="LightBlue">Rue Youri Gagarine</format>        | 120              |
+| <format color="RosyBrown">Avenue Louis Aragon</format>       | 140              | 
+| <format color="RosyBrown">Avenue de la République</format>   | 140              |
+| <format color="RosyBrown">Avenue de Stalingrad</format>      | 160              |
+| <format color="Orange">Allée Berlioz</format>                | 180              |
+| <format color="Orange">Rue du Moulin de Saquet</format>      | 180              |
+| <format color="Orange">Sentier de la Commune</format>        | 200              |
+| <format color="Red">Rue Pascal</format>                      | 220              |
+| <format color="Red">Rue Blanqui</format>                     | 220              |
+| <format color="Red">Rue Rosa Luxembourg</format>             | 240              |
+| <format color="Yellow">Rue de Bretagne</format>              | 260              |
+| <format color="Yellow">Rue René Hamon</format>               | 260              |
+| <format color="Yellow">Rue Guy Môquet</format>               | 280              |
+| <format color="Green">Rue Henri Barbusse</format>            | 300              |
+| <format color="Green">Rue Ambroise Croizat</format>          | 300              |
+| <format color="Green">Rue de Verdun</format>                 | 320              |
+| <format color="Blue">Avenue de Paris</format>                | 350              |
+| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 400              |
+
+Pour l'instant le loyer des gare est un prix fixe de 25.
+
+### Livrable 3 : Prison, case départ, gares
+
+#### Prison
+
+Si un joueur tombe sur la case "Aller en prison", il va en prison, et est déplacé sur la case "En prison".
+
+Lors de son prochain tour, si son score au dé est un double, il sort de prison et avance de ce score. Il n'est n'est plus en prison. Sinon, il peut :
+- émettre un ordre de PAY_PRISON, ce qui lui coûte 50. S'il fait ça, il avance de son score, il n'est plus en prison.
+- émettre un ordre IDLE, il est toujours en prison.
+
+Ces choix s'offrent à lui pour les deux prochains tours. Au 3e tour en prison s'il ne sort pas via les dés, il est obligé de payer.
+
+#### Case départ
+
+Quand un joueur passe par la case départ, il gagne 200.
+
+#### Gares
+
+Le loyer d'une gare est calculé en fonction du nombre de gare possédé par le joueur qui possède la gare : 
+
+| Nombre de gares possédées | Loyer |
+|---------------------------|-------|
+| 1                         | 25    |
+| 2                         | 50    |
+| 3                         | 100   |
+| 4                         | 200   |
 
 ### Livrable 4 : Construction et loyers adéquats
+
+Les joueurs peuvent construire des maisons pour leurs propriétés en émettant un ordre BUILD à leur tour. Cet ordre a un paramètre `propertyName` : le nom de la propriété sur laquelle construire.
+
+Une propriété a cinq niveaux de construction. Voici la spécification des loyer et prix de construction en fonction des propriétés :
+
+| Propriété                                                    | Cout de construction | Loyer "1 Maison" | Loyer "2 Maisons" | Loyer "3 Maisons" | Loyer "4 Maisons" | Loyer "Hotel" |
+|--------------------------------------------------------------|----------------------|------------------|-------------------|-------------------|-------------------|---------------|
+| <format color="SaddleBrown">Rue Raspail</format>             | 50                   | 10               | 30                | 90                | 160               | 250           |
+| <format color="SaddleBrown">Rue Victor Hugo</format>         | 50                   | 20               | 60                | 180               | 320               | 450           | 
+| <format color="LightBlue">Rue Jean Jaurès</format>           | 50                   | 30               | 90                | 270               | 400               |               |
+| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 50                   | 30               | 90                | 270               | 400               |               |
+| <format color="LightBlue">Rue Youri Gagarine</format>        | 50                   | 40               | 100               | 300               | 450               |               |
+| <format color="RosyBrown">Avenue Louis Aragon</format>       | 100                  | 50               | 150               | 450               | 625               |               | 
+| <format color="RosyBrown">Avenue de la République</format>   | 100                  | 50               | 150               | 450               | 625               |               |
+| <format color="RosyBrown">Avenue de Stalingrad</format>      | 100                  | 60               | 180               | 500               | 700               |               |
+| <format color="Orange">Allée Berlioz</format>                | 100                  | 70               | 200               | 550               | 750               |               |
+| <format color="Orange">Rue du Moulin de Saquet</format>      | 100                  | 70               | 200               | 550               | 750               |               |
+| <format color="Orange">Sentier de la Commune</format>        | 100                  | 80               | 220               | 600               |                   |               |
+| <format color="Red">Rue Pascal</format>                      | 150                  | 90               | 250               | 700               |                   |               |
+| <format color="Red">Rue Blanqui</format>                     | 150                  | 90               | 250               | 700               |                   |               |
+| <format color="Red">Rue Rosa Luxembourg</format>             | 150                  | 100              | 300               | 750               |                   |               |
+| <format color="Yellow">Rue de Bretagne</format>              | 150                  | 110              | 330               | 800               |                   |               |
+| <format color="Yellow">Rue René Hamon</format>               | 150                  | 110              | 330               | 800               |                   |               |
+| <format color="Yellow">Rue Guy Môquet</format>               | 150                  | 120              | 360               | 850               |                   |               |
+| <format color="Green">Rue Henri Barbusse</format>            | 200                  | 130              | 390               | 900               |                   |               |
+| <format color="Green">Rue Ambroise Croizat</format>          | 200                  | 130              | 390               | 900               |                   |               |
+| <format color="Green">Rue de Verdun</format>                 | 200                  | 150              | 450               | 1000              |                   |               |
+| <format color="Blue">Avenue de Paris</format>                | 200                  | 175              | 500               | 1100              |                   |               |
+| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 200                  | 200              | 600               | 1400              |                   |               |
+
 
 ### Livrable 5 : Jeu en réseau avec client en ligne de commande
 
