@@ -112,8 +112,7 @@ l'historique
 
 #### Branche
 
-Permet de faire diverger en parallèle plusieurs versions du projet pour pouvoir les réconcilier facilement et les
-réconcilier plus tard.
+Permet de faire diverger en parallèle plusieurs versions du projet pour pouvoir les réconcilier facilement plus tard.
 
 ### Installer git
 
@@ -173,7 +172,7 @@ git init
 
 Pour rapport les changements d'une branche sur une autre, on fusionne :
 
-Pour merge la branche b2 dans la branche b1
+Pour fusionner (*merge*) la branche b2 dans la branche b1
 
 ```bash
 git checkout b1
@@ -410,7 +409,7 @@ tasks.named('test') {
 }
 ```
 
-- `plugins` : l'ajout du projet `application` permet de configurer le module comme une application console, c'est-à-dire un programme qui a un point d'entrée (une méthode main), exécutable en ligne de commande, par opposition par exemple à un module de library, qui n'aurait pas de point d'entrée.
+- `plugins` : l'ajout du projet `application` permet de configurer le module comme une application console, c'est-à-dire un programme qui a un point d'entrée (une méthode main), exécutable en ligne de commande, par opposition par exemple à un module de type `library`, qui n'aurait pas de point d'entrée, et qui aurait vocation à être importée par un autre module qui en utiliserait les classes.
 - `repositories` : avec `mavenCentral()` on désigne le dépôt depuis lequel les dépendances déclarées seront téléchargées comme MavenCentral. Ce dernier est le dépôt de paquets Java le plus connu (un peu comme NPM / nuget / cargo).
 - `dependencies` : ici, on déclare les dépendances du projet. Plus de détail là-dessus dans la partie suivante.
 - `java` : permet de déclarer la version de Java utilisée par le module.

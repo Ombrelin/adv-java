@@ -6,7 +6,7 @@ Les tests automatiques ou le code auto-testant ([self-testing code](https://mart
 
 Ainsi, vous pouvez, en une seule commande ou d'un seul clic, exécuter un ensemble de tests, qui vous dit si votre application contient ou non des bugs majeurs. Cela permet de réduire radicalement le nombre de bugs présent dans le code livré en production.
 
-Mais surtout, on peut développer et ajouter de nouvelles fonctionnalités, ou refactorer du code sans avoir peur d'introduire des régressions majeures dans le code. Il devient donc beaucoup plus facile d'itérer sur du code pour l'enrichir et enn améliorer la qualité. 
+Ainsi, on peut développer et ajouter de nouvelles fonctionnalités, ou refactorer, en utilisant les tests pour vérifier que l'on n'est pas en train d'introduire des régressions majeures dans le code. Il devient donc beaucoup plus facile d'itérer sur notre code pour l'enrichir et en améliorer la qualité. 
 
 Les tests automatiques permettent donc, de manière générale, d'augmenter la qualité et la fiabilité des logiciels pour un investissement en temps raisonnable.
 

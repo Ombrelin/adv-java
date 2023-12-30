@@ -57,7 +57,7 @@ Le projet va se dérouler tout au long du module, il sera effectué en binôme. 
 
 ### Un devoir écrit
 
-Un devoir écrit aura lieu le **jeudi 21 mars 2024**. Il comportera des questions de cours simple, des questions de cours plus complexes, et un exercice d'analyse sur un code fourni. Il se fera sur papier, mais ne demandera d'écrire de code sur papier.
+Un devoir écrit aura lieu le **jeudi 21 mars 2024**. Il comportera des questions de cours simples, des questions de cours plus complexes, et un exercice d'analyse sur un code fourni. Il se fera sur papier, mais ne demandera pas d'écrire de code sur papier.
 
 ## Séance Type
 
