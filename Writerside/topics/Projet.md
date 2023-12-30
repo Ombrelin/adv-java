@@ -154,13 +154,11 @@ Notre variante de Monopoly n'utilise pas la mise aux enchères systématique.
 Dans ce livrable, on va implémenter : 
 
 - Un système de gestion de l'argent des joueurs, et des transactions. Chaque joueur commence avec une somme de départ de 1500€.
-- Possibilité pour les joueurs d'acheter des propriétés
-- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété déjà possédée par un autre joueur
+- Possibilité pour les joueurs d'acheter des propriétés, gares et companies, en donnant un ordre de type `BUY` à son tour lorsqu'on est sur une localisation de ce type
+- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété, gare ou company, déjà possédée par un autre joueur
 - Les joueurs doivent régler une taxe quand ils tombent sur une case de type taxe
 
-Les loyers terrain nu sont les suivants : 
-
-
+Les loyers terrain nu sont les suivants :
 
 | Propriété                                                    | Loyer terrain nu |
 |--------------------------------------------------------------|------------------|
@@ -187,7 +185,9 @@ Les loyers terrain nu sont les suivants :
 | <format color="Blue">Avenue de Paris</format>                | 350              |
 | <format color="Blue">Avenue Paul Vaillant Couturier</format> | 400              |
 
-Pour l'instant le loyer des gare est un prix fixe de 25.
+Pour l'instant le loyer des gares est un prix fixe de 25.
+
+Si un joueur est confronté à un loyer qu'il ne peut pas payer, il perd, et est supprimés des joueurs de la partie. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel à `submitOrder` jette une exception de type `GameFinishedException`.
 
 ### Livrable 3 : Prison, case départ, gares
 
@@ -196,8 +196,8 @@ Pour l'instant le loyer des gare est un prix fixe de 25.
 Si un joueur tombe sur la case "Aller en prison", il va en prison, et est déplacé sur la case "En prison".
 
 Lors de son prochain tour, si son score au dé est un double, il sort de prison et avance de ce score. Il n'est n'est plus en prison. Sinon, il peut :
-- émettre un ordre de PAY_PRISON, ce qui lui coûte 50. S'il fait ça, il avance de son score, il n'est plus en prison.
-- émettre un ordre IDLE, il est toujours en prison.
+- émettre un ordre de `PAY_PRISON`, ce qui lui coûte 50. S'il fait ça, il avance de son score, il n'est plus en prison.
+- émettre un ordre `IDLE` , il est toujours en prison.
 
 Ces choix s'offrent à lui pour les deux prochains tours. Au 3e tour en prison s'il ne sort pas via les dés, il est obligé de payer.
 
@@ -226,28 +226,46 @@ Une propriété a cinq niveaux de construction. Voici la spécification des loye
 |--------------------------------------------------------------|----------------------|------------------|-------------------|-------------------|-------------------|---------------|
 | <format color="SaddleBrown">Rue Raspail</format>             | 50                   | 10               | 30                | 90                | 160               | 250           |
 | <format color="SaddleBrown">Rue Victor Hugo</format>         | 50                   | 20               | 60                | 180               | 320               | 450           | 
-| <format color="LightBlue">Rue Jean Jaurès</format>           | 50                   | 30               | 90                | 270               | 400               |               |
-| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 50                   | 30               | 90                | 270               | 400               |               |
-| <format color="LightBlue">Rue Youri Gagarine</format>        | 50                   | 40               | 100               | 300               | 450               |               |
-| <format color="RosyBrown">Avenue Louis Aragon</format>       | 100                  | 50               | 150               | 450               | 625               |               | 
-| <format color="RosyBrown">Avenue de la République</format>   | 100                  | 50               | 150               | 450               | 625               |               |
-| <format color="RosyBrown">Avenue de Stalingrad</format>      | 100                  | 60               | 180               | 500               | 700               |               |
-| <format color="Orange">Allée Berlioz</format>                | 100                  | 70               | 200               | 550               | 750               |               |
-| <format color="Orange">Rue du Moulin de Saquet</format>      | 100                  | 70               | 200               | 550               | 750               |               |
-| <format color="Orange">Sentier de la Commune</format>        | 100                  | 80               | 220               | 600               |                   |               |
-| <format color="Red">Rue Pascal</format>                      | 150                  | 90               | 250               | 700               |                   |               |
-| <format color="Red">Rue Blanqui</format>                     | 150                  | 90               | 250               | 700               |                   |               |
-| <format color="Red">Rue Rosa Luxembourg</format>             | 150                  | 100              | 300               | 750               |                   |               |
-| <format color="Yellow">Rue de Bretagne</format>              | 150                  | 110              | 330               | 800               |                   |               |
-| <format color="Yellow">Rue René Hamon</format>               | 150                  | 110              | 330               | 800               |                   |               |
-| <format color="Yellow">Rue Guy Môquet</format>               | 150                  | 120              | 360               | 850               |                   |               |
-| <format color="Green">Rue Henri Barbusse</format>            | 200                  | 130              | 390               | 900               |                   |               |
-| <format color="Green">Rue Ambroise Croizat</format>          | 200                  | 130              | 390               | 900               |                   |               |
-| <format color="Green">Rue de Verdun</format>                 | 200                  | 150              | 450               | 1000              |                   |               |
-| <format color="Blue">Avenue de Paris</format>                | 200                  | 175              | 500               | 1100              |                   |               |
-| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 200                  | 200              | 600               | 1400              |                   |               |
+| <format color="LightBlue">Rue Jean Jaurès</format>           | 50                   | 30               | 90                | 270               | 400               | 550           |
+| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 50                   | 30               | 90                | 270               | 400               | 550           |
+| <format color="LightBlue">Rue Youri Gagarine</format>        | 50                   | 40               | 100               | 300               | 450               | 600           |
+| <format color="RosyBrown">Avenue Louis Aragon</format>       | 100                  | 50               | 150               | 450               | 625               | 750           | 
+| <format color="RosyBrown">Avenue de la République</format>   | 100                  | 50               | 150               | 450               | 625               | 750           |
+| <format color="RosyBrown">Avenue de Stalingrad</format>      | 100                  | 60               | 180               | 500               | 700               | 900           |
+| <format color="Orange">Allée Berlioz</format>                | 100                  | 70               | 200               | 550               | 750               | 950           |
+| <format color="Orange">Rue du Moulin de Saquet</format>      | 100                  | 70               | 200               | 550               | 750               | 950           |
+| <format color="Orange">Sentier de la Commune</format>        | 100                  | 80               | 220               | 600               | 800               | 1000          |
+| <format color="Red">Rue Pascal</format>                      | 150                  | 90               | 250               | 700               | 875               | 1050          |
+| <format color="Red">Rue Blanqui</format>                     | 150                  | 90               | 250               | 700               | 875               | 1050          |
+| <format color="Red">Rue Rosa Luxembourg</format>             | 150                  | 100              | 300               | 750               | 900               | 1100          |
+| <format color="Yellow">Rue de Bretagne</format>              | 150                  | 110              | 330               | 800               | 975               | 1150          |
+| <format color="Yellow">Rue René Hamon</format>               | 150                  | 110              | 330               | 800               | 975               | 1150          |
+| <format color="Yellow">Rue Guy Môquet</format>               | 150                  | 120              | 360               | 850               | 1025              | 1200          |
+| <format color="Green">Rue Henri Barbusse</format>            | 200                  | 130              | 390               | 900               | 1100              | 1275          |
+| <format color="Green">Rue Ambroise Croizat</format>          | 200                  | 130              | 390               | 900               | 1100              | 1275          |
+| <format color="Green">Rue de Verdun</format>                 | 200                  | 150              | 450               | 1000              | 1200              | 1400          |
+| <format color="Blue">Avenue de Paris</format>                | 200                  | 175              | 500               | 1100              | 1300              | 1500          |
+| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 200                  | 200              | 600               | 1400              | 1700              | 2000          |
 
+Ces informations sont disponibles au format CSV dans le fichier `rent.csv`, dans les ressources de l'application.
 
-### Livrable 5 : Jeu en réseau avec client en ligne de commande
+### Livrable 5 : Jeu en réseau en mode client-serveur
+
+Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en réseau. Nous allons donc devoir créer deux nouveaux modules dans l'application, selon le modèle client-serveur : 
+- `client` : application en ligne de commande permettant aux joueurs de jouer au jeu en leur permettant d'envoyer leurs ordres à la simulation, mais aussi de lire des informations sur la situation courante du jeu.
+- `server` : application qui fait tourner la simulation en mémoire, et intéragit via le réseau avec les clients pour le permettre de jouer ensemble.
+
+#### Protocole
+
+Le protocole de jeu est le suivant :
+
+1. Le serveur démarre avec en paramètre un certain nombre de joueurs attendus pour la partie
+2. Une fois le nombre de joueurs attendus connectés, le serveur crée une nouvelle simulation la partie démarre.
+3. Au début de chaque tour, le serveur envoie aux clients la situation courante : location des joueurs et argent.
+4. Après ça, le serveur entre en attente des envois d'ordre des joueurs, il les donne à la simulation.
+
+#### Serveur
+
+Une interface `GameServer` fera l'interface entre votre serveur et mes tests d'intégration.
 
 ### Livrable 6 (Bonus) : Interface graphique pour le client
