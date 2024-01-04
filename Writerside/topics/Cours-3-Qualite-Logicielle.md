@@ -1,12 +1,12 @@
 # Cours 3 : Qualité Logicielle
 
-Pour produire des logiciels de bonnee qualités, du code qui se maintient sur la durée, il y a des techniques qui peuvent aider, et des concepts à maîtriser afin d'avoir des réflexions autour de la qualité du code.
+Pour produire des logiciels de bonne qualité, du code qui se maintient sur la durée, il y a des techniques qui peuvent aider, et des concepts à maîtriser afin d'avoir des réflexions autour de la qualité du code.
 
 ## Concepts
 
 ### Polymorphisme
 
-Le polymorphisme est l'épine dorsale de la programmation orientée objet. Il consiste à utiliser les contrats de service pour manipuler de façon transparente des classes différentes qui implémentent ces contrats de service. Autrement dit, cela permet à du code de manipuler facilement des concepts en ignorant totalement les détails de l'implémentation. Le code utilisateur dépend du contrat de service, plutôt que du code qui l'implémente.
+Le polymorphisme est l'épine dorsale de la programmation orientée objet. Cela consiste à utiliser les contrats de service pour manipuler de façon transparente des classes différentes qui implémentent ces contrats de service. Autrement dit, cela permet à du code de manipuler facilement des concepts en ignorant totalement les détails de l'implémentation. Le code utilisateur dépend du contrat de service, plutôt que du code qui l'implémente.
 
 C'est fondamentalement, car énormément de mécanisme qui permettent de mieux structurer le code, en le rendant plus facile à lire et à maintenir reposent sur le polymorphisme.
 
@@ -47,9 +47,9 @@ Il est utile quand on a besoin de pouvoir rajouter des comportements à un compo
 La structure du pattern est la suivante : 
 
 - Une interface : l'interface qui établit le contrat de service avec le code appelant.
-- Le composant concret : l'implémentation "de base" de l'interface qui a le comportent par défaut.
+- Le composant concret : l'implémentation "de base" de l'interface qui a le comportement par défaut.
 - Le décorateur abstrait : une classe abstraite qui implémente l'interface et factorise le fait de déléguer le comportement par défaut à une instance de l'interface.
-- Les décorateurs concrets : des classes implémentant le décorateur abstrait et enveloppant le comportement de l'instant qu'elle décore avec un nouveau comportement.
+- Les décorateurs concrets : des classes implémentant le décorateur abstrait et enveloppant le comportement de l'instance qu'elle décore avec un nouveau comportement.
 
 On peut prendre l'exemple d'un composant de source de donnée qui écrit et lit des données dans un système de stockage, avec la possibilité de chiffrer, encoder, ou de compresser les données.
 
@@ -126,7 +126,7 @@ DataSource = encryptedAndCompressedDatasource = new EncryptedDataSource(
 ); 
 ```
 
-On peut donc combined de façon transparente ces comportements simples, isolés ou combinés, derrière la simple interface `DataSource`.
+On peut donc combiner de façon transparente ces comportements simples, isolés ou combinés, derrière la simple interface `DataSource`.
 
 ### Pattern Fabrique (Factory)
 
@@ -553,7 +553,7 @@ La méthode `compute()` est trop longue et pourrait être divisée pour une meil
     }
 ```
 
-La logique de l'algorithme apparait de façon beaucoup plus évidente, et le code de la méthode se lit comme un texte qui décrit cet algorithm : 
+La logique de l'algorithme apparait de façon beaucoup plus évidente, et le code de la méthode se lit comme un texte qui décrit cet algorithme : 
 
 *For each token, if not is operator, then add as an operand on the stack, else execute an operation*.
 
@@ -574,7 +574,7 @@ Les règles à retenir :
 Pour structurer une application avec une architecture modulaire pour faciliter le développement et la maintenance, l'architecture en couche est très utile : 
 
 - La couche métier : les objets qui représentent les situations et règles métier
-- La couche application : implémente les cas d'utilisation de l'application en utilise les objets de la couche métier
+- La couche application : implémente les cas d'utilisation de l'application en utilisant les objets de la couche métier
 - La couche d'interface : lien entre l'application et le monde extérieur (interface graphique, API Web...)
 - La couche infrastructure : les outils techniques qui soutiennent les autres couches (frameworks)
 
@@ -594,7 +594,7 @@ Pour structurer le code de la couche métier, certains concepts sont intéressan
 
 #### Couche application
 
-La couche application implément les cas d'utilisation de l'application, les points d'entrée métier de l'application. On peut la structure en classes qui vont chacune regrouper une catégorie de cas d'utilisation. Elle implémente ces cas d'utilisation avec les objets de la couche métier, et définit des contrats de services dont la couche interface va dépendre.
+La couche application implémente les cas d'utilisation de l'application, les points d'entrée métier de l'application. On peut la structurer en classes qui vont chacune regrouper une catégorie de cas d'utilisation. Elle implémente ces cas d'utilisation avec les objets de la couche métier, et définit des contrats de services dont la couche interface va dépendre.
 
 #### Couche interface
 
@@ -724,10 +724,10 @@ On fait une classe par catégorie de cas utilisation, et on établit deux types 
 
 On aura ici deux types d'éléments : 
 
-- Des contrôleurs web qui vont exposer les méthodes de la couche application via une API web, et s'occupant de la sérialisation, de l'authentification des utilisateurs, des endpoints...
+- Des contrôleurs web qui vont exposer les méthodes de la couche application via une API web, et s'occupent de la sérialisation, de l'authentification des utilisateurs, des endpoints...
 - Des repositories, des classes qui vont implémenter les interfaces de repository de la couche application pour sauvegarder les données de l'application dans un système de base de donnée en faisant des requêtes SQL
 
-#### Analyse douche infrastucture
+#### Analyse couche infrastucture
 
 Ici, on va retrouver les éléments ce sur quoi reposent les couches d'au-dessus : 
 

@@ -98,7 +98,11 @@ void wordCount_whenMultipleWords_returnsRightCount(){
 
 `assertEquals` est une méthode d'assertion (ou vérification), qui permet de faire des vérifications sur le résultat, qui feront échouer le test si jamais la vérification échoue.
 
-Vous pouvez exécuter le test en utilisant le petit bouton "Play" dans la marge de l'éditeur.
+Vous pouvez exécuter le test en utilisant le petit bouton "Play" dans la marge de l'éditeur. 
+
+![](gutter-run.png)
+
+Cela créera directement une configureration d'exécution IntelliJ pour la méthode de test si on a cliqué sur l'incone au niveau de la méthode de test, ou pour tous les tests de la classe si on a cliqué sur l'icône au niveau du nom de la classe. 
 
 ### La couverture de test
 
@@ -108,7 +112,7 @@ Pour exécuter des tests avec la récupération des données de couverture, il f
 
 ![](coverage.gif)
 
-Une fois les tests passés avec ce mode, un outil s'ouvre sur le côté de l'IDE avec un récapitulatif de la proportion de code effectivement exécuté par les tests.
+Une fois les tests passés avec ce mode, un outil s'ouvre sur le côté de l'IDE avec un récapitulatif de la proportion de code effectivement exécutée par les tests.
 
 ![](coverage.png)
 
@@ -128,11 +132,11 @@ Pour avoir des tests de qualité, il faut faire attention de comment on conçoit
 
 Le découpage en unité est important, car il permet de la facilité la compréhension en réduisant la largeur du contexte à comprendre à un instant T quand on lit le code. Il faut rassembler dans une unité des éléments qui ont un grand rapport fonctionnel ou technique entre eux.
 
-Créer des tests à un endroit donné, c'est en quelque sorte "sanctuariser une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code extérieur peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous els tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
+Créer des tests à un endroit donné, c'est en quelque sorte "sanctuariser une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code extérieur peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous les tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
 
 ### Les pseudo-entités
 
-Les pseudo-entités sont des outils permettant de faciliter l'écriture des tests, en replaçant les dépendances de l'unité que l'on teste par des dépendances fausses ou simulées, que l'on peut manipuler facilement dans le contexte du test, afin de reproduire plus facilement des situations à tester, ou pour ignorer des choses qui ne sont pas pertinentes, mais aussi pour accélérer la vitesse d'exécution des tests, en évitant des interactions inutiles dans ce contexte.
+Les pseudo-entités sont des outils permettant de faciliter l'écriture des tests, en replaçant les dépendances de l'unité que l'on teste par des dépendances fausses ou simulées. Ainsi, on peut manipuler facilement ces dépendances dans le contexte du test, afin de reproduire plus facilement des situations à tester, ou pour ignorer des choses qui ne sont pas pertinentes. Cela permet aussi d'accélérer la vitesse d'exécution des tests, en évitant des interactions inutiles dans ce contexte.
 
 Par exemple, pour un système qui va, dans les étapes de son déroulement, envoyer un email, on ne voudrait pas que l'email soit effectivement envoyé pendant l'exécution des tests. On va donc vouloir remplacer la dépendance qui gère l'envoi des mails par une pseudo-entité.
 
@@ -140,7 +144,7 @@ Il existe deux types principaux de pseudo-entités : les faux (*fakes*) et les s
 
 #### Faux (*Fakes*)
 
-Un faux est une pseudo entité qui va être une vraie implémentation de la dépendance, mais plus simpliste, et avec une encapsulation différente afin de faciliter le test. Un Fake a un comportement cohérent. Exemples : 
+Un faux (*fake*) est une pseudo entité qui va être une vraie implémentation de la dépendance, mais plus simpliste, et avec une encapsulation différente afin de faciliter le test. Un faux (*fake*) a un comportement cohérent. Exemples : 
 
 - Pour accès à une base de donnée : le faux peut consister à un simple stockage en mémoire
 
@@ -162,6 +166,27 @@ public class FakeUsersRepository implements UsersRepository {
     }
 }
 
+```
+
+Utilisation dans un test, par exemple d'une classe d'application utilisant ce *repository* pour authentifier des utilisateurs :
+
+```Java
+public void login_whenValidCredentials_isSuccessfull(){
+    // Given
+    final var username = "John Shepard";
+    final var password = "4CMBGi6Mq8jEkL"
+    
+    final var fakeRepository = new FakeUsersRepository(
+        Map.of(username, BCrypt.hashpw(passowrd))
+    );
+    final var application = new UsersApplication(fakeRepository);
+    
+    // When
+    final bool userLoggedIn = application.login(username, password);
+    
+    // Then
+    assertTrue(userLoggedIn);
+}
 ```
 
 - Pour une dépendance qui fourni le temps présent, et permet de déclencher un événement à un instant T : le faux sera surement une version pour laquelle on peut manipuler le temps
@@ -207,11 +232,13 @@ public class FakeClock implements Clock {
 }
 ```
 
+Cela permet donc d'écrire des tests de classe qui vont dépendre de `Clock`, et d'utiliser le faux (*fake*) pour avancer artificiellement le temps de la `Clock`, et ainsi avoir des tests qui s'exécutent très rapidement, sans savoir besoin d'attendre le temps qu'il faudrait attendre avec une vraie implémentation qui utilise le temps réel.
+
 #### Simulacres (*mocks*)
 
-Les simulacres sont des pseudo-entités qui ne sont pas des implémentations réelles des dépendances, ce sont simplement des coquilles vides, dont on peut configurer les méthodes pour retourner des valeurs en dur, ou vérifier si elles ont été appelées, combien de fois et comment.
+Les simulacres (*mocks*) sont des pseudo-entités qui ne sont pas des implémentations réelles des dépendances, ce sont simplement des coquilles vides, dont on peut configurer les méthodes pour retourner des valeurs en dur, ou vérifier si elles ont été appelées, combien de fois et comment.
 
-Un cas d'utilisation typique d'un mock est pour un appel à un client HTTP qui requête un système externe. On veut éviter que notre test dépende d'un vrai appel, pour des raisons de rapidité d'exécution du test, de stabilité du test, de coût, et de facilité d'écriture du test. Il est bien plus simple de pouvoir remplacer la réponse de client dans le contexte de notre test pour toujours tester un cas spécifique attendu.
+Un cas d'utilisation typique d'un simulacre (*mock*) est pour un appel à un client HTTP qui requête un système externe. On veut éviter que notre test dépende d'un vrai appel, pour des raisons de rapidité d'exécution du test, de stabilité du test, de coût, et de facilité d'écriture du test. Il est bien plus simple de pouvoir remplacer la réponse de client dans le contexte de notre test pour toujours tester un cas spécifique attendu.
 
 ##### Simulacres en Java avec Mockito
 
@@ -291,7 +318,7 @@ when(apiClientMock.getUserRepository(any())
 
 Il faut utiliser les vraies dépendances si cela est possible, c'est-à-dire si elles ne font pas d'I/O qui pourrait ralentir ou rendre instable le test. De plus, il faut que la vraie dépendance ne rende pas le test pénible à écrire.
 
-Si les conditions précédentes ne sont pas remplies, alors il convient d'utiliser une pseudo-entité. S'il est possible et que cela facilite les tests d'avoir une implémentation réelle simplifiée, ainsi, l'utilisation d'un fake est à préférer. Cependant, si écrire un fake s'avère trop complexe, que cela ne rend pas le test plus facile à écrire ou à comprendre, alors on se tournera vers l'utilisation d'un mock.
+Si les conditions précédentes ne sont pas remplies, alors il convient d'utiliser une pseudo-entité. S'il est possible et que cela facilite les tests d'avoir une implémentation réelle simplifiée, ainsi, l'utilisation d'un faux (*fake*) est à préférer. Cependant, si écrire un faux (*fake*) s'avère trop complexe, que cela ne rend pas le test plus facile à écrire ou à comprendre, alors on se tournera vers l'utilisation d'un simulacre (*mock*).
 
 ## Écrire du code testable
 
@@ -333,6 +360,8 @@ public class AverageCalculator {
 }
 ```
 
+> Un [`BufferedReader`](https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html) est une classe fournie par Java permettant de lire un flux d'entrée. Ici, on l'utilise pour lire ligne par ligne le flux d'entrée [`System.in`](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#in), qui correspond à [l'entrée standard (STDIN)](https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin))
+
 Cette version fonctionne, mais est très difficile à tester, mais aussi pas facile à lire et comprendre, toutes les responsabilités sont mélangée.
 
 Créons donc une classe pour modéliser notre application :
@@ -359,7 +388,7 @@ public class AverageCalculatorApplication {
             sum += number;
         }
 
-        System.out.printf("The average is : + sum / numbers.size());
+        System.out.printf("The average is : " + sum / numbers.size());
     }
 }
 ```
@@ -673,7 +702,7 @@ Les avantages du TDD :
 - **Confiance** : Les tests sont plus fiables et pertinents, ils sont une vraie spécification exécutable. Aussi, on a une bonne sécurité contre la régression lorsqu'on change le code.
 - **Qualité** : force la réflexion autour des interfaces, on détecte ainsi les problèmes de conception plus tôt. On est forcé à refactorer plus souvent, donc on produit du meilleur code
 
-Le TDD permet aussi de faciliter le processus de résolution de problème. Résoudre des problèmes, c'est gérer la complexity, et déconstruire les problèmes en plus petits. Le TDD est itératif et incrémental, la stratégie "diviser pour mieux régner", est incluse dans le processus. Cela permet de réduire la charge cognitive à un instant T quand on développe.
+Le TDD permet aussi de faciliter le processus de résolution de problème. Résoudre des problèmes, c'est gérer la complexité, et déconstruire les problèmes en plus petits. Le TDD est itératif et incrémental, la stratégie "diviser pour mieux régner", est incluse dans le processus. Cela permet de réduire la charge cognitive à un instant T quand on développe.
 
 Attention cependant, le TDD n'est pas une méthode magique. L'adopter requiert un effort pour en adopter l'état d'esprit. C'est une compétence qui requiert du temps et de la pratique pour être maîtrisée, ce qui fait que l'on est plus lent au début. 
 

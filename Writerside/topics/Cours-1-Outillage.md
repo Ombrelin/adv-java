@@ -1,4 +1,4 @@
-# Cours 1 : Outillage
+# Cours 1 : Outillage 
 
 ## Java
 
@@ -214,16 +214,42 @@ Mettre à jour les infos sur le dépot distant :
 git fetch
 ```
 
+### Récapitulatif des espaces git et de leurs intéractions
+
+```mermaid
+sequenceDiagram
+    box Local
+        participant "Répertoire de travail (Working Directory)"
+        participant "Zone de transit (Staging Area)"
+        participant "Dépôt Local (Local Repository)"
+    end
+
+    box Remote
+        participant "Dépôt Distant (Remote Repository)"
+    end
+  "Dépôt Distant (Remote Repository)" ->> "Dépôt Local (Local Repository)": `git clone`
+
+    "Répertoire de travail (Working Directory)" ->> "Zone de transit (Staging Area)": `git add`
+    "Zone de transit (Staging Area)" ->> "Dépôt Local (Local Repository)": `git commit`
+    "Dépôt Local (Local Repository)" ->> "Dépôt Distant (Remote Repository)": `git push`
+    "Dépôt Distant (Remote Repository)" ->> "Répertoire de travail (Working Directory)": `git pull`
+
+"Dépôt Local (Local Repository)" ->> "Répertoire de travail (Working Directory)": `git checkout`
+
+```
+
 ### Récapitulatif du workflow de base pour implémenter une fonctionnalité
 
-1. Créer une nouvelle branche : `git branch maFeature`
-2. Se place sur la nouvelle branche : `git checkout maFeature`
-3. Faire des changements dans le code
-4. Ajouter les changements à git : `git add .`
-5. Créer un nouveau commit avec les changements : `git commit -a -m "message de commit"`
-6. Pousser les changements : `git push origin maFeature`
-7. Retourner sur master : `git checkout master`
-8. Fusionner la branche de feature : `git merge maFeature`
+1. Se positionner sur la branche principale : `git checkout master`
+2. Mettre à jour la branche principale : `git pull origin master` (origine le nom standard pour un dépôt distant)
+3. Créer une nouvelle branche à partir de la branche principale : `git branch maFeature`
+4. Se positionner sur la nouvelle branche : `git checkout maFeature`
+5. Faire des changements dans le code
+6. Ajouter les changements à git : `git add .`
+7. Créer un nouveau commit avec les changements : `git commit -a -m "message de commit"`
+8. Pousser les changements : `git push origin maFeature`
+9. Retourner sur master : `git checkout master`
+10. Fusionner la branche de feature : `git merge maFeature`
 
 ### Outils recommandés
 
@@ -478,7 +504,7 @@ Gradle étant un outil très important pour développer en Java, IntelliJ propos
 
 Les scripts de build sont parsés et utilisés par IntelliJ pour rendre votre projet Gradle directement utilisable lorsque vous l'ouvrez dans l'IDE, notamment en téléchargeant et indexant les dépendances, et en adaptant sa configuration avec ce qui est déclaré dans les scripts.
 
-Ainsi, à chaque vous que vous modifiez un script de build, l'IDE vous propose comme action contextuelle de re-parser votre script : 
+Ainsi, à chaque fois que vous modifiez un script de build, l'IDE vous propose comme action contextuelle de re-parser votre script : 
 
 ![](gradle-import.jpg)
 

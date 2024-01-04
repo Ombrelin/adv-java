@@ -22,6 +22,8 @@ Le barème est le suivant :
   - Application des pratiques de qualité logicielle vus en cours (4 points)
   - Utilisation des fonctionnalités appropriées du langage selon le contexte (3 points)
 
+La réalisation du livrable bonus donnera un coup de pouce de +2 points sur la note à l'examen.
+
 ## Démarrage du projet
 
 ### Compte Github
@@ -110,9 +112,9 @@ test {
 2. Sur votre dépôt, créer une nouvelle branche à partir de la branche master appelée *dev/livrable-x* en remplaçant *x* par le nom du livrable concerné.
 3. Commiter sur cette branche les changements permettant de satisfaire les tests d'intégration du livrable
 4. Créer une *merge request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *merge request.
-5. Je vais ensuite être notifié de la demande de revue, et vais procéder à une relecture de votre code, et éventuellement faire des commentaires, des recommendations d'amélioration. Une fois ces améliorations implémentée ou votre choix spécifique argumenté, je ferai une évaluer du code en l'état, qui servira pour la partie "qualité" de la notation. Je vais enfin procéder à la fusion de votre branche de livraison sur votre *master*, vous pouvez ainsi reprendre le processus du début, pour le prochain livrable.
+5. Je vais ensuite être notifié de la demande de revue, et vais procéder à une relecture de votre code, et éventuellement faire des commentaires, des recommendations d'amélioration. Une fois ces améliorations implémentée ou votre choix spécifique argumenté, je ferai une évaluation du code en l'état, qui servira pour la partie "qualité" de la notation. Je vais enfin procéder à la fusion de votre branche de livraison sur votre *master*, vous pouvez ainsi reprendre le processus du début, pour le prochain livrable.
 
-> ⚠ Vous ne devez jamais commiter/pousser directement sur la branche *master* de votre dépôt.
+> ⚠ Vous ne devez *jamais* commiter/pousser directement sur la branche *master* de votre dépôt.
 
 ## Planning du projet
 
@@ -129,9 +131,9 @@ test {
 
 ### Livrable 1 : Jets de dés, plateau, déplacement
 
-Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, jeu progresse quand ils donnent l'ordre IDLE (ne rien faire), ce qui fait jeter les dés et déplacer le joueur suivant. Les ordres incohérents avec la situation courante du jeu sont ignorés. Un ordre invalide peut être un ordre d'un joueur pour qui ce n'est pas le tour de jouer, ou alors un ordre qui n'est pas cohérent avec la situation courante du tour.
+Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, le jeu progresse quand ils donnent l'ordre IDLE (ne rien faire), ce qui passe le tour, et déclenche le jeté les dés et le déplacement pour le joueur suivant. Les ordres incohérents avec la situation courante du jeu sont ignorés. Un ordre invalide peut être un ordre d'un joueur pour qui ce n'est pas le tour de jouer, ou alors un ordre qui n'est pas cohérent avec la situation courante du tour.
 
-La composition du plateau est la suivante, est décrite dans le fichier de ressources `monopoly.csv` (sous `core/main/resources` dans le projet). Ce fichier est à parser pour créer une représentation en mémoire du plateau. 
+La composition du plateau est la suivante, elle est décrite dans le fichier de ressources `monopoly.csv` (sous `core/main/resources` dans le projet). Ce fichier est à parser pour créer une représentation en mémoire du plateau. 
 
 ![](board.png)
 
@@ -155,7 +157,7 @@ Dans ce livrable, on va implémenter :
 
 - Un système de gestion de l'argent des joueurs, et des transactions. Chaque joueur commence avec une somme de départ de 1500€.
 - Possibilité pour les joueurs d'acheter des propriétés, gares et companies, en donnant un ordre de type `BUY` à son tour lorsqu'on est sur une localisation de ce type
-- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété, gare ou company, déjà possédée par un autre joueur
+- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété, gare ou companie, déjà possédée par un autre joueur
 - Les joueurs doivent régler une taxe quand ils tombent sur une case de type taxe
 
 Les loyers terrain nu sont les suivants :
@@ -255,6 +257,8 @@ Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en r
 - `client` : application en ligne de commande permettant aux joueurs de jouer au jeu en leur permettant d'envoyer leurs ordres à la simulation, mais aussi de lire des informations sur la situation courante du jeu.
 - `server` : application qui fait tourner la simulation en mémoire, et intéragit via le réseau avec les clients pour le permettre de jouer ensemble.
 
+Le client et le serveur devront implémenter un `main` qui permettra de jouer en condition réelles.
+
 #### Protocole
 
 Le protocole de jeu est le suivant :
@@ -264,8 +268,17 @@ Le protocole de jeu est le suivant :
 3. Au début de chaque tour, le serveur envoie aux clients la situation courante : location des joueurs et argent.
 4. Après ça, le serveur entre en attente des envois d'ordre des joueurs, il les donne à la simulation.
 
-#### Serveur
+#### Tests
 
-Une interface `GameServer` fera l'interface entre votre serveur et mes tests d'intégration.
+Les interfaces `GameServer` et `GameClient` feront le lien entre votre client/serveur et mes tests d'intégration, de la même manière que l'interface `Monopoly` pour la simulation.
+
+Je ferai également quelques tests manuels pour vérifier que les mains de vos applications fonctionnent correctement et permettent de jouer.
 
 ### Livrable 6 (Bonus) : Interface graphique pour le client
+
+Le client offre une interface graphique qui montre :
+
+- L'état de la partie en temps réel
+- Des boutons permettent au joueur d'envoyer ses ordres
+
+Je testerai manuellement cette interface graphique
