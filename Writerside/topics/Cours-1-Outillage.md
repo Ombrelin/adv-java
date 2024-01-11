@@ -175,8 +175,8 @@ Pour rapport les changements d'une branche sur une autre, on fusionne :
 Pour fusionner (*merge*) la branche b2 dans la branche b1
 
 ```bash
-git checkout b1
-git merge b2
+git checkout brancheCible
+git merge brancheAFusionner
 ```
 
 Il peut y avoir des conflits à résoudre si les mêmes lignes ont été changées dans les historiques divergents.

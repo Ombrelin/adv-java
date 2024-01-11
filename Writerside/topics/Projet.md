@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Le Monopoly est un jeu de société très connu. Il n'est pas très fun à jouer, mais il a un intérêt sur le plan pédagogique, car ses règles sont plutôt bien connues et intéressantes à implémenter sous forme de logiciel. Il nous permet aussi d'intégrer facilement les sujets qui nous occupent  dans ce module comme le threading et le réseau.
+Le Monopoly est un jeu de société très connu. Il n'est pas très fun à jouer, mais il a un intérêt sur le plan pédagogique, car ses règles sont plutôt bien connues et intéressantes à implémenter sous forme de logiciel. Il nous permet aussi d'intégrer facilement les sujets qui nous occupent, dans ce module comme le threading et le réseau.
 
 Pour la petite histoire, le Monopoly a été inventé au début du 20e siècle par [Lizzie Magie](https://en.wikipedia.org/wiki/Lizzie_Magie) pour montrer le problème de l'accumulation de la propriété foncière. Je recommande [cette vidéo](https://www.youtube.com/watch?v=tpQ9vyUkB4E) sur le sujet de l'origine du Monopoly si cela vous intéresse. 
 
@@ -189,7 +189,7 @@ Les loyers terrain nu sont les suivants :
 
 Pour l'instant le loyer des gares est un prix fixe de 25.
 
-Si un joueur est confronté à un loyer qu'il ne peut pas payer, il perd, et est supprimés des joueurs de la partie. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel à `submitOrder` jette une exception de type `GameFinishedException`.
+Si un joueur est confronté à un loyer qu'il ne peut pas payer, il est déclaré en banqueroute, il perd, et est supprimé des joueurs de la partie. Le joueur propriétaire percevant le loyer qui déclenche la banqueroute perçoit l'argent du joueur en banqueroute comme loyer, pas plus. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel à `submitOrder` jette une exception de type `GameFinishedException`.
 
 ### Livrable 3 : Prison, case départ, gares
 
