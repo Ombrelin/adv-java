@@ -32,7 +32,27 @@ Ici `numbers` pourrait contenir aussi bien une `ArrayList` qu'une `LinkedList`, 
 
 L'inversion de dépendances est une technique de modularisation du code reposant sur le polymorphisme. Elle a déjà été évoquée dans la partie du cours sur les tests, mais elle est utile au délà du fait de produire du code testable. Elle aide beaucoup à diviser les problèmes en petites parties ayant chacune leurs responsabilités, et ayant entre elle un niveau de couplage adapté à leur cohésion fonctionnelle.
 
-L'injection de dépendance consiste à fournir à une classe ses dépendances comme paramètres du constructeur. Elle permet une inversion de dépendance efficace : la classe ne se préoccupe pas de comment sont construites ses dépendances, car ce n'est pas sa responsabilité, c'est le code utilisateur de la classe qui doit s'en charger.
+L'injection de dépendance consiste à fournir à une classe ses dépendances comme paramètres du constructeur. Elle permet une inversion de dépendance efficace : la classe ne se préoccupe pas de comment sont construites ses dépendances, car ce n'est pas sa responsabilité, c'est le code utilisateur de la classe qui doit s'en charger. Cela permet aussi de faciliter les tests de la classe, car on peut si besoin substituer ces dépendances injectées par des pseudo-entités dans le cadre des tests.
+
+```Java
+public interface UsersRepository {
+    User findByUsername(String username);
+}
+
+public class UserApplication {
+  private final UsersRepository userRepository;
+  
+  public UserApplication(UsersRepository userRepository){
+    this.userRepository = userRepository;
+  }
+  
+  public bool login(String userName, String password){
+    ...
+  }
+}
+```
+
+Ici, on injecte à la classe  `UserApplication` sa dépendance `UsersRepository` à qui elle délègue, on imagine, des intéractions de stockage des données. La classe `UserApplication` n'a pas à savoir comment sa dépendance `UsersRepository` stocke les données, juste de savoir quelles opérations elle supporte, ce que permet de contrat de service par interface.
 
 ## Patrons de conception (Design Patterns)
 
@@ -40,7 +60,7 @@ Un patron de conception est une "recette" qui apporte une solution préfabriqué
 
 ### Pattern Décorateur (Decorator)
 
-Le pattern décorateur permet de combiner des composants de façon transparente en utilisant la délégation. Les composants s'emboitent en s'enveloppant comme des poupées russes, sans que le code appelant n'en ai connaissance.
+Le pattern décorateur permet de combiner des composants de façon transparente en utilisant la délégation. Et donc de rajouter des comportements à un objet de manière dynamique, sans que le code appelant n'en ai connaissance.
 
 Il est utile quand on a besoin de pouvoir rajouter des comportements à un composant de façon dynamique sans casser le code appelant.
 
@@ -134,11 +154,59 @@ Une fabrique est une classe à qui on va déléguer la création d'un objet. Cel
 
 #### Création d'objet complexe
 
-La création d'un objet devient trop complexe pour incomber à l'objet lui-même
+La création d'un objet :
+
+- Devient trop complexe
+- Révèle trop au code appelant de la structure interne de l'objet
+- Demande des responsabilités qui dépassent celle de l'objet
+- 
+Dans ces cas-là, on utilise alors la fabrique pour décharger l'objet de la responsabilité de se construire, et on cache cette complexité au code appelant.
+
+Par exemple, prenons le cas d'un objet qui est parsé depuis un format de sérialisation, par exemple, CSV.
+
+```Java
+public class Product {
+  private String name;
+  private BigDecimal price;
+  
+  public Product(String csvLine){
+    final var productData = csvLine.split(",");
+    this.name = csvLine[0];
+    this.price = new BigDecimal(csvLine[1]);
+  }
+}
+```
+
+Ici, la création de l'objet contient la responsabilité de le déserialiser du format CSV, cela dépasse ses responsabilités, en effet le format de stockage est un concept très concret, très proche du détail technique qu'est le format de stockage. Puisqu'on est sur un objet qui modélise un produit, un concept beaucoup plus abstrait, on a un problème de niveaux d'abstraction mélangés, il faut donc distribuer la responsabilité.
+
+```Java
+public class Product {
+  private String name;
+  private BigDecimal price;
+  
+  public Product(String name, BigDecimal price){
+    this.name = name;
+    this.price = price;
+  }
+}
+
+public class ProductFactory {
+
+  public Product createProductFromCsvLine(String csvLine){
+      final var var productData = csvLine.split(",");
+      final var name = csvLine[0];
+      final var price = new BigDecimal(csvLine[1]);
+      
+      return new Product(name, price);
+    }
+}
+```
+
+L'objet est ainsi déchargé de sa responsabilité gênante, mais la logique de déserialisation reste cachée pour le code appelant.
 
 #### Découplage de création d'objet
 
-Situation : on a une interface des classes qui l'implémentent pour régler un problème par polymorphisme, et on veut déléguer la responsabilité de création.
+Situation : on a une interface, et des classes qui implémentent cette interface pour régler un problème par polymorphisme, et on veut déléguer la responsabilité de création.
 
 Par exemple, nous avons cette classe qui évalue des expressions mathématiques, et qui a donc besoin de résoudre des opérations avec sa méthode `executeComputation` : 
 

@@ -5,9 +5,9 @@
 
 ### Définitions
 
-Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonction peut ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions.
+Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
 
-Java est dogmatiquement "purement orienté objet", donc cette fonctionnalités, issue de paradigme orienté fonction, a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
+Java est dogmatiquement "purement orienté objet", donc cette fonctionnalité, issue du paradigme de programmation dit "orienté fonction", a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
 
 ### Interfaces Fonctionnelles
 
@@ -20,11 +20,11 @@ Le langage fournit différentes interfaces fonctionnelles pour désigner les fon
 - `Function<T,R>` : fonction qui accepte un paramètre de type `T` et retourne une valeur de type `R`
 - `Predicate<T>` : fonction qui accepte un paramètre de type `T` et retourne un booléen.
 
-Liste exhaustive des interfaces fonctionnelles existantes sur [la documentation de la sécification Java](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html).
+Liste exhaustive des interfaces fonctionnelles existantes sur [la documentation de la spécification Java](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html).
 
 ### Fonctions Lambda
 
-Dans les langages qui supportent les fonctions de première classe, la syntaxe de fonction lambda ou fonction anonyme, est une syntaxe qui permet de déclarer des fonctions de façon anonyme, en tant qu'expression, que ce soit pour les passer en paramètre dans une autre fonction, ou de les référencer dans une variables.
+Dans les langages qui supportent les fonctions de première classe, la syntaxe de fonction lambda ou fonction anonyme, est une syntaxe qui permet de déclarer des fonctions de façon anonyme, en tant qu'expression, que ce soit pour les passer en paramètre dans une autre fonction, ou de les référencer dans une variable.
 
 ```java
 // Variables
@@ -43,9 +43,9 @@ calculator.addOperator(
 
 ```
 
-### Référence de méthode
+### Référencer une méthode
 
-En Java, l'opérateur `::` permet de lire une référence de méthode, afin de la manipuler : passer en paramètre, sotcker dans une variable, etc...
+En Java, l'opérateur `::` permet de lire une référence de méthode à partir d'une méthode nommée existante dans une classe, afin de la manipuler : passer en paramètre, sotcker dans une variable, etc...
 
 Exemple :
 
@@ -65,11 +65,11 @@ calculator.addOperator(
 
 ## Traitements fonctionnel des collections
 
-Les fonctions d'ordre supérieur sont des fonctions sur les collections qui permette de faire des traitement de données usuels beaucoup plus simplement, en utilisant une approche orientée fonction, ainsi que la syntaxe fonctions lambdas. Les opérations qui permettent ces traitements sont les opérateurs fonctionnels.
+Les fonctions d'ordre supérieur sont des fonctions sur les collections qui permette de faire des traitements de données usuels beaucoup plus simplement, en utilisant une approche orientée fonction, ainsi que la syntaxe fonctions lambdas. Les opérations qui permettent ces traitements sont les opérateurs fonctionnels.
 
 ### Interface `Stream<T>`
 
-L'interface `Stream<T>` est une abstraction de toute colletion. Elle fournit la possibilité d'appliquer des opérateurs fonctionnels sur la collection. On peut transformer une collection en `Stream<T>` grâce à la méthode `.stream()`.
+L'interface `Stream<T>` est une abstraction d'une séquence de valeurs, et donc typiquement de tout type de collection (tableau, liste, dictionnaire, pile, etc...). Elle fournit la possibilité d'appliquer des opérateurs fonctionnels sur la collection. On peut transformer une collection en `Stream<T>` grâce à la méthode `.stream()`.
 
 ```java
 List<Employee> employees = List.of(
@@ -88,7 +88,7 @@ List<String> seniorNames = employees
 
 Les opérateurs de filtrage et de transformation sont "lazy" ; ils ne font rien tant que l'on pas appliqué un opérateur terminal qui va, lui, procéder à l'*énumération* du `Stream<T>` et *matérialiser* un résultat en mémoire.
 
-La liste exhaustive des opérateurs peut être trouvée dans  [la JavaDoc de l'interface `Stream<T>`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+La liste exhaustive des opérateurs peut être trouvée dans [la JavaDoc de l'interface `Stream<T>`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
 ### Opérateurs
 
@@ -113,6 +113,8 @@ Stream<Employee> seniors = employees
 
 // Resultat : [ Employee {name = "Liara", age = 106} ]
 ```
+
+> Un *prédicat*, en logique, c'est un fait énoncé concernant un sujet. En programmation, la traduction de ce concept est une fonction qui prend un objet en paramètre, et retourne un booléen. 
 
 ##### `limit`
 
@@ -155,7 +157,7 @@ Steam<Employee> skipTwoEmployees = users
 
 ##### `map`
 
-Mappe chaque élément à autre chose en utilisant une fonction.
+Faire correspondre chaque élément à autre chose en utilisant une fonction.
 
 ```java
 List<Employee> employees = List.of(
@@ -173,7 +175,7 @@ Stream<String> employeesNames = employees
 
 ##### `flatMap`
 
-Mappe chaque élément à une collection d'autre chose, puis applatis le résultat.
+Mappe chaque élément à une collection d'autre chose, puis aplatis le résultat.
 
 ```java
 List<Team> teams = List.of(
@@ -288,8 +290,6 @@ Donne le nombre d'éléments dans le `Stream<T>`
 
 Donne le minimum et le maximum du `Stream<T>` à partir d'un `Comparator<T>`.
 
-##### `reduce`
-
 ## Filtrage par motif (*pattern matching*)
 
 Le *pattern matching* consiste à tester une expression, pour vérifier si elle a certaines caractéristiques. On peut l'utiliser en Java dans les switch-expression.
@@ -310,6 +310,7 @@ public State PerformOperation(String command) {
 
 ## Référence du cours
 
+- [Mastering Lambdas : Java Programming in a MuliCore World](https://books.google.fr/books/about/Mastering_Lambdas.html?id=Zw5oBAAAQBAJ&source=kp_book_description&redir_esc=y)
 - [JavaDoc : package java.util.function](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
 - [JavaDoc : method references](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
 - [JavaDoc : streams](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)

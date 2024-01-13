@@ -82,6 +82,8 @@ dependencies {
     testImplementation project(":core").sourceSets.test.output
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation "org.mockito:mockito-core:3.+"
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 java {
@@ -164,31 +166,36 @@ Les loyers terrain nu sont les suivants :
 
 | Propriété                                                    | Loyer terrain nu |
 |--------------------------------------------------------------|------------------|
-| <format color="SaddleBrown">Rue Raspail</format>             | 60               |
-| <format color="SaddleBrown">Rue Victor Hugo</format>         | 60               | 
-| <format color="LightBlue">Rue Jean Jaurès</format>           | 100              |
-| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 100              |
-| <format color="LightBlue">Rue Youri Gagarine</format>        | 120              |
-| <format color="RosyBrown">Avenue Louis Aragon</format>       | 140              | 
-| <format color="RosyBrown">Avenue de la République</format>   | 140              |
-| <format color="RosyBrown">Avenue de Stalingrad</format>      | 160              |
-| <format color="Orange">Allée Berlioz</format>                | 180              |
-| <format color="Orange">Rue du Moulin de Saquet</format>      | 180              |
-| <format color="Orange">Sentier de la Commune</format>        | 200              |
-| <format color="Red">Rue Pascal</format>                      | 220              |
-| <format color="Red">Rue Blanqui</format>                     | 220              |
-| <format color="Red">Rue Rosa Luxembourg</format>             | 240              |
-| <format color="Yellow">Rue de Bretagne</format>              | 260              |
-| <format color="Yellow">Rue René Hamon</format>               | 260              |
-| <format color="Yellow">Rue Guy Môquet</format>               | 280              |
-| <format color="Green">Rue Henri Barbusse</format>            | 300              |
-| <format color="Green">Rue Ambroise Croizat</format>          | 300              |
-| <format color="Green">Rue de Verdun</format>                 | 320              |
-| <format color="Blue">Avenue de Paris</format>                | 350              |
-| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 400              |
+| <format color="SaddleBrown">Rue Raspail</format>             | 2                |
+| <format color="SaddleBrown">Rue Victor Hugo</format>         | 4                | 
+| <format color="LightBlue">Rue Jean Jaurès</format>           | 6                |
+| <format color="LightBlue">Boulevard Maxime Gorki</format>    | 6                |
+| <format color="LightBlue">Rue Youri Gagarine</format>        | 8                |
+| <format color="RosyBrown">Avenue Louis Aragon</format>       | 10               | 
+| <format color="RosyBrown">Avenue de la République</format>   | 10               |
+| <format color="RosyBrown">Avenue de Stalingrad</format>      | 12               |
+| <format color="Orange">Allée Berlioz</format>                | 14               |
+| <format color="Orange">Rue du Moulin de Saquet</format>      | 14               |
+| <format color="Orange">Sentier de la Commune</format>        | 16               |
+| <format color="Red">Rue Pascal</format>                      | 18               |
+| <format color="Red">Rue Blanqui</format>                     | 18               |
+| <format color="Red">Rue Rosa Luxembourg</format>             | 20               |
+| <format color="Yellow">Rue de Bretagne</format>              | 22               |
+| <format color="Yellow">Rue René Hamon</format>               | 22               |
+| <format color="Yellow">Rue Guy Môquet</format>               | 24               |
+| <format color="Green">Rue Henri Barbusse</format>            | 26               |
+| <format color="Green">Rue Ambroise Croizat</format>          | 26               |
+| <format color="Green">Rue de Verdun</format>                 | 28               |
+| <format color="Blue">Avenue de Paris</format>                | 35               |
+| <format color="Blue">Avenue Paul Vaillant Couturier</format> | 50               |
 
-Pour l'instant le loyer des gares est un prix fixe de 25.
+> Ces prix de loyer sont disponibles dans le fichier de ressources `rent.csv`, colonne "bare".
 
+- Pour l'instant le loyer des gares est un prix fixe de 25.
+- Le loyer des compagnies se calcule selon la logique suivante : 
+  - Si le propriétaire de la compagnie possède une seule des deux compagnies, alors le prix est le score du joueur locataire multiplié par quatre
+  - Si le propriétaire de la compagnie possède les deux compagnies, alors le prix est le score du joueur locataire multiplié par dix
+  
 Si un joueur est confronté à un loyer qu'il ne peut pas payer, il est déclaré en banqueroute, il perd, et est supprimé des joueurs de la partie. Le joueur propriétaire percevant le loyer qui déclenche la banqueroute perçoit l'argent du joueur en banqueroute comme loyer, pas plus. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel à `submitOrder` jette une exception de type `GameFinishedException`.
 
 ### Livrable 3 : Prison, case départ, gares

@@ -31,7 +31,7 @@
   - Versionner le code : suivre précisement les changements
   - Naviguer entre les versions
   - Ne pas perdre de changements
-  - Revenir en 
+  - Revenir en arrière
   - Coopération à plusieurs sur le même code
 ]
 
