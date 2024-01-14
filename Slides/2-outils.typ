@@ -125,5 +125,82 @@ Intéraction :
 
 - Outil de build
   - Structuer le projet
-  - Décrire comment le compiler, packager, executer, tester 
+  - Décrire comment le compiler, packager, exécuter, tester 
+]
+
+#slide(title: [Structure d'un projet Gradle])[
+
+#code(
+  lang: "Bash",
+  ```bash
+├── settings.gradle
+└── app
+    ├── build.gradle
+    └── src
+        ├── main
+        │   └── java
+        │       └── demo
+        │           └── App.java
+        └── test
+            └── java
+                └── demo
+                    └── AppTest.java
+  ```
+)
+]
+
+#slide(title: [`settings.gradle`])[
+
+#code(
+  lang: "Groovy",
+  ```Groovy
+rootProject.name = 'mon-projet'
+include('app')
+  ```
+)
+]
+
+#slide(title: [`app/build.gradle`])[
+
+#code(
+  lang: "Groovy",
+  ```Groovy
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'fr.arsenelapostolet.App'
+}
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.google.guava:guava:31.1-jre'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+  ```
+)
+]
+
+#slide(title: [Commandes de base])[
+    - Pour exécuter l'application : `./gradlew run`
+    - Pour exécuter les tests : `./gradlew test`
+
+    Sur windows : `./gradlew` est remplacé par `./gradlew.bat` 
 ]

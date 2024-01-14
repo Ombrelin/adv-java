@@ -83,6 +83,14 @@
  3. Travail autonome sur le projet, je suis dispo pour aider en cas de bloquage
 ]
 
+
+#slide(title: [Prérequis])[
+- Programmation impérative (variables, conditions, boucles, fonctions)
+- Base de la programmation objet en Java (classesencapsulation de données, interfaces, classes abstraites)
+
+
+]
+
 #focus-slide(background:  rgb("#EB6237"))[
   Des questions ? 
 ]
