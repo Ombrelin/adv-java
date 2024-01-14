@@ -37,11 +37,11 @@ Pour tester une méthode `countWords(String input)`, dont l'objectif est de comp
 
 ### Écrire des tests unitaires avec `junit-jupiter`
 
-JUnit-Jupiter (ou JUnit 5) est la dernière version du framework de tests JUnit, le framework de tests unitaires de reference pour Java.
+JUnit-Jupiter (ou JUnit 5) est la dernière version du framework de tests JUnit, le framework de tests unitaires de référence pour Java.
 
 #### Classes de test
 
-Avec JUnit, on structure les tests sous forme de suite en utilisant des classes. Chaque classe de test est une suite de tests spécifique à une *Unité*. L'unité étant la plus petite entité de code ayant un sens à être testée, étant donné un contexte. Le plus souvent, c'est une classe, mais cela peut aussi être un petit groupe de classe fortement liées logiquement. Par convention on appelle la classe de test avec le nom de la classe qu'elle teste, suivi de "Tests". 
+Avec JUnit, on structure les tests sous forme de suites (groupe des tests ayant un rapport) en utilisant des classes. Chaque classe de test est une suite de tests spécifique à une *Unité*. L'unité étant la plus petite entité de code ayant un sens à être testée, étant donné un contexte. Le plus souvent, c'est une classe, mais cela peut aussi être un petit groupe de classe fortement liées logiquement. Par convention ,on appelle la classe de test avec le nom de la classe qu'elle teste, suivi de "Tests". 
 
 Par exemple, j'ai une classe `App`, ma classe de test pour cette classe sera `AppTest`. Aussi, la classe de test se trouve dans le même paquet que la classe qu'elle teste, mais du côté de l'arboresence de fichiers sous le dossier `test` de votre projet Java.
 
@@ -132,7 +132,7 @@ Pour avoir des tests de qualité, il faut faire attention de comment on conçoit
 
 Le découpage en unité est important, car il permet de la facilité la compréhension en réduisant la largeur du contexte à comprendre à un instant T quand on lit le code. Il faut rassembler dans une unité des éléments qui ont un grand rapport fonctionnel ou technique entre eux.
 
-Créer des tests à un endroit donné, c'est en quelque sorte "sanctuariser une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code extérieur peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous les tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
+Créer des tests à un endroit donné, c'est en quelque sorte "sanctuariser" une interface (ici interface au sens "interface publique d'une classe" ou contrat de la classe, c'est-à-dire les éléments d'une classe dont du code qui l'utilise peut dépendre), car désormais, les tests dépendent de cette interface, et donc, en cas de modification de l'interface, il faudra aussi modifier tous les tests associés, ce qui peut rendre un changement futur ou un refactoring plus douloureux. Il est normal de "sanctifier" ainsi certaines interfaces, mais il faut éviter d'avoir des tests trop contraignants, trop "serrés" par rapport au code, afin de ne pas rendre les changements futurs plus difficiles.
 
 ### Les pseudo-entités
 
@@ -322,11 +322,11 @@ Si les conditions précédentes ne sont pas remplies, alors il convient d'utilis
 
 ## Écrire du code testable
 
-L'un des concepts de programmation qui est le plus important pour écrire du code testable, c'est l'inversion de dépendance. Cela permet aussi d'obtenir un code plus modulaire, avoir des couplages moins fort, donc plus facile à maintenir et à refactorer.
+L'un des concepts de programmation qui est le plus important pour écrire du code testable, c'est l'injection de dépendance. Cela permet aussi d'obtenir un code plus modulaire, avoir des couplages moins forts, donc plus facile à maintenir et à refactorer. On en reparlera aussi dans le contexte [du cours sur la qualité logicielle](Cours-3-Qualite-Logicielle.md)
 
-L'inversion de dépendance consiste à inverser la dépendance entre le code le plus abstrait qui va définir les règles métier de l'application, et le code technique qui fait le lien avec l'infrastructure. On veut que le concret dépende de l'abstrait.
+L'injection de dépendance consiste à inverser la dépendance entre le code le plus abstrait qui va définir les règles métier de l'application, et le code technique qui fait le lien avec l'infrastructure. On veut que le concret dépende de l'abstrait.
 
-Plus concrètement, cela va se traduire, lors de la conception des classes et des paquets, par l'externalisation sous forme de dépendance de tout le code plus concret qu'une classe donnée. La plupart du temps, on va également voir créer des interfaces pour ces dépendances, afin de minimiser la surface de contact, rendre le contrat de service le plus simple dans le but de réduire au maximum le couplage.
+Cela va se traduire, lors de la conception des classes et des paquets, par l'externalisation sous forme de dépendance de tout le code dont le niveau d'abstraction ne correspond pas à celui qu'on veut donner à la classe. La plupart du temps, on va également vouloir créer des interfaces pour ces dépendances, afin de minimiser la surface de contact, rendre le contrat de service le plus simple dans le but de réduire au maximum le couplage.
 
 Prenons l'exemple simple d'un programme en ligne de commande, qui demande une suite de nombres à l'utilisateur, puis en fournit la moyenne quand l'utilisateur entre "finished".
 

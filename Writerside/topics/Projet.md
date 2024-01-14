@@ -14,13 +14,12 @@ L'objectif du projet est, dans un premier temps, d'implémenter une simulation d
 
 La notation du projet est conçue pour ne pas être trop punitive pour ceux qui sont en difficulté et récompenser ceux qui s'investissent beaucoup. Je n'hésiterai cependant pas à sanctionner le manque de travail évident. Je n'aurai pas de problème à mettre 0 à quelqu'un qui n'a pas travaillé du tout, tout comme je n'hésiterai pas à mettre 20 à quelqu'un qui fourni un travail complet et de qualité.
 
-Le barème est le suivant : 
-
-- 10 points pour la complétion des fonctionnalités du projet : si votre code passe tous les tests d'intégration fournis, et que je ne repère pas de dysfonctionnement dans votre code, vous avez 10 sur cette partie. Chaque livrable de fonctionnalités rapporte 2 points.
-- 10 points de qualité du code :
-  - Utilisation de tests unitaires en plus de mes tests (3 points)
-  - Application des pratiques de qualité logicielle vus en cours (4 points)
-  - Utilisation des fonctionnalités appropriées du langage selon le contexte (3 points)
+Le barème est calculé par livrable, chaque livrable rapporte 4 points. Pour chaque livrable :
+- 2 points pour la complétion des fonctionnalités du projet. Si votre code passe tous les tests d'intégration fournis, et que je ne repère pas de dysfonctionnement dans votre code à la revue, vous avez 2/2 sur cette partie.
+- 2 points de qualité du code :
+  - Implémentation de tests unitaires en plus des tests fournis
+  - Application des pratiques de qualité logicielle vus en cours
+  - Utilisation des fonctionnalités appropriées du langage selon le contexte
 
 La réalisation du livrable bonus donnera un coup de pouce de +2 points sur la note à l'examen.
 
@@ -48,6 +47,8 @@ Ajoutez-moi ensuite sur votre projet (mon nom d'utilisateur est `Ombrelin`) :
 
 ![](github-add-collab.jpg)
 
+> N'oubliez pas d'ajouter également votre binôme !
+
 ### Description du dossier du projet
 
 Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Outillage.md#gradle). Il contient un module appelé `core` qui va contenir du code que je fournis : 
@@ -59,7 +60,7 @@ Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Ou
 
 Pour commencer à travailler sur le projet il vous faut créer votre module, qui contiendra votre code de simulation :
 
-1. Créer un nouveau module Gradle nommé `simulation` avec l'aide d'IntelliJ : 
+1. Créer un nouveau module Gradle nommé `simulation` avec l'aide d'IntelliJ. En tant que "GroupId", saisissez `fr.<votre nom><nom binome>.efrei.monopoly` : 
 
 ![](ij-new-module.gif)
 
@@ -105,43 +106,102 @@ test {
 > ```
 
 3. Créer votre paquet racine dans votre projet. Suggestion de nommage (dans `main/java` et `test/java`) : `fr.<votre nom><nom binome>.efrei.monopoly.simulation`.
-4. Créer un paquet `integration` dans votre paquet de test, et créer une classe `MonopolyTests` qui étend ma classe de test `BaseMonopolyTests`. Ainsi vous pourrez pour le 1er livrable implémenter la méthode `createMonopoly` pour fournir votre propre implémentation de `Monopoly` afin de pouvoir exécuter mes tests avec.
+4. Créer un paquet `fr.<votre nom><nom binome>.efrei.monopoly.simulation.integration` dans votre  dossier de test (`simulation/src/test/java`), et créer une classe `MonopolyTests` qui étend ma classe de test `BaseMonopolyTests`. Ainsi, vous pourrez pour le 1er livrable implémenter la méthode `createMonopoly` pour fournir votre propre implémentation de `Monopoly` afin de pouvoir exécuter mes tests avec.
 5. Vous êtes prêts à commencer le projet !
+
+### Note sur l'exécution des tests d'intégration fournis dans le projet
+
+La technique utilisée pour permettre de vous fournir des tests que vous pourrez plugger directement à votre code cause un petit souci avec le système d'intégration des tests Gradle d'IntelliJ. Heureusement, il y a une solution de contournement simple.
+
+Le problème est le suivant : si vous exécutez vos tests d'intégration en passant par l'icône dans la marge de la classe et que vous exécutez tous les tests, ou bien que vous exécutez la commande `gradle test` tout va bien, les tests s'exécutent :
+
+![](test-bug-all-tests.png)
+
+Cependant, si vous exécutez un test individuellement via la vue de test (par exemple parce que vous voulez débugger un test spécifique), une erreur apparait : 
+
+![](test-bug-demo.gif)
+
+C'est parce que le système utilise le mauvais nom de classe et de module pour exécuter le test, il les prend de la classe de tests abstraite. Pour résoudre le problème : 
+
+1. Ouvrez la configuration d'exécution qui a été créée par l'essai que vous venez de faire :
+
+![](test-bug-fix-1.gif)
+
+2. Remplacez dans la commande du test : 
+   - Le nom du module (`core` par `simulation`)
+   - Le nom (complet) de la classe `fr.arsenelapostolet.efrei.monopoly.BaseMonopolyTests` par le nom (complet) de votre classe : `fr.<votre nom><nom binome>.efrei.monopoly.simulation.integration.MonopolyTest`. Pour être sûr d'avoir le bon, vous pouvez le copier-coller de la commande de la config de la classe entière. Faîtes bien attention à laisser le nom de la méthode de test à la fin de la commande.  
+
+![](test-bug-fix-2.gif)
+
+3. Le test devrait d'exécuter sans problème avec cette configuration, vous pouvez même la lancer en mode debug pour faire du pas à pas.
+
+![](test-bug-fix-3.gif)
 
 ## Processus de livraison
 
-1. Fusionner la branche *template/livrable-x* (où *x* est le numéro du livrable) de mon dépôt dans la branche *master* de votre dépôt, afin d'avoir les tests d'intégration correspondant au livrable.
-2. Sur votre dépôt, créer une nouvelle branche à partir de la branche master appelée *dev/livrable-x* en remplaçant *x* par le nom du livrable concerné.
+Pour un livrable donné *x* :
+
+1. Sur votre dépôt, créer une nouvelle branche à partir de la branche master appelée *dev/livrable-x* en remplaçant *x* par le nom du livrable concerné.
+2. Fusionner la branche *template/livrable-x* (où *x* est le numéro du livrable) de mon dépôt dans la branche*dev/livrable-x* en question de votre dépôt, afin d'avoir les tests d'intégration correspondant au livrable (vous pouvez le faire via l'interface de github en utilisant une pull request que vous validerez vous-même).
 3. Commiter sur cette branche les changements permettant de satisfaire les tests d'intégration du livrable
-4. Créer une *merge request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *merge request.
+4. Créer une *pull request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *pull request*.
 5. Je vais ensuite être notifié de la demande de revue, et vais procéder à une relecture de votre code, et éventuellement faire des commentaires, des recommendations d'amélioration. Une fois ces améliorations implémentée ou votre choix spécifique argumenté, je ferai une évaluation du code en l'état, qui servira pour la partie "qualité" de la notation. Je vais enfin procéder à la fusion de votre branche de livraison sur votre *master*, vous pouvez ainsi reprendre le processus du début, pour le prochain livrable.
 
 > ⚠ Vous ne devez *jamais* commiter/pousser directement sur la branche *master* de votre dépôt.
 
+### Comment créer une *pull request* sur Github
+
+Rendez-vous sur l'interface de votre dépôt Github, dans l'onglet "Pull Requests" et créer en une nouvelle en cliquant sur le bouton correspondant : 
+
+![](pr.png)
+
+Dans le menu déroulant "base" choisissez la branche cible de la pull request (celle *dans laquelle vous voulez fusionner), et dans le menu "compare", mettez la branche que vous voulez fusionner.
+
+![](pr-form.png)
+
+L'interface va ensuite vous montrer une comparaison des changements présents sur les branches.
+
 ## Planning du projet
 
-| Date                     | Sujet                              |
-|--------------------------|------------------------------------|
-| Vendredi 19 Janvier 2024 | Démarrage du projet                |
-| Dimanche 4 Février 2024  | Date limite de rendu du livrable 1 |
-| Dimanche 18 Février 2024 | Date limite de rendu du livrable 2 |
-| Dimanche 3 Mars 2024     | Date limite de rendu du livrable 3 |
-| Vendredi 17 Mars 2024    | Date limite de rendu du livrable 4 |
-| Vendredi 31 Mars 2024    | Date limite de rendu du livrable 5 |
+| Date                     | Sujet                                      |
+|--------------------------|--------------------------------------------|
+| Vendredi 19 Janvier 2024 | Démarrage du projet                        |
+| Dimanche 4 Février 2024  | Date limite de rendu du livrable 1         |
+| Dimanche 18 Février 2024 | Date limite de rendu du livrable 2         |
+| Dimanche 3 Mars 2024     | Date limite de rendu du livrable 3         |
+| Dimanche 17 Mars 2024    | Date limite de rendu du livrable 4         |
+| Dimanche 31 Mars 2024    | Date limite de rendu du livrable 5         |
+| Dimanche 14 Avril 2024   | Date limite de rendu du livrable 6 (bonus) |
+
+L'heure limite pour le rendu de chaque livrable est minuit. Si votre travail est prêt avant la date limite, n'attendez pas la dernière minute pour faire votre pull request de rendu. Plus vite vous avez une revue de votre code, plus vite vous pouvez passer à la suite et éventuellement prendre de l'avance.
+
+## Interface publique de la simulation
+
+Le jeu est modélisé par une interface `Simulation` fourni, qui est utilisée dans les tests d'intégration fournis. Votre simulation doit implémenter cette interface.
+
+L'élément central de l'interface est la méthode `submitOrder`, elle permet à un joueur d'effectuer une action, ou de passer son tour (ordre `IDLE`). Cette méthode résout aussi la situation avant l'action à faire par le joueur suivant. 
+
+En résumé `submitOrder` c'est : 
+
+1. Résolution de l'action du joueur
+2. Jet de dé pour le déplacement du joueur suivant
+3. Résolution du déplacement du joueur suivant et des conséquences de ce déplacement
+
+D'autres méthodes sur l'interface permettent de lire les informations sur la situation courante du jeu.
 
 ## Livrables
 
 ### Livrable 1 : Jets de dés, plateau, déplacement
 
-Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, le jeu progresse quand ils donnent l'ordre IDLE (ne rien faire), ce qui passe le tour, et déclenche le jeté les dés et le déplacement pour le joueur suivant. Les ordres incohérents avec la situation courante du jeu sont ignorés. Un ordre invalide peut être un ordre d'un joueur pour qui ce n'est pas le tour de jouer, ou alors un ordre qui n'est pas cohérent avec la situation courante du tour.
+Les joueurs peuvent se déplacer sur le plateau. Pour l'instant les joueurs ne peuvent rien faire, le jeu progresse quand ils donnent l'ordre `IDLE` (ne rien faire), ce qui passe le tour, et déclenche le jeté les dés et le déplacement pour le joueur suivant. Les ordres incohérents avec la situation courante du jeu sont ignorés. Un ordre invalide peut être un ordre d'un joueur pour qui ce n'est pas le tour de jouer, ou alors un ordre qui n'est pas cohérent avec la situation courante du tour.
 
 La composition du plateau est la suivante, elle est décrite dans le fichier de ressources `monopoly.csv` (sous `core/main/resources` dans le projet). Ce fichier est à parser pour créer une représentation en mémoire du plateau. 
 
-![](board.png)
-
 > Pour lire un fichier de ressource, on peut utiliser `getClass().getResourceAsStream("/chemin/du/fichier")`, le chemin à passer étant le chemin du fichier relativement au répertoire `resources` (le premier / est important).
 
-Voici les règles concernant les dés : on simule le jet de deux dés à six face, le score de déplacement est la somme des deux dés. Les dés ne sont pas testés par mes tests, ils sont remplacés par une pseudo entité, mais je corrigerai la validité de votre implémentation ainsi que comment vous l'avez testée.
+![Le plateau de notre Monopoly "Villejuif"](board.png)
+
+Voici les règles concernant les dés : on simule le jet de deux dés à six face, le score de déplacement est la somme des deux dés ; il faut donc faire deux générations aléatoires pour un lancer de dés. Les dés ne sont pas testés par mes tests, ils sont remplacés par une pseudo entité, mais je corrigerai la validité de votre implémentation ainsi que comment vous l'avez testée.
 
 > Pour implémenter de l'aléatoire en Java, on peut utiliser la classe [`java.util.Random`](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 
@@ -151,16 +211,18 @@ En résumé, 3 tâches à faire pour ce livrable :
 2. Implémenter les dés
 3. Combiner la modélisation du plateau dans votre simulation de Monopoly afin d'avoir la fonctionnalité de déplacement spécifiée par les tests fournis.
 
-### Livrable 2 : Argent, Achat, Loyers terrain nu, Taxes
+### Livrable 2 : Argent, Achat, Loyers terrain nu
 
-Notre variante de Monopoly n'utilise pas la mise aux enchères systématique.
+> Notre variante de Monopoly n'utilise pas la mise aux enchères systématique.
 
 Dans ce livrable, on va implémenter : 
 
 - Un système de gestion de l'argent des joueurs, et des transactions. Chaque joueur commence avec une somme de départ de 1500€.
 - Possibilité pour les joueurs d'acheter des propriétés, gares et companies, en donnant un ordre de type `BUY` à son tour lorsqu'on est sur une localisation de ce type
-- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété, gare ou companie, déjà possédée par un autre joueur
-- Les joueurs doivent régler une taxe quand ils tombent sur une case de type taxe
+- Les joueurs doivent régler un loyer lorsqu'ils arrivent sur une propriété, gare ou compagnie, déjà possédée par un autre joueur
+- Les joueurs ne peuvent pas acheter une propriété, gare ou compagnie qui appartient déjà à quelqu'un d'autre
+
+> On utilise pour la modélisation de la monnaie le type [`BigDecimal`](https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html), c'est un type de la librairie standard Java qui permet de représenter des nombres décimaux signés à la précision arbitraire, et permet d'éviter des [erreurs de calcul lié à la virgule flottante](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems). C'est donc le type [recommandé pour manipuler des valeurs monétaires](https://wiki.sei.cmu.edu/confluence/display/java/NUM04-J.+Do+not+use+floating-point+numbers+if+precise+computation+is+required).
 
 Les loyers terrain nu sont les suivants :
 
@@ -196,7 +258,7 @@ Les loyers terrain nu sont les suivants :
   - Si le propriétaire de la compagnie possède une seule des deux compagnies, alors le prix est le score du joueur locataire multiplié par quatre
   - Si le propriétaire de la compagnie possède les deux compagnies, alors le prix est le score du joueur locataire multiplié par dix
   
-Si un joueur est confronté à un loyer qu'il ne peut pas payer, il est déclaré en banqueroute, il perd, et est supprimé des joueurs de la partie. Le joueur propriétaire percevant le loyer qui déclenche la banqueroute perçoit l'argent du joueur en banqueroute comme loyer, pas plus. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel à `submitOrder` jette une exception de type `GameFinishedException`.
+Si un joueur est confronté à un loyer qu'il ne peut pas payer, il est déclaré en banqueroute, il perd, et est supprimé des joueurs de la partie. Le joueur propriétaire percevant le loyer qui déclenche la banqueroute perçoit l'argent du joueur en banqueroute comme loyer, pas plus. Si la partie contient moins de 2 joueurs, elle s'arrête, c'est-à-dire que tout appel ultérieur à `submitOrder` jette une exception de type `GameFinishedException`.
 
 ### Livrable 3 : Prison, case départ, gares
 
@@ -204,11 +266,11 @@ Si un joueur est confronté à un loyer qu'il ne peut pas payer, il est déclar�
 
 Si un joueur tombe sur la case "Aller en prison", il va en prison, et est déplacé sur la case "En prison".
 
-Lors de son prochain tour, si son score au dé est un double, il sort de prison et avance de ce score. Il n'est n'est plus en prison. Sinon, il peut :
+Lors de son prochain tour, il peut :
 - émettre un ordre de `PAY_PRISON`, ce qui lui coûte 50. S'il fait ça, il avance de son score, il n'est plus en prison.
-- émettre un ordre `IDLE` , il est toujours en prison.
+- émettre un ordre `IDLE`, il est toujours en prison.
 
-Ces choix s'offrent à lui pour les deux prochains tours. Au 3e tour en prison s'il ne sort pas via les dés, il est obligé de payer.
+Ces choix s'offrent à lui pour les deux prochains tours. Au 3e tour, il est obligé de payer, et avance en fonction de son dernier jet de dés.
 
 #### Case départ
 
@@ -216,7 +278,7 @@ Quand un joueur passe par la case départ, il gagne 200.
 
 #### Gares
 
-Le loyer d'une gare est calculé en fonction du nombre de gare possédé par le joueur qui possède la gare : 
+Le loyer d'une gare est calculé en fonction du nombre de gares possédées par le joueur qui possède la gare : 
 
 | Nombre de gares possédées | Loyer |
 |---------------------------|-------|
@@ -227,7 +289,7 @@ Le loyer d'une gare est calculé en fonction du nombre de gare possédé par le 
 
 ### Livrable 4 : Construction et loyers adéquats
 
-Les joueurs peuvent construire des maisons pour leurs propriétés en émettant un ordre BUILD à leur tour. Cet ordre a un paramètre `propertyName` : le nom de la propriété sur laquelle construire.
+Les joueurs peuvent construire des maisons pour leurs propriétés en émettant un ordre `BUILD` à leur tour. Cet ordre a un paramètre `propertyName` : le nom de la propriété sur laquelle construire.
 
 Une propriété a cinq niveaux de construction. Voici la spécification des loyer et prix de construction en fonction des propriétés :
 
@@ -256,7 +318,7 @@ Une propriété a cinq niveaux de construction. Voici la spécification des loye
 | <format color="Blue">Avenue de Paris</format>                | 200                  | 175              | 500               | 1100              | 1300              | 1500          |
 | <format color="Blue">Avenue Paul Vaillant Couturier</format> | 200                  | 200              | 600               | 1400              | 1700              | 2000          |
 
-Ces informations sont disponibles au format CSV dans le fichier `rent.csv`, dans les ressources de l'application.
+> Ces informations sont disponibles au format CSV dans le fichier `rent.csv`, dans les ressources de l'application.
 
 ### Livrable 5 : Jeu en réseau en mode client-serveur
 
@@ -283,9 +345,9 @@ Je ferai également quelques tests manuels pour vérifier que les mains de vos a
 
 ### Livrable 6 (Bonus) : Interface graphique pour le client
 
-Le client offre une interface graphique qui montre :
+Ce livrable est beaucoup plus libre, l'idée est que le client offre une interface graphique qui montre :
 
 - L'état de la partie en temps réel
-- Des boutons permettent au joueur d'envoyer ses ordres
+- Des boutons permettant au joueur d'envoyer ses ordres
 
-Je testerai manuellement cette interface graphique
+Je testerai manuellement cette interface graphique et validerai ou non le bonus en fonction de l'aboutissement du livrable.

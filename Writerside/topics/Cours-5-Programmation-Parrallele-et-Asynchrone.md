@@ -2,7 +2,7 @@
 
 ## Programmation parallèle
 
-La programmation parallèle permet aux ordinateurs d'avoir plusieurs tâches qui s'exécutent en même temps. Cela peut être utile au sein de d'une application dans plusieurs cas de figure
+La programmation parallèle permet aux ordinateurs d'avoir plusieurs tâches qui s'exécutent en même temps. Cela peut être utile au sein de d'une application dans plusieurs cas de figure.
 
 - Améliorer la vitesse d'exécution d'une tâche qui prend beaucoup de temps et qui peut être découpée : découper la tâche en plusieurs sous parties, et exécuter ces différentes parties en parallèle
 - Permettre des cas d'utilisations : par exemple permettre à un serveur de traiter les requêtes de clients en parallèle
@@ -132,7 +132,7 @@ reservationThread3.join();
 reservationThread4.join();
 ```
 
-Dans cette situation, on a un problème : on a aucune assurance qu'après l'exécution de la ligne `getAvailableRoomCount() - numberOfBookedRooms < 0` par un thread, pour vérifier qu'il y a assez de places, on ait la ligne `bookedRoomsCount += numberOfBookedRooms;` d'une autre thread qui soit exécuté, modifiant ainsi le nombre de places réservées sans que le premier thread puisse le savoir, ce dernier va donc procéder à l'iincrémentation `bookedRoomsCount += numberOfBookedRooms;`, potentiellement en excédant la limite de places réservées de l'hôtel. On obtiendrait ainsi une situation logiquement incorrecte. La méthode `bookRooms` de l'hôtel est de ce fait une section critique, on veut que chaque thread exécute les deux instructions à la suite, sans intervention d'un autre thread entre temps.
+Dans cette situation, on a un problème : on a aucune assurance qu'après l'exécution de la ligne `getAvailableRoomCount() - numberOfBookedRooms < 0` par un thread, pour vérifier qu'il y a assez de places, on ait la ligne `bookedRoomsCount += numberOfBookedRooms;` d'une autre thread qui soit exécuté, modifiant ainsi le nombre de places réservées sans que le premier thread puisse le savoir, ce dernier va donc procéder à l'incrémentation `bookedRoomsCount += numberOfBookedRooms;`, potentiellement en excédant la limite de places réservées de l'hôtel. On obtiendrait ainsi une situation logiquement incorrecte. La méthode `bookRooms` de l'hôtel est de ce fait une section critique, on veut que chaque thread exécute les deux instructions à la suite, sans intervention d'un autre thread entre temps.
 
 Afin de protéger les sections critiques, Java fournit le mot-clé `synchronized` pour permet à un thread de "prendre la main" sur un objet le temps de la section critique. On peut donc protéger la section critique dans notre code pour garantir une exécution cohérente : 
 
@@ -177,7 +177,7 @@ System.out.println(hotel.getAvailableRoomCount());
 
 Ainsi, quand un thread commence la section synchronisée d'un objet, il a la certitude qu'aucun autre thread n'aura accès à cet objet avant qu'il n'ait fini d'exécuter la section synchronisée.
 
-Attention cependant ! La synchronisation coûte en performance, donc il faut la restreindre uniquement aux situations où c'est nécessaire.
+Attention cependant ! La synchronisation coûte en performance, et limite le parallèlisme, donc il faut la restreindre uniquement aux situations où c'est nécessaire.
 
 Aussi, ici la ressource partagée est un objet à nous (l'hôtel), mais si cette dernière est une structure de donnée comme une liste ou une map, Java fournit des équivalents de ces structures de donnée synchronisées aux endroits où il faut, par exemple : 
 
@@ -249,7 +249,7 @@ Ici, les deux threads vont utiliser la ressource partager `token` pour s'attendr
 
 La programmation asynchrone est une technique qui consiste à utiliser une abstraction en plus des threads pour organiser le parallèlisme de façon plus optimisée :
 
-- En utilisant moins de threads pour faire la même chose : on passe moins de temps à créer des threads
+- En utilisant moins de threads pour faire la même chose : on passe moins de temps et de mémoire à créer des threads
 - En utilisant des entrées/sorties non bloquantes pour utiliser au maximum le temps CPU
 
 On peut même faire de la programmation asynchrone sur un seul thread, pour les curieux, c'est d'ailleurs [comme ça que fonctionne Node JS](https://nodejs.org/en/guides/event-loop-timers-and-nexttick).
@@ -268,12 +268,12 @@ Les abstractions au-dessus des threads propres à la programmation asynchrone so
 
 Dans un système, il y a deux types d'opération qui prennent beaucoup du temps : 
 
-- Les opérations liées au temps de calcul (CPU-Bound) : temps passé pour que le CPU exécution d'algorithme
+- Les opérations liées au temps de calcul (CPU-Bound) : temps passé par le CPU à calculer l'exécution d'algorithmes
 - Les opérations liées aux entrées/sorties (IO-Bound) : temps passé par le CPU à attendre la réponse d'un système externe au processus comme un appel réseau, ou un appel au système de fichier.
 
 Les entrées/sorties non bloquantes consistent à récupérer le temps "gâché" à attendre par les opérations IO-Bound pour faire autre chose en attendant.
 
-Par exemple dans le cas assez courant d'un server HTTP qui gère des requêtes, et qui a besoin de faire des appels à une base de donnée pour honorer ces requêtes. Dans un modèle d'entrée/sorties bloquant, on va avoir un thread qui va gérer chaque nouvelle requête. Ce thread va être bloqué à ne rien faire à cause de l'entrée sortie d'abord au moment d'attendre que la requête du client lui soit transférée, puis à nouveau quand il attend la réponse du serveur de base de donnée. Au contraire, dans un modèle non bloquant, lorsqu'il doit attendre l'entrée/sortie, le thread, au lieu d'être bloquant et ne rien faire en attendant, va faire autre chose d'actif, traiter une autre requête.
+Par exemple dans le cas assez courant d'un server HTTP qui gère des requêtes, et qui a besoin de faire des appels à une base de donnée pour honorer ces requêtes. Dans un modèle d'entrée/sorties bloquant, on va avoir un thread qui va gérer chaque nouvelle requête. Ce thread va être bloqué à ne rien faire à cause de l'entrée sortie d'abord au moment d'attendre que la requête du client lui soit transférée, puis à nouveau quand il attend la réponse du serveur de base de donnée. Au contraire, dans un modèle non bloquant, lorsqu'il doit attendre l'entrée/sortie, le thread, au lieu d'être bloqué et ne rien faire en attendant, va faire autre chose d'actif et d'utile, par exemple traiter une autre requête.
 
 L'entrée sortie non bloquante est rendu possible par la programmation asynchrone, car ce modèle qui permet de déférer des traitements pour en consommer le résultat plus tard est bien adaptée à cette logique.
 

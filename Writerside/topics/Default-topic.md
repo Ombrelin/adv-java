@@ -12,9 +12,11 @@ Vous pouvez me trouver sur :
 
 Et également par email : arsene@lapostolet.fr
 
+> C'est ma première année en tant qu'enseignant. N'hésitez pas à me faire des retours sur le module à tout moment, afin que je puisse m'améliorer.
+
 ## Fonctionnement du Module
 
-Le support principal du module est le site sur lequel vous lisez ces lignes. Chaque sujet correspond à une séance de cours. Chaque cours est à lire et comprendre avant la séance de TP qui correspond, un récap rapide sera fait en début de séances pour ceux qui n'ont pas eu le temps, mais vous gagnez du temps à au moins lire le cours à l'avance. Il est possible d'écrire des questions via Teams entre deux séances, j'y répondrai dès que possible. Il est bien sûr également possible de poser des questions, demander une explication à tout moment en classe.
+Le support principal du module est le site sur lequel vous lisez ces lignes. Chaque sujet correspond à une séance de cours. Chaque cours est à lire avant la séance de TP qui correspond, un récap rapide sera fait en début de séances pour ceux qui n'ont pas eu le temps, mais vous gagnez du temps à au moins lire le cours à l'avance. Il est possible d'écrire des questions via Teams ou email entre deux séances, j'y répondrai dès que possible. Il est bien sûr également possible de poser des questions, demander une explication à tout moment en classe.
 
 Programme des séances : 
 <tabs>
@@ -68,3 +70,12 @@ Déroulement :
 1. Je fais un petit récap du cours en 10 minutes
 2. Séance de Questions & Réponse sur le cours
 3. Travail autonome sur le projet, je suis disponible pour aider
+
+## Prérequis
+
+Les prérequis du cours sont les suivants :
+
+- Bases de la programmation impérative (savoir faire du code avec des variables, des conditions, des boucles et des fonctions)
+- Base de la programmation objet en Java (savoir utiliser des classes pour modéliser des problèmes, l'encapsulation de données et les interfaces/classes abstraites)
+
+Si vous pensez ne pas être à l'aise avec ces prérequis, surtout, dites-le-moi en privé (mail, message teams). Je pourrai vous fournir des ressources et un accompagnement pour rattraper le plus possible, et que vous puissiez tout de même tirer profit de ce module.

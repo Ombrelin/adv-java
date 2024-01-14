@@ -5,7 +5,7 @@
 
 ### Définitions
 
-Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
+Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, on parle de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
 
 Java est dogmatiquement "purement orienté objet", donc cette fonctionnalité, issue du paradigme de programmation dit "orienté fonction", a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
 
@@ -20,7 +20,7 @@ Le langage fournit différentes interfaces fonctionnelles pour désigner les fon
 - `Function<T,R>` : fonction qui accepte un paramètre de type `T` et retourne une valeur de type `R`
 - `Predicate<T>` : fonction qui accepte un paramètre de type `T` et retourne un booléen.
 
-Liste exhaustive des interfaces fonctionnelles existantes sur [la documentation de la spécification Java](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html).
+Liste exhaustive des interfaces fonctionnelles existantes à retrouver sur [la documentation de la spécification Java](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html).
 
 ### Fonctions Lambda
 
@@ -34,7 +34,7 @@ Consumer<String> printHelloName = (String name) -> System.out.println("Hello, " 
 
 Function<Integer,Integer> square = (Integer number) -> number * number;
 
-// Parameters
+// Paramètres
 Calculator<Integer> calculator = new Calculator<Integer>();
 calculator.addOperator(
 		"+",
@@ -45,7 +45,7 @@ calculator.addOperator(
 
 ### Référencer une méthode
 
-En Java, l'opérateur `::` permet de lire une référence de méthode à partir d'une méthode nommée existante dans une classe, afin de la manipuler : passer en paramètre, sotcker dans une variable, etc...
+En Java, l'opérateur `::` permet de lire une référence de méthode à partir d'une méthode nommée existante dans une classe, afin de la manipuler : passer en paramètre, stocker dans une variable, etc.
 
 Exemple :
 
@@ -54,7 +54,7 @@ Exemple :
 // Variables
 BiFunction<Integer, Integer,Integer> bigDecimalPlus = Integer::add;
 
-// Parameters
+// Paramètres
 calculator.addOperator(
 		"+",
 		Integer::add
@@ -63,7 +63,7 @@ calculator.addOperator(
 
 ```
 
-## Traitements fonctionnel des collections
+## Traitements fonctionnels des collections
 
 Les fonctions d'ordre supérieur sont des fonctions sur les collections qui permette de faire des traitements de données usuels beaucoup plus simplement, en utilisant une approche orientée fonction, ainsi que la syntaxe fonctions lambdas. Les opérations qui permettent ces traitements sont les opérateurs fonctionnels.
 
@@ -120,6 +120,8 @@ Stream<Employee> seniors = employees
 
 Prends seulement les n premiers éléments.
 
+![](limit.png)
+
 ```java
 List<Employee> employees = List.of(
   	new Employee("Shepard",28),
@@ -137,6 +139,8 @@ Stream<Employee> firstTwoEmployees = employees
 ##### `skip`
 
 Prends seulement les éléments après en avoir sauté n.
+
+![](skip.png)
 
 ```java
 List<Employee> employees = List.of(
@@ -159,6 +163,8 @@ Steam<Employee> skipTwoEmployees = users
 
 Faire correspondre chaque élément à autre chose en utilisant une fonction.
 
+![](map.png)
+
 ```java
 List<Employee> employees = List.of(
   	new Employee("Shepard",28),
@@ -176,6 +182,8 @@ Stream<String> employeesNames = employees
 ##### `flatMap`
 
 Mappe chaque élément à une collection d'autre chose, puis aplatis le résultat.
+
+![](flatmap.png)
 
 ```java
 List<Team> teams = List.of(

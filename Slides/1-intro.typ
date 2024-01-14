@@ -21,10 +21,12 @@
   - Ingénieur en développement logiciel chez KDS (éditeur, voyage d'affaire)
   - EFREI LSI P2022
   - arsene\@lapostolet.fr
+
+  1ère année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'améliorer !).
 ]
 
 #slide(title: [Et vous ?])[
-  Mettez tous un message dans le chat avec : 
+  Mettez un message dans le chat avec : 
 
   1. Votre métier en alternance
   2. Langage de programmation préféré

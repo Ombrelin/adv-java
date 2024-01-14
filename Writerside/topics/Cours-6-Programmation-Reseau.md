@@ -20,7 +20,7 @@ La méthode `accept` de la `ServerSocket` va permettre d'attendre la connexion d
 final var connectedClientSocket = serverSocket.accept();
 ```
 
-La méthode `accept` nous donne la socket pour communiquer spécifique avec le client qui s'est connecté. On peut récupérer les flux d'entrée/sortie pour communiquer avec lui via `getInputStream` pour l'entrée, et `getOutputStream`.
+La méthode `accept` nous donne la socket pour communiquer spécifiquement avec le client qui s'est connecté. On peut récupérer les flux d'entrée/sortie pour communiquer avec lui via `getInputStream` pour l'entrée, et `getOutputStream`.
 
 Pour l'entrée, c'est-à-dire le flux de données qui vient du client (envoyée au serveur par le client), on utilise un `BufferedReader` qui nous permet d'écrire simplement du texte ligne par ligne : 
 
@@ -69,7 +69,7 @@ final var streamToClient = new PrintWriter(
 
 ## Communications client-serveur
 
-Pour communiquer sur les flux d'entrée/sortie des sockets, on fait des appels à `readLine` et `println`. Attention ! Comme l'appel à `accept` de la socket serveur, ces appels sont bloquant le temps de la communication : un `readLine` est bloquant tant qu'on a pas eu un `println` de l'autre côté et vice-verso.
+Pour communiquer sur les flux d'entrée/sortie des sockets, on fait des appels à `readLine` et `println`. Attention ! Comme l'appel à `accept` de la socket serveur, ces appels sont bloquant le temps de la communication : un `readLine` est bloquant tant qu'on a pas eu un `println` de l'autre côté et vice-versa.
 
 Afin de gérer plusieurs clients en même temps, il faut donc recourir à de la programmation parallèle.
 

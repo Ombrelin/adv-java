@@ -10,6 +10,8 @@ Le polymorphisme est l'épine dorsale de la programmation orientée objet. Cela 
 
 C'est fondamentalement, car énormément de mécanisme qui permettent de mieux structurer le code, en le rendant plus facile à lire et à maintenir reposent sur le polymorphisme.
 
+> Rappel : dans ce contexte, le terme "contrat de service" est interchangeable avec le concept d'interface en Java. C'est un contrat auquel une classe adhère pour garantir qu'elle peut fournir certains services.
+
 Un exemple simple de polymorphismes est l'interface `List<T>` en Java, qui peut contenir une référence à une `ArrayList` ou à une `LinkedList` indistinctement, pourtant ce dont des implémentations de liste qui différent complétement. Cependant, grâce au polymorphisme apporté par l'utilisation de l'interface `List<T>`, du code utilisant une liste d'ignorer complétement sur quelle implémentation cette dernière repose.
 
 ```Java
@@ -54,15 +56,15 @@ public class UserApplication {
 
 Ici, on injecte à la classe  `UserApplication` sa dépendance `UsersRepository` à qui elle délègue, on imagine, des intéractions de stockage des données. La classe `UserApplication` n'a pas à savoir comment sa dépendance `UsersRepository` stocke les données, juste de savoir quelles opérations elle supporte, ce que permet de contrat de service par interface.
 
+> Quand on développe une application avec un niveau de qualité industrielle, on va souvent déléguer la gestion de l'injection de dépendance à ce qu'on appelle un conteneur d'inversion de dépendance (Inversion of Control Container ), qui va automatiser le fait de construire les objets auxquels on injecte ces dépendances, ainsi que gérer le cycle de vie des dépendances. En Java, on peut citer [Spring](https://spring.io/) qui est l'un des frameworks IoC les plus répendus ou encore [CDI (Context Dependency Injection)](https://jakarta.ee/specifications/cdi/), issu du standard [JakartaEE](https://jakarta.ee/).
+
 ## Patrons de conception (Design Patterns)
 
-Un patron de conception est une "recette" qui apporte une solution préfabriquée à un problème connu et récurant en ingénierie logicielle. Il en existe beaucoup, l'un des ouvrages de référence en la matière est [Design Patterns:Elements of Reusable Object-Oriented Software](https://en.wikipedia.org/wiki/Design_Patterns). Je vais présenter ceux qui sont (à mon sens et selon mon expérience) les plus intéressants à connaître.
+Un patron de conception est une "recette" qui apporte une solution préfabriquée à un problème connu et récurant en ingénierie logicielle. Il en existe beaucoup, l'un des ouvrages de référence en la matière est [Design Patterns : Elements of Reusable Object-Oriented Software](https://en.wikipedia.org/wiki/Design_Patterns). Je vais présenter ceux qui sont (à mon sens et selon mon expérience) les plus intéressants à connaître.
 
 ### Pattern Décorateur (Decorator)
 
-Le pattern décorateur permet de combiner des composants de façon transparente en utilisant la délégation. Et donc de rajouter des comportements à un objet de manière dynamique, sans que le code appelant n'en ai connaissance.
-
-Il est utile quand on a besoin de pouvoir rajouter des comportements à un composant de façon dynamique sans casser le code appelant.
+Le pattern décorateur permet de combiner des composants de façon transparente en utilisant la délégation. Il est utile quand on a besoin de pouvoir rajouter des comportements à un composant de manière dynamique sans casser le code appelant.
 
 La structure du pattern est la suivante : 
 
@@ -159,7 +161,7 @@ La création d'un objet :
 - Devient trop complexe
 - Révèle trop au code appelant de la structure interne de l'objet
 - Demande des responsabilités qui dépassent celle de l'objet
-- 
+
 Dans ces cas-là, on utilise alors la fabrique pour décharger l'objet de la responsabilité de se construire, et on cache cette complexité au code appelant.
 
 Par exemple, prenons le cas d'un objet qui est parsé depuis un format de sérialisation, par exemple, CSV.
@@ -317,7 +319,7 @@ Ainsi, grâce à notre factory, la résolution des opérations est abstraite de 
 
 Le pattern Etat permet de modéliser de façon efficace une situation où un élément peut posséder différents états qui changent son comportement. Il repose sur la délégation et le polymorphisme pour éviter d'avoir une arborescence illisible de `if`.
 
-Prenons l'exemple suivant : des livres dans une bibliothèque. Un livre dans une bibliothèque peut être **disponibles**, c'est-à-dire sur les étagères de la bibliothèque, prêt à être emprunté. Ensuite si on l'emprunte, il devient **emprunté**, tant qu'il est emprunté, il ne peut pas être **emprunté** par quelqu'un d'autre, mais il peut être **réservé**, ce qui va notifier la personne qui le réserve lorsqu'il est retourné. Quand il est retourné, il redevient disponible.
+Prenons l'exemple suivant : des livres dans une bibliothèque. Un livre dans une bibliothèque peut être **disponible**, c'est-à-dire sur les étagères de la bibliothèque, prêt à être emprunté. Ensuite si on l'emprunte, il devient **emprunté**, tant qu'il est emprunté, il ne peut pas être **emprunté** par quelqu'un d'autre, mais il peut être **réservé**, ce qui va notifier la personne qui le réserve lorsqu'il est retourné. Quand il est retourné, il redevient disponible.
 
 Cela nous donne le diagramme d'état transition suivant : 
 
@@ -514,7 +516,7 @@ Cela veut dire, pour les noms :
 - Ne pas utiliser d'acronymes
 - Toujours décrire l'objectif du symbole dans son nom
 - Ne pas avoir peur d'avoir des noms de symboles longs
-- Utiliser des noms anglais
+- Utiliser des noms en anglais
 - Utiliser des noms prononçables
 - Ne pas utiliser de nombres magiques
 
@@ -545,7 +547,7 @@ On peut améliorer cela :
 public List<int[]> getFlaggedCells(){
     List<int[]> flaggedCells = = new ArrayList<int[]>();
     for(int[] cell : gameboard){
-        if(cell[STATUS_VALUE] == FLAGGED){
+        if(isFlagged(cell)){
             flaggedCells.add(cell);
         }
     }
@@ -557,9 +559,9 @@ Juste en changeant des noms et des nombres magiques, on obtient une méthode qui
 
 ### Utilisations des méthodes/fonctions pour révéler l'intention
 
-Les méthodes/fonctions doivent être le plus courtes possible. Il est tout à fait normal de faire des fonctions/méthodes qui ne sont appelées qu'à un seul endroit, donc pour autre chose que pour mutualiser du code, simplement parce qu'en extrayant et remplaçant une fonction/méthode d'un bloc de code, on donne un nom au bloc en question, donc on révèle l'intention qu'il y a dérrière, mais aussi, on cache les détails qui ne sont pas nécessairement importants à la compréhension.
+Les méthodes/fonctions doivent être le plus courtes possible. Il est tout à fait normal de faire des méthodes/fonctions qui ne sont appelées qu'à un seul endroit, donc pour autre chose que pour mutualiser du code, simplement parce qu'en extrayant et remplaçant une méthode/fonction d'un bloc de code, on donne un nom au bloc en question, donc on révèle l'intention qu'il y a dérrière, mais aussi, on cache les détails qui ne sont pas nécessairement importants à la compréhension.
 
-Une méthode/fonctions ne devrait pas faire plus de 20 lignes, elle en fait idéalement moins de 10.
+Une méthode/fonction ne devrait pas faire plus de 20 lignes, elle en fait idéalement moins de 10.
 
 Lorsqu'on implémente un algorithme, une logique, c'est normal de tout écrire d'une traite, c'est plus facile pour écrire, mais ensuite, il faut refactorer pour faciliter la lecture, en repérant les blocs de code qui ont du sens et les extraire sous forme de méthode/fonction. La fonctionnalité de l'IDE "Refactorer : extraire en tant que méthode" est très utile pour faire cela rapidement.
 
@@ -800,9 +802,9 @@ On aura ici deux types d'éléments :
 Ici, on va retrouver les éléments ce sur quoi reposent les couches d'au-dessus : 
 
 - Le framework web pour l'API
-- Le serveur de base de donnée et la bibliothèque d'accès base de donnée
+- La bibliothèque d'accès base de donnée
 
-Et un peu de code pour configurer ces composants.
+Et un peu de code de l'application pour configurer ces composants.
 
 ## Références du cours
 
