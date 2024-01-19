@@ -20,7 +20,7 @@
   - Plateforme de développement : Machine Virtuelle Java (JVM)
   - Langage de programmation : Java 21
   - Environment de développement intégré : IntelliJ IDEA Community
-  - Système de Gestion de Version : Git et Github
+  - Système de Gestion de Version : Git et GitLab
   - Système de build : Gradle
 ]
 
@@ -57,7 +57,7 @@
   1. `git add .` : ajouter tous les changements au suivi git
   2. `git commit -m "message de commit"` : crée un commit avec les changements trackés
 - Créer une branche : 
-  1. `git branche nomDeLaBranche` : créer la branche
+  1. `git branch nomDeLaBranche` : créer la branche
   2. `git checkout nomDeLaBranche` : se positionner sur la branche
 ]
 
@@ -117,6 +117,11 @@ Intéraction :
 9. Retourner sur master : `git checkout master`
 
 10. Fusionner la branche de feature : `git merge maFeature`
+]
+
+
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ? 
 ]
 
 #new-section-slide("Gradle")
@@ -203,4 +208,9 @@ tasks.named('test') {
     - Pour exécuter les tests : `./gradlew test`
 
     Sur windows : `./gradlew` est remplacé par `./gradlew.bat` 
+]
+
+
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ? 
 ]

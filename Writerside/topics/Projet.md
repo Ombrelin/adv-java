@@ -25,29 +25,31 @@ La réalisation du livrable bonus donnera un coup de pouce de +2 points sur la n
 
 ## Démarrage du projet
 
-### Compte Github
+### Compte GitLab
 
-Le projet se déroulera sur Github, vous aurez donc besoin de créer un compte dessus.
+Le projet se déroulera sur GitLab, vous aurez donc besoin de créer un compte dessus.
 
 ### Binômes
 
-Ce projet est à faire par binôme. Une fois que vous avez choisi votre binome, envoyez-moi un email à mon adresse `arsene.lapostolet@intervenants.efrei.net` pour me communiquer votre binôme ainsi que votre nom d'utilisateur Github ainsi que celui de votre binôme. 
+Ce projet est à faire par binôme. Une fois que vous avez choisi votre binôme, renseignez le sur le document Excel présent dans l'équipe Teams, pour me communiquer votre binôme, votre nom d'utilisateur GitLab ainsi que celui de votre binôme. 
 
 ### Forker le projet
 
-Le projet est fourni sous forme de template dans [ce dépôt Github](https://github.com/Ombrelin/efrei-adv-java-project), vous devez forker ce projet pour créer votre propre dépôt sur lequel vous allez travailler : 
-
-![](github-fork.jpg)
+Le projet est fourni sous forme de template dans [ce dépôt GitLab](https://gitlab.com/Ombrelin/efrei-adv-java-project), vous devez forker ce projet pour créer votre propre dépôt sur lequel vous allez travailler.
 
 N'oubliez pas de créer votre projet en privé !
 
-### Ajouter le prof
+### Ajouter le prof & votre binôme
 
-Ajoutez-moi ensuite sur votre projet (mon nom d'utilisateur est `Ombrelin`) :
+Ajoutez-moi ensuite sur votre projet (mon nom d'utilisateur est `Ombrelin`) avec le rôle "Maintainer".
 
-![](github-add-collab.jpg)
+> N'oubliez pas d'ajouter également votre binôme ! (rôle "Maintainer" également)
 
-> N'oubliez pas d'ajouter également votre binôme !
+### Cloner le projet
+
+Avec de cloner (avec la commande `git clone`) le projet n'oubliez pas de configurer votre compte git en local, en utilisant comme username votre username Gitlab, comme décrit [la section du cours à ce sujet](Cours-1-Outillage.md#git), via la command `git config`.
+
+Vous pouvez ensuite ouvrir le dossier du dépôt que vous venez de clôner avec IntelliJ.
 
 ### Description du dossier du projet
 
@@ -58,6 +60,8 @@ Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Ou
 
 ### Créer votre module
 
+Avant de commencer, créer et positionnez vous sur une nouvelle branche.
+
 Pour commencer à travailler sur le projet il vous faut créer votre module, qui contiendra votre code de simulation :
 
 1. Créer un nouveau module Gradle nommé `simulation` avec l'aide d'IntelliJ. En tant que "GroupId", saisissez `fr.<votre nom><nom binome>.efrei.monopoly` : 
@@ -67,7 +71,7 @@ Pour commencer à travailler sur le projet il vous faut créer votre module, qui
 ![](ij-new-module.png)
 
 
-2. Mettre à jour la configuration Gradle de votre module :
+2. Mettre à jour la configuration Gradle de votre module (le module `simulation`, vous ne devez jamais modifier le module `core` par vous même) :
 
 ```Groovy
 plugins {
@@ -107,7 +111,7 @@ test {
 
 3. Créer votre paquet racine dans votre projet. Suggestion de nommage (dans `main/java` et `test/java`) : `fr.<votre nom><nom binome>.efrei.monopoly.simulation`.
 4. Créer un paquet `fr.<votre nom><nom binome>.efrei.monopoly.simulation.integration` dans votre  dossier de test (`simulation/src/test/java`), et créer une classe `MonopolyTests` qui étend ma classe de test `BaseMonopolyTests`. Ainsi, vous pourrez pour le 1er livrable implémenter la méthode `createMonopoly` pour fournir votre propre implémentation de `Monopoly` afin de pouvoir exécuter mes tests avec.
-5. Vous êtes prêts à commencer le projet !
+5. Vous avez terminé le setup pour le projet. Vous pouvez pousser votre branche pour que votre binôme puisse la récupérer de son côté.
 
 ### Note sur l'exécution des tests d'intégration fournis dans le projet
 
@@ -142,24 +146,12 @@ C'est parce que le système utilise le mauvais nom de classe et de module pour e
 Pour un livrable donné *x* :
 
 1. Sur votre dépôt, créer une nouvelle branche à partir de la branche master appelée *dev/livrable-x* en remplaçant *x* par le nom du livrable concerné.
-2. Fusionner la branche *template/livrable-x* (où *x* est le numéro du livrable) de mon dépôt dans la branche*dev/livrable-x* en question de votre dépôt, afin d'avoir les tests d'intégration correspondant au livrable (vous pouvez le faire via l'interface de github en utilisant une pull request que vous validerez vous-même).
+2. Fusionner la branche *template/livrable-x* (où *x* est le numéro du livrable) de mon dépôt dans la branche*dev/livrable-x* en question de votre dépôt, afin d'avoir les tests d'intégration correspondant au livrable (vous pouvez le faire via l'interface de GitLab en utilisant une merge request que vous validerez vous-même).
 3. Commiter sur cette branche les changements permettant de satisfaire les tests d'intégration du livrable
 4. Créer une *pull request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *pull request*.
 5. Je vais ensuite être notifié de la demande de revue, et vais procéder à une relecture de votre code, et éventuellement faire des commentaires, des recommendations d'amélioration. Une fois ces améliorations implémentée ou votre choix spécifique argumenté, je ferai une évaluation du code en l'état, qui servira pour la partie "qualité" de la notation. Je vais enfin procéder à la fusion de votre branche de livraison sur votre *master*, vous pouvez ainsi reprendre le processus du début, pour le prochain livrable.
 
 > ⚠ Vous ne devez *jamais* commiter/pousser directement sur la branche *master* de votre dépôt.
-
-### Comment créer une *pull request* sur Github
-
-Rendez-vous sur l'interface de votre dépôt Github, dans l'onglet "Pull Requests" et créer en une nouvelle en cliquant sur le bouton correspondant : 
-
-![](pr.png)
-
-Dans le menu déroulant "base" choisissez la branche cible de la pull request (celle *dans laquelle vous voulez fusionner), et dans le menu "compare", mettez la branche que vous voulez fusionner.
-
-![](pr-form.png)
-
-L'interface va ensuite vous montrer une comparaison des changements présents sur les branches.
 
 ## Planning du projet
 

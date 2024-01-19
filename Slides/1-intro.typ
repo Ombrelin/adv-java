@@ -22,7 +22,7 @@
   - EFREI LSI P2022
   - arsene\@lapostolet.fr
 
-  1ère année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'améliorer !).
+  #text(style: "italic", [1ère année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'aider à m'améliorer !)])
 ]
 
 #slide(title: [Et vous ?])[
@@ -32,13 +32,17 @@
   2. Langage de programmation préféré
   3. Système d'exploitation préféré
   4. Aisance avec Java (entre : largué, bof, ok/20 et goat)
-  5. Aisance avec Git (entre : largué, bof, ok/20 et goat)
+  5. Aisance avec Git (entre : jamais utilisé, largué, bof, ok/20 et goat)
 ]
-
 
 #slide(title: [Objectifs du module])[
   1. Professionaliser la pratique du développement logiciel
+    - Tests
+    - Qualité logicielle
   2. Concepts avancés en Java
+    - Programmation orientée fonction
+    - Threads
+    - Programmation réseau
 ]
 
 #slide(title: [Vos attentes pour ce module ?])[
@@ -86,7 +90,7 @@
 
 #slide(title: [Prérequis])[
 - Programmation impérative (variables, conditions, boucles, fonctions)
-- Base de la programmation objet en Java (classesencapsulation de données, interfaces, classes abstraites)
+- Base de la programmation objet en Java (classese, encapsulation de données, interfaces, classes abstraites)
 
 
 ]
