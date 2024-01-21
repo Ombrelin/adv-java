@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="60a9cd36">
+        <description>Created after removal of "Cours 8 : Programmation Réflexive" from EFREI LSI L3 ALSI62-CTP : Java
+            Avancé
+        </description>
+        <accepts>Cours-8-Programmation-Reflexive.html</accepts>
+    </rule>
+</rules>

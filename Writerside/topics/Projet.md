@@ -343,3 +343,11 @@ Ce livrable est beaucoup plus libre, l'idée est que le client offre une interfa
 - Des boutons permettant au joueur d'envoyer ses ordres
 
 Je testerai manuellement cette interface graphique et validerai ou non le bonus en fonction de l'aboutissement du livrable.
+
+## Livrable 6-bis (Bonus) : Créer son propre conteneur d'injection de dépendance
+
+Ce livrable est beaucoup plus libre, l'idée est de développer un conteneur d'injection de dépendances et de l'utiliser dans les applications du livrable 5.
+
+Créer un nouveau module Gradle de type "library" dans le projet qui implémente ce conteneur d'injection de dépendances.
+
+L'interface du conteneur sera la suivante :
