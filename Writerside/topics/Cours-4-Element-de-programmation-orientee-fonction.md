@@ -5,7 +5,7 @@
 
 ### Définitions
 
-Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, on parle de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
+Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
 
 Java est dogmatiquement "purement orienté objet", donc cette fonctionnalité, issue du paradigme de programmation dit "orienté fonction", a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
 
@@ -33,6 +33,8 @@ Runnable printHelloWorld = () -> System.out.println("Hello World");
 Consumer<String> printHelloName = (String name) -> System.out.println("Hello, " + name);
 
 Function<Integer,Integer> square = (Integer number) -> number * number;
+
+BiFunction<Integer, Integer,Integer> plus = (leftOperand, rightOperand) -> leftOperand + rightOperand;
 
 // Paramètres
 Calculator<Integer> calculator = new Calculator<Integer>();
@@ -109,7 +111,7 @@ List<Employee> employees = List.of(
 
 Stream<Employee> seniors = employees
 		.stream()
-		.filter(employee -> employee.getAge() >= 18);
+		.filter(employee -> employee.getAge() >= 50);
 
 // Resultat : [ Employee {name = "Liara", age = 106} ]
 ```
@@ -196,7 +198,7 @@ List<Team> teams = List.of(
       };
     ),
     new Team(
-      "Second Team",ee(
+      "Second Team",
       List.of(
           new Employee("Garrus", 27),
           new Employee("Kaidan", 34),	
@@ -207,8 +209,8 @@ List<Team> teams = List.of(
 
 Stream<String> employeesName = teams
 		.stream()
-		.flatMap(team -> team.getMembers().stream()) // Retourne Stream<Employee>
-		.map(employee -> employee.getName());
+		.flatMap(team -> team.getMembers().stream()) // Retourne Stream<Employee> qui contient les 6 employés
+		.map(Employee::getName);
 ```
 
 #### Opérateurs terminaux
