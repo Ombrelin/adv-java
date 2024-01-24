@@ -123,6 +123,7 @@ class CompressedDataSource {
 
 DataSourceDecorator <|-- EncryptedDataSource
 DataSourceDecorator <|-- CompressedDataSource
+DataSourceDecorator <|-- EncodedDataSource
 
 
 @enduml
@@ -350,8 +351,6 @@ interface BookState {
     {abstract} +reserve(userName: String)
 }
 
-class AbstractBookState {
-}
 
 class Book {
     +borrow()
