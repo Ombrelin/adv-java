@@ -276,7 +276,7 @@ boolean areAllEmployeesAdults = employees
 
 ##### `anyMatch`
 
-Permet de vérifier si il existe au moins un élément du stream qui valide un prédicat.
+Permet de vérifier s'il existe au moins un élément du stream qui valide un prédicat.
 
 ```java
 List<Employee> employees = List.of(

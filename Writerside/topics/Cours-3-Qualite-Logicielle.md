@@ -135,16 +135,16 @@ En implémentant ce pattern, on pourra avoir du code client comme ceci :
 DataSource regularDataSource = new FileDateSource("myFile.txt")
 
 DataSource encryptedDataSource = new EncryptedDataSource(
-    FileDateSource("encryptedFile.txt")
+    new FileDateSource("encryptedFile.txt")
 );
 
 DataSource compressedDataSource = new CompressedDataSource(
-    FileDateSource("compressed.txt")
+    new FileDateSource("compressed.txt")
 );
 
-DataSource = encryptedAndCompressedDatasource = new EncryptedDataSource(
+DataSource encryptedAndCompressedDatasource = new EncryptedDataSource(
     new CompressedDataSource(
-        FileDateSource("compressed.txt")
+        new FileDateSource("compressed.txt")
     )
 ); 
 ```
