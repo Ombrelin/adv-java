@@ -318,6 +318,20 @@ public State PerformOperation(String command) {
 }
 ```
 
+## Classes d'enregistrement (record class)
+
+Classe qui représente des objets-valeur :
+
+- Syntaxe plus concise
+- `equals()`, `hashcode()` et `toString()` générés automatiquement
+- Immutable
+
+```java
+record Rectangle(double length, double width) {
+
+}
+```
+
 ## Référence du cours
 
 - [Mastering Lambdas : Java Programming in a MuliCore World](https://books.google.fr/books/about/Mastering_Lambdas.html?id=Zw5oBAAAQBAJ&source=kp_book_description&redir_esc=y)
