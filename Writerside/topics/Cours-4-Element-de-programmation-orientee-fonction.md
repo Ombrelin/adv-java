@@ -287,7 +287,7 @@ List<Employee> employees = List.of(
 
 boolean isSomeOneOlderThan100 = employees
   	.stream()
-    .allMatch(employee => employee.getAge() > 100);
+    .anyMatch(employee => employee.getAge() > 100);
 
 // Résultat : true
 ```
