@@ -276,7 +276,7 @@ boolean areAllEmployeesAdults = employees
 
 ##### `anyMatch`
 
-Permet de vérifier si il existe au moins un élément du stream qui valide un prédicat.
+Permet de vérifier s'il existe au moins un élément du stream qui valide un prédicat.
 
 ```java
 List<Employee> employees = List.of(
@@ -287,7 +287,7 @@ List<Employee> employees = List.of(
 
 boolean isSomeOneOlderThan100 = employees
   	.stream()
-    .allMatch(employee => employee.getAge() > 100);
+    .anyMatch(employee => employee.getAge() > 100);
 
 // Résultat : true
 ```
@@ -315,6 +315,20 @@ public State PerformOperation(String command) {
 		case "Reset" -> resetToReady();
 		default -> throw new IllegalArgumentException("Invalid string value for command");
 	};
+}
+```
+
+## Classes d'enregistrement (record class)
+
+Classe qui représente des objets-valeur :
+
+- Syntaxe plus concise
+- `equals()`, `hashcode()` et `toString()` générés automatiquement
+- Immutable
+
+```java
+record Rectangle(double length, double width) {
+
 }
 ```
 

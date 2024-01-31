@@ -344,7 +344,7 @@ Ce livrable est beaucoup plus libre, l'idée est que le client offre une interfa
 
 Je testerai manuellement cette interface graphique et validerai ou non le bonus en fonction de l'aboutissement du livrable.
 
-## Livrable 6-bis (Bonus) : Créer son propre conteneur d'injection de dépendance
+### Livrable 6-bis (Bonus) : Créer son propre conteneur d'injection de dépendance
 
 Ce livrable est beaucoup plus libre, l'idée est de développer un conteneur d'injection de dépendances et de l'utiliser dans les applications du livrable 5.
 
