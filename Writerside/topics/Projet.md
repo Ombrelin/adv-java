@@ -279,9 +279,11 @@ Le loyer d'une gare est calculé en fonction du nombre de gares possédées par 
 | 3                         | 100   |
 | 4                         | 200   |
 
-### Livrable 4 : Construction et loyers adéquats
+### Livrable 4 : Construction, loyers adéquats et taxes
 
 Les joueurs peuvent construire des maisons pour leurs propriétés en émettant un ordre `BUILD` à leur tour. Cet ordre a un paramètre `propertyName` : le nom de la propriété sur laquelle construire.
+
+Pour construire, un joueur de posséder toutes les propriétés d'un groupe de couleur.
 
 Une propriété a cinq niveaux de construction. Voici la spécification des loyer et prix de construction en fonction des propriétés :
 
@@ -311,6 +313,8 @@ Une propriété a cinq niveaux de construction. Voici la spécification des loye
 | <format color="Blue">Avenue Paul Vaillant Couturier</format> | 200                  | 200              | 600               | 1400              | 1700              | 2000          |
 
 > Ces informations sont disponibles au format CSV dans le fichier `rent.csv`, dans les ressources de l'application.
+
+Les classes de taxes doivent débiter les joueurs qui tombent dessus du montant correspondant, qui peut être retrouvé dans la colonne `price` pour les location de type `tax` dans `monopoly.csv`.
 
 ### Livrable 5 : Jeu en réseau en mode client-serveur
 
