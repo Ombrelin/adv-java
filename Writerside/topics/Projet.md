@@ -322,9 +322,7 @@ Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en r
 - `client` : application en ligne de commande permettant aux joueurs de jouer au jeu en leur permettant d'envoyer leurs ordres à la simulation, mais aussi de lire des informations sur la situation courante du jeu.
 - `server` : application qui fait tourner la simulation en mémoire, et intéragit via le réseau avec les clients pour le permettre de jouer ensemble.
 
-Le client et le serveur devront implémenter un `main` qui permettra de jouer en condition réelles.
-
-Le module client doit contenir une implémentation du test d'intégration fourni qui valide le fonctionnement du système client-serveur.
+Le client et le serveur devront implémenter un `main` qui permettra de jouer en condition réelles, via une interface en ligne de commandes.
 
 #### Protocole
 
@@ -351,7 +349,8 @@ player1:BUY|player1:Rue Victor Hugo,player2:Rue Victor Hugo|player1:1444,player2
 
 #### Tests
 
-Les interfaces `GameServer` et `GameClient` feront le lien entre votre client/serveur et mes tests d'intégration, de la même manière que l'interface `Monopoly` pour la simulation.
+Les interfaces `GameServer` et `GameClient` feront le lien entre votre client/serveur et mes tests d'intégration, de la même manière que l'interface `Monopoly` pour la simulation. Le module client doit contenir une implémentation du test d'intégration fourni qui valide le fonctionnement du système client-serveur.
+
 
 Je ferai également quelques tests manuels pour vérifier que les mains de vos applications fonctionnent correctement et permettent de jouer.
 
