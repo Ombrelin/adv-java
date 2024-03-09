@@ -279,7 +279,9 @@ Le loyer d'une gare est calculé en fonction du nombre de gares possédées par 
 | 3                         | 100   |
 | 4                         | 200   |
 
-### Livrable 4 : Construction et loyers adéquats
+### Livrable 4 : Construction, loyers adéquats et taxes
+
+#### Construction
 
 Les joueurs peuvent construire des maisons pour leurs propriétés en émettant un ordre `BUILD` à leur tour. Cet ordre a un paramètre `propertyName` : le nom de la propriété sur laquelle construire.
 
@@ -312,6 +314,13 @@ Une propriété a cinq niveaux de construction. Voici la spécification des loye
 
 > Ces informations sont disponibles au format CSV dans le fichier `rent.csv`, dans les ressources de l'application.
 
+#### Taxes
+
+Il existe deux cases de taxe sur le plateau : 
+
+- Case 4 : "Impôt sur le revenu", coûte 200
+- Case 38 : "Taxe foncière", coûte 100
+
 ### Livrable 5 : Jeu en réseau en mode client-serveur
 
 Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en réseau. Nous allons donc devoir créer deux nouveaux modules dans l'application, selon le modèle client-serveur : 
@@ -320,14 +329,30 @@ Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en r
 
 Le client et le serveur devront implémenter un `main` qui permettra de jouer en condition réelles.
 
+Le module client doit contenir une implémentation du test d'intégration fourni qui valide le fonctionnement du système client-serveur.
+
 #### Protocole
 
 Le protocole de jeu est le suivant :
 
-1. Le serveur démarre avec en paramètre un certain nombre de joueurs attendus pour la partie
-2. Une fois le nombre de joueurs attendus connectés, le serveur crée une nouvelle simulation la partie démarre.
-3. Au début de chaque tour, le serveur envoie aux clients la situation courante : location des joueurs et argent.
-4. Après ça, le serveur entre en attente des envois d'ordre des joueurs, il les donne à la simulation.
+1. Le serveur démarre avec en paramètre un certain nombre de joueurs attendus pour la partie. Quand un joueur se connecte, il envoie son pseudo.
+2. Une fois le nombre de joueurs attendus connectés, le serveur crée une nouvelle simulation la partie démarre. Il envoie l'état initial de la simulation après création à tous les joueurs.
+3. Le serveur entre en attente des envois d'ordre des joueurs. Les joueurs jouent chacun leur tour. Après chaque gestion d'ordre sur la simulation, le serveur envoie aux clients l'état courant de la partie.
+
+L'envoie de l'état de la partie se fait sous la forme d'un format de sérialisation des informations. On envoie une ligne qui contient : 
+
+- L'ordre exécuté et le joueur qui l'exécute au format`joueur:ordre` (et éventuellement un `:propriété` en cas de `BUILD`)
+- La localisation des joueurs au format `joueur:location`, séparés par des virgules
+- La balance des joueurs au format `joueur:balance`, séparés par des virgules
+- L'état de propriété de toutes les cases du plateau au format : `case:propriétaire`, séparés par des virgules
+
+Chaque partie est séparés par des `|`.
+
+Exemple : 
+
+```
+player1:BUY|player1:Rue Victor Hugo,player2:Rue Victor Hugo|player1:1444,player2:1496|Départ:null,Rue Raspail:null,Caisse de Communauté:null,Rue Victor Hugo:player1,Impôts sur le revenu:null,Villejuif - Léo Lagrange:null,Rue Jean Jaurès:null,Chance:null,Boulevard Maxime Gorki:null,Rue Youri Gagarine:null,Prison:null,Avenue Louis Aragon:null,Electricité de Villejuif:null,Avenue de la République:null,Avenue de Stalingrad:null,Villejuif - Paul Vaillant-Couturier:null,Allée Berlioz:null,Caisse de Communauté:null,Rue du Moulin de Saquet:null,Sentier de la Commune:null,Rue Carpeaux:null,Rue Pascal:null,Chance:null,Rue Blanqui:null,Rue Rosa Luxembourg:null,Villejuif - Louis Aragon:null,Rue de Bretagne:null,Rue René Hamon:null,Boulangerie La Fabrique:null,Rue Guy Môquet:null,Allez en Prison !:null,Rue Henri Barbusse:null,Rue Ambroise Croizat:null,Caisse de Communauté:null,Rue de Verdun:null,Villejuif - Gustave Roussy:null,Chance:null,Avenue de Paris:null,Taxe foncière:null,Avenue Paul Vaillant Couturier:null
+```
 
 #### Tests
 
@@ -351,3 +376,14 @@ Ce livrable est beaucoup plus libre, l'idée est de développer un conteneur d'i
 Créer un nouveau module Gradle de type "library" dans le projet qui implémente ce conteneur d'injection de dépendances.
 
 L'interface du conteneur sera la suivante :
+
+```Java
+void registerSingleton(Class type)
+void registerSingleton(Class interface, Class implementation)
+
+void registerSingleUse(Class type)
+void registerSingleUse(Class interface, Class implementation)
+
+Container build();
+Object resolve(Class type);
+```
