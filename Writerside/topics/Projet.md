@@ -324,6 +324,26 @@ Nous voulons maintenant utiliser notre simulation de Monopoly afin de jouer en r
 
 Le client et le serveur devront implémenter un `main` qui permettra de jouer en condition réelles, via une interface en ligne de commandes.
 
+#### Manipulations préparatoires
+
+1. Créer deux nouveaux modules gradle : `client` et `serveur`
+2. Ajouter le plugin Gradle `application` au script de build de ces modules
+3. Créer une classe `App` contenant une méthode `main` dans chacun des  modules
+4. Ajouter la configuration du plugin application pour dire à Gradle quelle est la classe principale au script de build de ces modules : 
+```Groovy
+application {
+    mainClass = 'server.App'
+} 
+```
+5. Ajouter la configuration run plugin application pour correctement câbler l'entrée standard au script de build de ces modules : 
+```Groovy
+run {
+    standardInput = System.in
+}
+```
+6. Ajouter les dépendances et références de projet requises au script de build de ces modules
+7. Dans le module `client`, créez une classe de test qui étend `BaseMultiplayerMonopolyGameTests` et implémente les méthodes abstraites avec vos propres classes.
+
 #### Protocole
 
 Le protocole de jeu est le suivant :
