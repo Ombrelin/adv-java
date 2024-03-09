@@ -32,6 +32,8 @@
 - Classe `Thread`, construit à partir d'un `Runnable`
 - Lancer avec la méthode `start()`
 
+    #code(
+  lang: "Java",
 ```java
 var oddThread = new Thread(() -> {
     IntStream
@@ -39,6 +41,7 @@ var oddThread = new Thread(() -> {
             .filter(number -> number % 2 != 0)
             .forEach(System.out::println);
 });
+
 
 var evenThread = new Thread(() -> {
     IntStream
@@ -51,7 +54,7 @@ evenThread.start();
 oddThread.start();
 
 Thread.sleep(5000);
-```
+```)
 
 ]
 
@@ -59,58 +62,185 @@ Thread.sleep(5000);
 
 #slide(title: "Joindre")[
 
+- Attendre la fin d'un thread
 
+    #code(
+  lang: "Java",
+```java
+evenThread.join();
+oddThread.join();
+```)
 
 ]
 
 #slide(title: "Ressource partagée et section critique")[
 
+- Section critique : à excéuter atomiquement sinon problème
+- `synchronized` : un seul thread à la fois sur la section
+- Collections syncrhonisées : `Collections.synchronizedList(new ArrayList<>())`
+- Attention au coût
+- Section critiques synchronisées : *code thread-safe*
 
+]
+
+#slide(title: "Ressource partagée et section critique")[
+
+    #code(
+  lang: "Java",
+```java
+public class Hotel {
+
+    private final int roomsCount;
+    private int bookedRoomsCount = 0;
+
+    public Hotel(int roomsCount) {
+        this.roomsCount = roomsCount;
+    }
+
+    public int getAvailableRoomCount(){
+        return roomsCount - bookedRoomsCount;
+    }
+    public void bookRooms(int numberOfBookedRooms){
+        if(getAvailableRoomCount() - numberOfBookedRooms < 0){
+            throw new IllegalArgumentException("Not enough rooms available");
+        }
+        else {
+            bookedRoomsCount += numberOfBookedRooms;
+        }
+    }
+}
+var hotel = new Hotel(20);
+var reservationThread1 = new Thread(() -> hotel.bookRooms(3));
+var reservationThread2 = new Thread(() -> hotel.bookRooms(7));
+
+```)
 
 ]
 
-#slide(title: "Synchroniser")[
+#slide(title: "Ressource partagée et section critique")[
 
-
+    #code(
+  lang: "Java",
+```java
+public synchronized void bookRooms(int numberOfBookedRooms){
+    if(getAvailableRoomCount() - numberOfBookedRooms < 0){
+        throw new IllegalArgumentException("Not enough rooms available");
+    }
+    else {
+        bookedRoomsCount += numberOfBookedRooms;
+    }
+}
+```
+    )
 
 ]
+
+#slide(title: "Coordonner")[
+
+- Coordonner des threads entre eux
+- `wait` : attendre un signal
+- `notify` : envoyer un signal
+- Dans un bloc `synchronized`
+
+]
+
+#slide(title: "Coordonner")[
+
+    #code(
+  lang: "Java",
+```java
+var token = new Object();
+
+var oddThread = new Thread(() -> {
+    var oddNumbers = ...
+    for (var oddNumber : oddNumbers) {
+        synchronized (token) {
+            token.wait();
+            System.out.println(oddNumber);
+            token.notify();
+        }
+    }
+});
+var evenThread = new Thread(() -> {
+    var evenNumbers = ...
+    for (var evenNumber : evenNumbers) {
+        System.out.println(evenNumber);
+        synchronized (token) {
+            token.notify();
+            token.wait();
+        }
+    }
+});
+```
+    )
+
+]
+
 
 #new-section-slide("Programmation Asynchrone")
 
 #slide(title: "Définition")[
 
+- Abstraction au dessus des threads : tâches
+- Mutualiser les threads
+- Optimiser le temps CPU (I/O non bloquantes)
 
+*Notions : *
+
+- Promesse : tâche qui va être réalisée de façon asynchrone, on aura la résolution  dans le futur
+- Continuation : s'exécute sur le résultat de la promesse
+]
+
+#slide(title: "Notion d'I/O non bloquantes")[
+
+- CPU-bound : calculs, algos
+- I/O-bound : attendre (appel réseau, système de fichiers)
+
+_Attente I/O = Temps CPU gaché_
+
+*Objectif* : le CPU fait autre chose quand il attend l'I/O
 
 ]
 
-#slide(title: "Notion d'E/S non bloquantes")[
+#slide(title: "Asynchrone en Java : ThreadPool")[
 
+Groupe de threads qui vont traiter une série de tâches
 
-
-]
-
-#slide(title: "Asynchrone en Java")[
-
-Thread Pool : 
+    #code(
+  lang: "Java",
 
 ```java
 ExecutorService threadPool = Executors.newFixedThreadPool(4);
-```
 
-CompletableFuture :
+threadPool.submit(() -> {
+
+  ...
+
+} )
+```)
+
+
+
+]
+
+#slide(title: "Promesse en Java : CompletableFuture")[
+
+    #code(
+  lang: "Java",
 
 ```java
-CompletableFuture<String> task = CompletableFuture.supplyAsync(() -> {
-    var result = ... opération longue à exécuter de façon asynchrone...
+CompletableFuture<String> task = CompletableFuture
+.supplyAsync(() -> {
+    var result = ... opération longue async...
     return result;
 });
 
-task.thenAccept((String result) -> System.out.println(result));
+task.thenAccept((String result) -> println(result));
 
 task.exceptionally(exception -> {
    exception.printStackTrace();
    return "";
 });
 ```
-
+    )
 ]

@@ -108,9 +108,7 @@ List<Employee> employees = List.of(
 
 Stream<Employee> seniors = employees
 		.stream()
-		.filter(employee -> employee.getAge() >= 50);
-
-// Resultat : [ Employee {name = "Liara", age = 106} ]
+		.limit(1);
 ```
   )
 ]
@@ -160,7 +158,7 @@ Stream<String> employeesNames = employees
 
 #new-section-slide("Opérateurs de transformation")
 
-#slide(title: "map")[
+#slide(title: "flatMap")[
 
   Applatir des collections
 
