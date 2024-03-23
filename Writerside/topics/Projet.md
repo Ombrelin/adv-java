@@ -398,6 +398,5 @@ void registerSingleton(Class interface, Class implementation)
 void registerSingleUse(Class type)
 void registerSingleUse(Class interface, Class implementation)
 
-Container build();
 Object resolve(Class type);
 ```
