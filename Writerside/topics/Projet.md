@@ -8,7 +8,7 @@ Pour la petite histoire, le Monopoly a été inventé au début du 20e siècle p
 
 ## Objectif
 
-L'objectif du projet est, dans un premier temps, d'implémenter une simulation du jeu de société, le Monopoly. Une fois cette simulation mise en place, elle pourra être utilisée pour jouer au jeu entre plusieurs joueurs via le réseau, depuis une interface en ligne de commande d'abord, puis, si le temps le permet avec des éléments d'interface graphique.
+L'objectif du projet est, dans un premier temps, d'implémenter une simulation du jeu de société, le Monopoly. Une fois cette simulation mise en place, elle pourra être utilisée pour jouer au jeu entre plusieurs joueurs via le réseau, depuis une interface en ligne de commande.
 
 ## Notation
 
@@ -22,6 +22,10 @@ Le barème est calculé par livrable, chaque livrable rapporte 4 points. Pour ch
   - Utilisation des fonctionnalités appropriées du langage selon le contexte
 
 La réalisation du livrable bonus donnera un coup de pouce de +2 points sur la note à l'examen.
+
+## Plagiat
+
+Le code écrit en binôme ne doit en aucun cas être partagé à d'autres binômes. Rien ne vous empêcher de donner un coup de main à des camarades en difficulté en leur réexpliquant des concepts, mais en aucun cas en leur donnant du code. Toute tantative plagiat sera durement sanctionné sur votre note.
 
 ## Démarrage du projet
 
@@ -47,7 +51,7 @@ Ajoutez-moi ensuite sur votre projet (mon nom d'utilisateur est `Ombrelin`) avec
 
 ### Cloner le projet
 
-Avec de cloner (avec la commande `git clone`) le projet n'oubliez pas de configurer votre compte git en local, en utilisant comme username votre username Gitlab, comme décrit [la section du cours à ce sujet](Cours-1-Outillage.md#git), via la command `git config`.
+Avec de cloner (avec la commande `git clone`) le projet n'oubliez pas de configurer votre compte git en local, en utilisant comme username votre username Gitlab, comme décrit [la section du cours à ce sujet](Git.md), via la command `git config`.
 
 Vous pouvez ensuite ouvrir le dossier du dépôt que vous venez de clôner avec IntelliJ.
 
@@ -60,18 +64,22 @@ Le projet est un projet Gradle voir [la section du cours à ce sujet](Cours-1-Ou
 
 ### Créer votre module
 
-Avant de commencer, créer et positionnez vous sur une nouvelle branche.
+<procedure>
+<p>
+Avant de commencer, créer et positionnez-vous sur une nouvelle branche.
 
 Pour commencer à travailler sur le projet il vous faut créer votre module, qui contiendra votre code de simulation :
-
-1. Créer un nouveau module Gradle nommé `simulation` avec l'aide d'IntelliJ. En tant que "GroupId", saisissez `fr.<votre nom><nom binome>.efrei.monopoly` : 
+</p>
+<step>
+Créer un nouveau module Gradle nommé `simulation` avec l'aide d'IntelliJ. En tant que "GroupId", saisissez `fr.&lt;votre nom&gt;&lt;nom binome&gt;.efrei.monopoly` :
 
 ![](ij-new-module.gif)
 
 ![](ij-new-module.png)
 
-
-2. Mettre à jour la configuration Gradle de votre module (le module `simulation`, vous ne devez jamais modifier le module `core` par vous même) :
+</step>
+<step>
+Mettre à jour la configuration Gradle de votre module (le module `simulation`, vous ne devez jamais modifier le module `core` par vous-même) :
 
 ```Groovy
 plugins {
@@ -109,11 +117,23 @@ test {
 > testImplementation project(":core").sourceSets.test.output
 > ```
 
-3. Créer votre paquet racine dans votre projet. Suggestion de nommage (dans `main/java` et `test/java`) : `fr.<votre nom><nom binome>.efrei.monopoly.simulation`.
-4. Créer un paquet `fr.<votre nom><nom binome>.efrei.monopoly.simulation.integration` dans votre  dossier de test (`simulation/src/test/java`), et créer une classe `MonopolyTests` qui étend ma classe de test `BaseMonopolyTests`. Ainsi, vous pourrez pour le 1er livrable implémenter la méthode `createMonopoly` pour fournir votre propre implémentation de `Monopoly` afin de pouvoir exécuter mes tests avec.
-5. Vous avez terminé le setup pour le projet. Vous pouvez pousser votre branche pour que votre binôme puisse la récupérer de son côté.
+</step>
+<step>
 
-### Note sur l'exécution des tests d'intégration fournis dans le projet
+Créer votre paquet racine dans votre projet. Suggestion de nommage (dans `main/java` et `test/java`) : `fr.<votre nom><nom binome>.efrei.monopoly.simulation`.
+
+</step>
+<step>
+
+Créer un paquet `fr.<votre nom><nom binome>.efrei.monopoly.simulation.integration` dans votre  dossier de test (`simulation/src/test/java`), et créer une classe `MonopolyTests` qui étend ma classe de test `BaseMonopolyTests`. Ainsi, vous pourrez pour le 1er livrable implémenter la méthode `createMonopoly` pour fournir votre propre implémentation de `Monopoly` afin de pouvoir exécuter mes tests avec. 
+
+</step>
+<p>
+Vous avez terminé le setup pour le projet. Vous pouvez pousser votre branche pour que votre binôme puisse la récupérer de son côté.
+</p>
+</procedure>
+
+### Note sur l'exécution locale des tests d'intégration fournis dans le projet
 
 La technique utilisée pour permettre de vous fournir des tests que vous pourrez plugger directement à votre code cause un petit souci avec le système d'intégration des tests Gradle d'IntelliJ. Heureusement, il y a une solution de contournement simple.
 
@@ -148,7 +168,7 @@ Pour un livrable donné *x* :
 1. Sur votre dépôt, créer une nouvelle branche à partir de la branche master appelée *dev/livrable-x* en remplaçant *x* par le nom du livrable concerné.
 2. Fusionner la branche *template/livrable-x* (où *x* est le numéro du livrable) de mon dépôt dans la branche*dev/livrable-x* en question de votre dépôt, afin d'avoir les tests d'intégration correspondant au livrable (vous pouvez le faire via l'interface de GitLab en utilisant une merge request que vous validerez vous-même).
 3. Commiter sur cette branche les changements permettant de satisfaire les tests d'intégration du livrable
-4. Créer une *pull request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *pull request*.
+4. Créer une *merge request* de votre branche *dev/livrable-x*, vers votre branche *master*, en me mettant dans le champ *assignee* de la *merge request*.
 5. Je vais ensuite être notifié de la demande de revue, et vais procéder à une relecture de votre code, et éventuellement faire des commentaires, des recommendations d'amélioration. Une fois ces améliorations implémentée ou votre choix spécifique argumenté, je ferai une évaluation du code en l'état, qui servira pour la partie "qualité" de la notation. Je vais enfin procéder à la fusion de votre branche de livraison sur votre *master*, vous pouvez ainsi reprendre le processus du début, pour le prochain livrable.
 
 > ⚠ Vous ne devez *jamais* commiter/pousser directement sur la branche *master* de votre dépôt.
@@ -165,7 +185,7 @@ Pour un livrable donné *x* :
 | Dimanche 31 Mars 2024    | Date limite de rendu du livrable 5         |
 | Dimanche 14 Avril 2024   | Date limite de rendu du livrable 6 (bonus) |
 
-L'heure limite pour le rendu de chaque livrable est minuit. Si votre travail est prêt avant la date limite, n'attendez pas la dernière minute pour faire votre pull request de rendu. Plus vite vous avez une revue de votre code, plus vite vous pouvez passer à la suite et éventuellement prendre de l'avance.
+L'heure limite pour le rendu de chaque livrable est minuit. Si votre travail est prêt avant la date limite, n'attendez pas la dernière minute pour faire votre merge request de rendu. Plus vite vous avez une revue de votre code, plus vite vous pouvez passer à la suite et éventuellement prendre de l'avance.
 
 ## Interface publique de la simulation
 
@@ -180,6 +200,15 @@ En résumé `submitOrder` c'est :
 3. Résolution du déplacement du joueur suivant et des conséquences de ce déplacement
 
 D'autres méthodes sur l'interface permettent de lire les informations sur la situation courante du jeu.
+
+## Intégration continue
+
+Sur le projet, deux processus d'intégration continue vont s'exécuter quand vous pousserez un commit sur le dépôt : 
+
+- Analyse statique de code (`gradle check`) : qui vérifie via PMD que votre code est bien conforme aux règles que j'ai définies pour le projet.
+- Tests (`gradle test`) : qui exécute tous les tests du projet, vos tests unitaires, mais aussi notamment mes tests d'intégration.
+
+Pour qu'une *merge request* soit éligible à la revue par l'enseignant, ces deux processus doivent être en succès, ce qui est visible par des coches vertes en haut de la page de votre *merge request*.
 
 ## Livrables
 

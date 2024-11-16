@@ -8,14 +8,14 @@ Spring est un framework d'application qui permet de développer facilement des a
 
 Pour démarrer : [Le guide de démarrage rapide de Spring](https://spring.io/quickstart)
 
-## Kotlin, le langage du futur pour l'écosystème JVM ? 
+## Kotlin, un langage intéressant pour le futur pour l'écosystème JVM ? 
 
 Kotlin est un langage moderne développé pour la JVM par JetBrains. Il compile en bytecode Java et peut donc cohabiter avec du code Java au sein d'un projet, et consommer des librairies Java. Cela permet de l'adopter petit à petit dans un projet existant sans migrer tout le code d'un coup.
 
-Par rapport à Java, Kotlin propose une syntaxe pour concise et moderne, mais aussi beaucoup de fonctionnalités intéressantes, par exemple : 
+Par rapport à Java, Kotlin propose une syntaxe un peu plus concise et moderne, mais aussi beaucoup de fonctionnalités intéressantes, par exemple : 
 
 - [Les types-référence nullables](https://kotlinlang.org/docs/null-safety.html)
-- Une gestion moderne de l'asynchrone et de la concurrence structurée grâce à ses [coroutines](https://kotlinlang.org/docs/async-programming.html#coroutines)
+- Une approche différente l'asynchrone et de la concurrence structurée grâce à ses [coroutines](https://kotlinlang.org/docs/async-programming.html#coroutines)
 - Support natif des [fonctions comme élément de première classe](https://kotlinlang.org/docs/lambdas.html#function-types) contrairement à Java et ses interfaces fonctionnelles
 - Pas d'exception "checked"
 - [Surcharge d'opérateurs](https://kotlinlang.org/docs/operator-overloading.html)

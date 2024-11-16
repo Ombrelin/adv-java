@@ -1,4 +1,4 @@
-# Cours 6 : Programmation Réseau
+# Cours 7 : Programmation Réseau
 
 ## Socket TCP
 

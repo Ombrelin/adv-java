@@ -1,4 +1,4 @@
-# Cours 5 : Programmation Parallèle et Asynchrone
+# Cours 6 : Programmation Parallèle et Asynchrone
 
 ## Programmation parallèle
 

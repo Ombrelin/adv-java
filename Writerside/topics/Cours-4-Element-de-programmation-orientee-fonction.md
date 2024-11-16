@@ -1,13 +1,13 @@
-# Cours 4 : Element de programmation orientée fonction
+# Cours 5 : Élements de programmation orientée fonction
 
 
-## Fonction de première classe (*first-class functions*)
+## Fonctions de première classe (*first-class functions*)
 
 ### Définitions
 
 Les fonctions de première classe sont une fonctionnalité d'un langage de programmation qui permet de manipuler des fonctions comme n'importe quel autre type de variable du langage. Les fonctions peuvent ainsi être stockées dans des références, et passées comme paramètres d'autres fonctions, on parle donc pour ces variables et paramètres qui contiennent des fonctions, de *références de méthodes* (car en Java, toutes les fonctions sont des méthodes).
 
-Java est dogmatiquement "purement orienté objet", donc cette fonctionnalité, issue du paradigme de programmation dit "orienté fonction", a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
+Java est "purement orienté objet", donc cette fonctionnalité, issue du paradigme de programmation dit "orienté fonction", a été implémentée en introduisant la notion d'*Interfaces Fonctionnelle*.
 
 ### Interfaces Fonctionnelles
 

@@ -12,4 +12,10 @@
         </description>
         <accepts>Cours-8-Programmation-Reflexive.html</accepts>
     </rule>
+    <rule id="371489ef">
+        <description>Created after removal of "Cours 7 : Programmation Graphique" from EFREI LSI L3 ALSI62-CTP : Java
+            Avancé
+        </description>
+        <accepts>Cours-6-Interfaces-Graphiques.html</accepts>
+    </rule>
 </rules>
