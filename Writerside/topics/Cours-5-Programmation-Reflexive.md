@@ -69,31 +69,79 @@ final var pair = new Pair<String, Integer>("test", 42);
 La syntaxe pour définir une méthode avec paramètre de type est : 
 
 ```Java
-public static <T1, T2, ..., Tn> typeRetour nomMéthode(){ ... }
+public <T1, T2, ..., Tn> typeRetour nomMethode(){ ... }
 ```
 
-## Programmation Réfléxive
+Par exemple : 
 
-### La classe `Class`
+```Java
+public <T> List<T> fromArrayToList(T[] a) {   
+    return Arrays.stream(a).collect(Collectors.toList());
+}
+```
 
-Au moment de l'exécution d'un programme Java, chaque classe est modélisée par une instance de la classe `Class`. On peut obtenir une référence à cette instance via : 
+### Contraintes de paramètre de type
 
-- Méthode `getClass` : `(new ArrayList()).getClass()`
-- `.class` : `ArrayList.class`
-- Méthode `Class.forname(String className)` : `Class.forName("java.util.ArrayList")`
+Il est possible de décrire des contraintes sur les types.
 
-Cette instance est créée au moment du chargement de la classe dans le runtime Java (premier appel de la classe).
+- Contrainte `extends` : permet de contraindre à une classe ou une de ses classes filles
+- Contrainte `super` : permet de contraindre à une classe ou une de classes parentes
 
-À partir d'une référence à la classe `Class` on peut notamment : 
+La contrainte `extends`, est notamment utile pour permettre un polymorphisme plus confortable notamment quand on manipule des collections. 
 
-- Récupérer les constructeurs de la classe avec `getConstructors` et instancier la classe avec `Constructor.newInstance(Object... args)`
-- Récupérer les champs de la classe avec `getFields`, on peut en modifier la valeur (même s'ils sont privés !) avec les méthodes `Field.get(Object obj)` et `Field.set(Object obj, Object value)`.
-- Récupérer les méthodes de la classe avec `getMethods`, on peut les appeler avec `Method.invoke(Object obj, Object... args)`
+Par exemple avec la hiérachie de classe suivante : 
 
-On peut aussi accéder la visibilité de chaque de ces éléments avec les méthodes de la class `Modifier` : `isPublic`,`isPrivate`, etc.
+```Java
+public abstract class Animal {
+    public abstract void eat();
+}
+class Dog extends Animal {
+    @Override
+    public void eat() {
+    }
+}
 
-### Notion de chargeur de classe
+class Cat extends Animal {
+    @Override
+    public void eat() {
+    }
+}
+```
 
-## Références du cours 
+Si je veux faire une méthode polymorphe qui manipule des collections d'`Animal` :
+
+```Java
+public static void addAnimals(Collection<Animal> animals)
+```
+
+Avec cette méthode le code suivant : 
+
+```Java
+List<Cat> cats = new ArrayList<Cat>();
+cats.add(new Cat());
+addAnimals(cats);
+```
+
+Ne fonctionne pas, la troisième ligne ne compile pas.
+En revanche, si la méthode utile une contrainte `extends` :
+
+```Java
+public static <T extends Animal> void addAnimals(Collection<T> animals)
+```
+
+On peut combiner plusieurs contraintes avec l'opérateur `&`.
+
+### *Wildcards* 
+
+La syntaxe Wildcard permet de mentionner un type dans le contexte d'une expression de paramètre de type, sans être dans une classe ou une méthod avec un paramètre de type. Cette syntaxe est `?`. Cette syntaxe supporte les contraintes `super` et `extends`. 
+
+Cela permet, dans le cas mentionné au-dessus de simplifier la syntaxe, si l'on a pas besoin de manipuler ce type explicitement dans la méthode : 
+
+```Java
+public static void addAnimals(Collection<? extends Animal> animals)
+```
+
+## Références du cours
 
 - [Tutoriel JavaDoc sur les génériques](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+- [Excellent stackoverflow post about Generics](https://stackoverflow.com/questions/30292959/understanding-bounded-generics-in-java-what-is-the-point)
