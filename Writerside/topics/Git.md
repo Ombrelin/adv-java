@@ -185,3 +185,7 @@ Autres outils intéressants :
 
 - [GitKraken](https://www.gitkraken.com/)
 - [SourceTree](https://www.sourcetreeapp.com/)
+
+## Références du cours
+
+- [Documentation Git](https://git-scm.com/doc)

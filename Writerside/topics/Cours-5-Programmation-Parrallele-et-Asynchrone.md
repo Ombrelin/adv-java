@@ -9,7 +9,7 @@ La programmation parallèle permet aux ordinateurs d'avoir plusieurs tâches qui
 
 ### Notion de Thread
 
-Un thread (*thread* veut dire fil en anglais) est un fil d'exécution de code. Les différents threads d'un processus sont différents fils d'exécution parallèles (ils s'exécutent en même temps) tout en partageant la mémoire. Lors du démarrage d'un programme, ce dernier possède un thread dit principal, et il est possible de lancer de nouveaux threads au sein du programme
+Un thread (*thread* veut dire fil en anglais) est un fil d'exécution de code. Les différents threads d'un processus sont différents fils d'exécution parallèles (ils s'exécutent en même temps) tout en partageant la mémoire. Lors du démarrage d'un programme, ce dernier possède un thread dit principal, et il est possible de lancer de nouveaux threads au sein du programme.
 
 Attention : la notion de thread est une abstraction issue du système d'exploitation, et non la JVM. Quand on crée un thread en Java, il y a un appel au système d'exploitation, qui va créer un thread. Cette opération est couteuse. C'est pourquoi, lorsqu'on souhaite utiliser de la parallèlisation pour accélérer l'exécution d'une tâche, il faut bien pondérer si cela vaut le coup ou non : si le temps d'exécution économisé par la parallèlisation des tâches est supérieur au temps nécessaire pour lancer le nombre de threads requis.
 
@@ -21,7 +21,7 @@ Pour créer un thread en Java, on utilise la classe `Thread` et son constructeur
 - Une référence de méthode
 - Une classe qui implémente l'interface `Runnable` 
 
-Pour lancer le thread, il suffit d'appeler la fonction méthode `start`. Par exemple, si je on veut faire deux threads qui comptent en même temps, l'un compte les nombre impairs (*odd*) l'autre les nombre pairs (*even*) :
+Pour lancer le thread, il suffit d'appeler la fonction méthode `start`. Par exemple, si on veut faire deux threads qui comptent en même temps, l'un compte les nombre impairs (*odd*) l'autre les nombres pairs (*even*) :
 
 ```Java
 var oddThread = new Thread(() -> {
@@ -185,7 +185,7 @@ Aussi, ici la ressource partagée est un objet à nous (l'hôtel), mais si cette
 var synchronizedList = Collections.synchronizedList(new ArrayList<Integer>());
 ```
 
-On dit d'un code qui gère bien la synchronisation pour assurer la cohérence des données qu'il est *thread-safe*.
+On dit d'un code qui gère bien la synchronisation pour assurer la cohérence des données qu'il est *thread safe*.
 
 #### Synchroniser
 
@@ -249,7 +249,7 @@ Ici, les deux threads vont utiliser la ressource partager `token` pour s'attendr
 
 La programmation asynchrone est une technique qui consiste à utiliser une abstraction en plus des threads pour organiser le parallèlisme de façon plus optimisée :
 
-- En utilisant moins de threads pour faire la même chose : on passe moins de temps et de mémoire à créer des threads
+- En utilisant moins de threads pour faire la même chose : on passe moins de temps et de mémoire à créer des threads.
 - En utilisant des entrées/sorties non bloquantes pour utiliser au maximum le temps CPU
 
 On peut même faire de la programmation asynchrone sur un seul thread, pour les curieux, c'est d'ailleurs [comme ça que fonctionne Node JS](https://nodejs.org/en/guides/event-loop-timers-and-nexttick).

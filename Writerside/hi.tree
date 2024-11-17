@@ -14,6 +14,12 @@
     </toc-element>
 
     <toc-element topic="Cours-1-Outillage.md">
+        <toc-element topic="Java-JDK.md"/>
+        <toc-element topic="IntelliJ-IDEA.md">
+        </toc-element>
+        <toc-element topic="Gitlab.md"/>
+        <toc-element topic="Gradle.md"/>
+        <toc-element topic="PMD.md"/>
     </toc-element>
     <toc-element topic="Projet.md"/>
     <toc-element topic="Cours-2-Tests-Unitaires.md"/>

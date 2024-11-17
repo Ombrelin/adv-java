@@ -80,4 +80,10 @@ Les prérequis du cours sont les suivants :
 - Utiliser du système de gestion de version Git
 - Utiliser un débogueur pas-à-pas pour trouver les soucis d'un code
 
-Si vous pensez ne pas être à l'aise avec ces prérequis, surtout, dites-le-moi en privé (mail, message teams). Je pourrai vous fournir des ressources et un accompagnement pour rattraper le plus possible, et que vous puissiez tout de même tirer profit de ce module.
+Si vous pensez ne pas être à l'aise avec ces prérequis, surtout, dites-le-moi en privé (mail, message teams).
+
+Je vous propose également des contenus qui peuvent vous aider à rattraper certains des prérequis à ce cours si vous ne vous sentez pas tout à fait à l'aise avec :
+
+- [Git](Git.md)
+- [Base de la Programmation Orientée Objet](Base-de-la-Programmtion-Objet.md)
+- [Débogueur](Débogueur.md)
