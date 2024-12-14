@@ -20,6 +20,7 @@
   - Coder un Monopoly
   - Simulation des règles du domaine
   - Jeu en réseau
+  - En bînomes
 ]
 
 
@@ -28,27 +29,39 @@
   - 4 points par Livrables
     - 2 points complétion des fonctionnalités
     - 2 points qualité de code (tests unitaires, qualité logicielle, fonctionnalités du langage)
-
-
-#text("Livrable Bonus : + 2 sur la note d'examen", style: "italic")
 ]
+
 
 #slide(title: [Planning])[
   #table(columns: (auto, auto),
   inset: 8pt,
   align: horizon,
   [*Date*],[*Sujet*],
-  [Vendredi 19 Janvier 2024],[Démarrage du projet],
-  [Dimanche 4 Février 2024],[Date limite de rendu du livrable 1],
-  [Dimanche 18 Février 2024],[Date limite de rendu du livrable 2],
-  [Dimanche 3 Mars 2024],[Date limite de rendu du livrable 3],
-  [Dimanche 17 Mars 2024],[Date limite de rendu du livrable 4],
-  [Dimanche 31 Mars 2024],[Date limite de rendu du livrable 5],
-  [Dimanche 14 Avril 2024],[Date limite de rendu du livrable 6 (bonus)],
+  [Lundi 10 Février 2025],[Démarrage du projet],
+  [Dimanche 23 Février 2025],[Date limite de rendu du livrable 1],
+  [Dimanche 23 Mars 2025],[Date limite de rendu du livrable 2],
+  [Dimanche 5 Avril 2025],[Date limite de rendu du livrable 3],
+  [Dimanche 20 Avril 2025],[Date limite de rendu du livrable 4],
+  [Dimanche 4 Mai 2025],[Date limite de rendu du livrable 5],
   )
 ]
 
+#slide(title: [Plagiat])[
 
+- Interdit de partager du code à d'autres binômes
+]
+
+#slide(title: [Outils "IA" (LLMs)])[
+
+- Pas fiable ➡️ inéfficace
+- Utilisez plutôt documentation / stackoverflow / google.com
+- Impacte écologique important
+
+Si vous voulez vraiment : 
+
+1. Vérifiez 
+2. Comprenez
+]
 
 #slide(title: [Modalités])[
 
@@ -60,13 +73,12 @@
   - Noté après application des recommendations de la revue
 ]
 
-
 #slide(title: [Démarrage du projet])[
   1. Créer un compte GitLab
   2. Trouver son binôme
-  3. Communiquer le binôme à l'enseignant par email (arsene.lapostolet\@intervenants.efrei.net)
-  4. Forker le projet sur GitLab
-  5. Ajouter l'enseignant sur le dépôt GitLab
+  3. Forker le projet sur GitLab
+  4. Ajouter l'enseignant sur le dépôt GitLab
+  5. Mettre son projet sur la feuille excel ainsi que son nom d'utilisateur
   6. Cloner son dépôt
   7. Créer son module
 ]
@@ -87,7 +99,6 @@
 #focus-slide(background:  rgb("#EB6237"))[
   Description du template du projet
 ]
-
 
 #slide(title: [Livrable 1 : Jets de dés, plateau, déplacement])[
   #side-by-side[

@@ -16,6 +16,9 @@
   date: [22 Janvier 2024],
 )
 
+
+#new-section-slide("Tests unitaires en Java")
+
 #slide(title: "Tests automatiques")[
   - Du code qui vérifie le fonctionnement de l'application
   - Détecter le bugs majeurs en 1 clic
@@ -85,17 +88,11 @@ void wordCount_whenMultipleWords_returnsRightCount(){
 
 ]
 
-#slide(title: "Conception de tests et couplage")[
-  Ecrire un test -> sanctuariser une interface (si on refactor on doit refactorer le test aussi) 
-
-  Cela a du sens pour : 
-
-  - Algorithmes
-  - IO
-  - Frontière des unités
-
-  _La conception des unités est importante_
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ? 
 ]
+
+#new-section-slide("Pseudo Entités")
 
 #slide(title: "Pseudo Entités")[
 
@@ -150,6 +147,24 @@ when(apiClientMock.getUserRepository(testUsername))
 )
 ]
 
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ?
+]
+
+#new-section-slide("Qualité de tests")
+
+#slide(title: "Conception de tests et couplage")[
+  Ecrire un test -> sanctuariser une interface (si on refactor on doit refactorer le test aussi) 
+
+  Cela a du sens pour : 
+
+  - Algorithmes
+  - IO
+  - Frontière des unités
+
+  _La conception des unités est importante_
+]
+
 #slide(title: "Code testable")[
   *Injection de dépendances :* Externaliser des comportement dans des classes (dépendances), et les fournir en paramètre du constructeur.
 
@@ -160,6 +175,12 @@ when(apiClientMock.getUserRepository(testUsername))
 
   _-> Le code est plus facile et test, maintenir, refactorer_ 
 ]
+
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ?
+]
+
+#new-section-slide("Développement dirigé par les tests (TDD)")
 
 #slide(title: "Développement dirigé par les tests (TDD)")[
   
@@ -172,11 +193,15 @@ when(apiClientMock.getUserRepository(testUsername))
   - REFACTOR: retravailler le code écrit pour l'améliorer
 ]
 
-#slide(title: "Pour le TDD ?")[
+#slide(title: "Pourquoi le TDD ?")[
   
     - *Vitesse:* valider plus vite les idées, passer moins de temps à débugger manuellement
 
     - *Confiance:* tests + fiables et pertinents, vraie spécification exécutable. Meilleure sécurité contre la régression
 
     - *Qualité :* force la réflexion autour des interfaces, on détecte ainsi les problèmes de conception plus tôt. On est forcé à refactorer plus souvent, donc on produit du meilleur code
+]
+
+#focus-slide(background:  rgb("#EB6237"))[
+  Des questions ?
 ]

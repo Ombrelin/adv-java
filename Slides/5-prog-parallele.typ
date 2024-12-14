@@ -71,6 +71,7 @@ evenThread.join();
 oddThread.join();
 ```)
 
+à la place de `Thread.sleep()`
 ]
 
 #slide(title: "Ressource partagée et section critique")[

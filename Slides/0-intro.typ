@@ -18,21 +18,11 @@
 
 #slide(title: [Qui suis-je ?])[
   - Arsène Lapostolet
-  - Ingénieur en développement logiciel chez KDS (éditeur, voyage d'affaire)
+  - Ingénieur en développement logiciel chez enercoop (fourniture et production d'énergie renouvelable)
   - EFREI LSI P2022
   - arsene\@lapostolet.fr
 
-  #text(style: "italic", [1ère année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'aider à m'améliorer !)])
-]
-
-#slide(title: [Et vous ?])[
-  Mettez un message dans le chat avec : 
-
-  1. Votre métier en alternance
-  2. Langage de programmation préféré
-  3. Système d'exploitation préféré
-  4. Aisance avec Java (entre : largué, bof, ok/20 et goat)
-  5. Aisance avec Git (entre : jamais utilisé, largué, bof, ok/20 et goat)
+  #text(style: "italic", [2e année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'aider à m'améliorer !)])
 ]
 
 #slide(title: [Objectifs du module])[
@@ -45,14 +35,11 @@
     - Programmation réseau
 ]
 
-#slide(title: [Vos attentes pour ce module ?])[
-  Dites moi ! Ecrivez vos attentes en vrac dans le chat.
-]
 
-
-#slide(title: [Retard])[
+#slide(title: [Retards])[
   - Tant que vous dérangez pas en arrivant (s'installer discrètement sans interrompre) je vous accepterai quel que soit le retard
   - Venez juste me voir à la pause pour que je vous mette présent sur SoWeSign
+  - En revanche n'abusez pas : je vous mets pas présent avec + de 1h30 de retard
 ]
 
 
@@ -91,10 +78,24 @@
 #slide(title: [Prérequis])[
 - Programmation impérative (variables, conditions, boucles, fonctions)
 - Base de la programmation objet en Java (classese, encapsulation de données, interfaces, classes abstraites)
+- Utilisation basique de git
+- Utilisation basique d'un débogueur
+
+**Des fiches d'aide sur ces prérequis sont disponible sur le site du module**
+]
+
+#focus-slide(background:  rgb("#EB6237"))[
+  🗨️ Des questions ? 
+]
+
+#slide(title: [Et vous ?])[
+
+  Je vous voudrais mieux vous connaître et avoir vos attentes sur le module :
+
 
 
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ? 
+  ⏳ Pause de 10 minutes pour répondres au sondage.
 ]

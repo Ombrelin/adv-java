@@ -156,8 +156,6 @@ Stream<String> employeesNames = employees
   )
 ]
 
-#new-section-slide("Opérateurs de transformation")
-
 #slide(title: "flatMap")[
 
   Applatir des collections
