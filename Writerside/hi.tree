@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="hi"
-                 name="EFREI LSI L3 ALSI62-CTP : Java Avance"
+                 name="EFREI LSI L3 ALSI62-CTP : Programmation Avancée en Java"
                  start-page="Default-topic.md">
 
     <toc-element topic="Default-topic.md"/>
