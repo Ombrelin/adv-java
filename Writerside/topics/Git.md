@@ -14,6 +14,8 @@ Git facilite également la coopération à plusieurs sur un projet. Il permet de
 
 Un commit est une sauvegarde de l'intégralité d'une version du projet à un instant T. Il représente une étape dans l'historique.
 
+Un commit possède un commit parent et un ou plusieurs commits enfants. Le graph des commits constitue l'historique.
+
 ### Branche
 
 Permet de faire diverger en parallèle plusieurs versions du projet pour pouvoir les réconcilier facilement plus tard.

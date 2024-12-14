@@ -1,6 +1,6 @@
 # PMD
 
-[PMD](https://pmd.github.io) est un analyseur static de code ; un programme qui permet de vérifier de manière que notre code est écrit de façon conforme à des règles de formatage.
+[PMD](https://pmd.github.io) est un analyseur statique de code ; un programme qui permet de vérifier de manière que notre code est écrit de façon conforme à des règles de formatage.
 Cela nous permet de facilement avec un code plus uniforme et qui suite certaines bonnes pratiques de programmation.
 
 Cela nous permettra à tous de gagner de temps en aller-retour de correction pour le projet.

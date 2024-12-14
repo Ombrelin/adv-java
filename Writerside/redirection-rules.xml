@@ -18,4 +18,10 @@
         </description>
         <accepts>Cours-6-Interfaces-Graphiques.html</accepts>
     </rule>
+    <rule id="26216831">
+        <description>Created after removal of "Entrées-Sorties non bloquantes" from EFREI LSI L3 ALSI62-CTP : Java
+            Avancé
+        </description>
+        <accepts>Entrees-Sorties-non-bloquantes.html</accepts>
+    </rule>
 </rules>

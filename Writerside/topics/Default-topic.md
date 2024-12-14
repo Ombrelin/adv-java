@@ -14,7 +14,7 @@ Et également par email : [arsene@lapostolet.fr](mailto:arsene@lapostolet.fr)
 
 > C'est seulement ma deuxième année en tant qu'enseignant. N'hésitez pas à me faire des retours sur le module à tout moment, afin que je puisse m'améliorer.
 
-## Fonctionnement du Module
+## Fonctionnement du module
 
 Le support principal du module est le site sur lequel vous lisez ces lignes. Chaque sujet correspond à une séance de cours. Chaque cours est à lire avant la séance de TP qui correspond, un récap rapide sera fait en début de séances pour ceux qui n'ont pas eu le temps, mais vous gagnez beaucoup à au moins lire le cours à l'avance. Il est possible d'écrire des questions via Teams ou email entre deux séances, j'y répondrai dès que possible. Il est bien sûr également possible de poser des questions, demander une explication à tout moment en classe.
 
@@ -25,28 +25,28 @@ Programme des séances :
 
 | Date                     | Sujet                                                                                                     |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|
-| Vendredi 19 Janvier 2024 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
-| Lundi 22 Janvier 2024    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
-| Vendredi 26 Janvier 2024 | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
-| Lundi 29 Janvier 2024    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
-| Vendredi 2 Février 2024  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 16 Février 2024 | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                      |
-| Vendredi 23 Février 2024 | Retour sur les éléments du cours donnant le plus de difficultés                                                                                                       |
-| Vendredi 1 Mars 2024     | Examen blanc                                                                                                       |
+| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
+| Vendredi 13 Février 2025 | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
+| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
+| Vendredi 21 Février 2025 | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 28 Février 2025 | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
+| Vendredi 7 Mars 2025     | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                         |
+| Vendredi 28 Mars 2025    | Retour sur les éléments du cours donnant le plus de difficultés                                           |
+| Vendredi 18 Avril 2024   | Examen blanc                                                                                              |
 
 </tab>
 <tab title="LSI2">
 
 | Date                     | Sujet                                                                                                     |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|
-| Vendredi 19 Janvier 2024 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
-| Lundi 22 Janvier 2024    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
-| Jeudi 25 Janvier 2024    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
-| Lundi 29 Janvier 2024    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
-| Vendredi 2 Février 2024  | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 16 Février 2024 | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                         |
-| Vendredi 23 Février 2024 | Retour sur les éléments du cours donnant le plus de difficultés                                           |
-| Vendredi 1 Mars 2024     | Examen blanc                                                                                              |
+| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
+| Vendredi 13 Février 2025 | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
+| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
+| Jeudi 20 Février 2025    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 28 Février 2025 | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
+| Vendredi 28 Mars 2025    | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                         |
+| Vendredi 18 Avril 2025   | Retour sur les éléments du cours donnant le plus de difficultés                                           |
+| Vendredi 2 Mai 2025      | Examen blanc                                                                                              |
 
 </tab>
 </tabs>
@@ -55,19 +55,19 @@ Programme des séances :
 
 ### Un projet
 
-Le projet va se dérouler tout au long du module, il sera effectué en binôme. Il porte sur un sujet spécifique, que je fournis. Il met en œuvre les notions du cours. Le projet est découpé en plusieurs livrables, la completion de chaque livrable rapporte une partie des points du projet. La complétude d'un livrable est définie par le fait de passer des tests automatisés (tests d'intégration) que je fournis. Chaque livrable fait l'objet d'une revue de code avec des conseils pour améliorer la qualité. Après cette revue et les retours implémentés, une note de qualité vient pondérer les points rapportés par le livrable.
+Le projet va se dérouler tout au long du module, il sera effectué en binôme. Il porte sur un sujet spécifique, que je fournis. Il met en œuvre les notions du cours. Le projet est découpé en plusieurs livrables, la completion de chaque livrable rapporte une partie des points du projet. La completion d'un livrable est définie par le fait de passer des tests automatisés (tests d'intégration) que je fournis. Chaque livrable fait l'objet d'une revue de code avec des conseils pour améliorer la qualité. Après cette revue et les retours implémentés, une note de qualité vient pondérer les points rapportés par le livrable.
 
 ### Un devoir écrit
 
-Un devoir écrit aura lieu le **jeudi 21 mars 2024**. Il comportera des questions de cours simples, des questions de cours plus complexes, et un exercice d'analyse sur un code fourni. Il se fera sur papier, mais ne demandera pas d'écrire de code sur papier.
+Un devoir écrit aura lieu le **jeudi 15 mai 2025**. Il comportera des questions de cours simples, des questions de cours plus complexes, et un exercice d'analyse sur un code fourni. Il se fera sur papier, mais ne demandera pas d'écrire de code sur papier.
 
 ## Séance Type
 
-*À faire avant la séance : Avoir lu et compris le cours pour la séance à venir (possible de poser des questions sur Teams)*
+🚨 ***À faire avant la séance : Avoir lu le cours pour la séance à venir*** 🚨
 
 Déroulement : 
 
-1. Je fais un petit récap du cours en 10 minutes
+1. Je fais un petit récap du cours en 10-15 minutes
 2. Séance de Questions & Réponse sur le cours
 3. Travail autonome sur le projet, je suis disponible pour aider
 
