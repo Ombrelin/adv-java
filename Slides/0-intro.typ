@@ -92,7 +92,12 @@
 
   Je vous voudrais mieux vous connaître et avoir vos attentes sur le module :
 
-
+  #figure(
+    image("images//qr-code.png", width: 20%),
+      caption: [
+        https://s.42l.fr/efrei-adv-java
+      ]
+  )
 
 ]
 

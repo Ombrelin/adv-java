@@ -243,7 +243,7 @@ tasks.named('test') {
 
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ? 
+  🗨️ Des questions ? 
 ]
 
 #new-section-slide("PMD")
@@ -309,5 +309,5 @@ pmd {
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ? 
+  🗨️ Des questions ? 
 ]

@@ -89,7 +89,7 @@ void wordCount_whenMultipleWords_returnsRightCount(){
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ? 
+  🗨️ Des questions ? 
 ]
 
 #new-section-slide("Pseudo Entités")
@@ -148,7 +148,7 @@ when(apiClientMock.getUserRepository(testUsername))
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ?
+  🗨️ Des questions ?
 ]
 
 #new-section-slide("Qualité de tests")
@@ -177,7 +177,7 @@ when(apiClientMock.getUserRepository(testUsername))
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ?
+  🗨️ Des questions ?
 ]
 
 #new-section-slide("Développement dirigé par les tests (TDD)")
@@ -203,5 +203,5 @@ when(apiClientMock.getUserRepository(testUsername))
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ?
+  🗨️ Des questions ?
 ]

@@ -75,8 +75,8 @@ public <T1, T2, ..., Tn> typeRetour nomMethode(){ ... }
 Par exemple : 
 
 ```Java
-public <T> List<T> fromArrayToList(T[] a) {   
-    return Arrays.stream(a).collect(Collectors.toList());
+public <T> List<T> fromArrayToList(T[] array) {   
+    return Arrays.stream(array).collect(Collectors.toList());
 }
 ```
 

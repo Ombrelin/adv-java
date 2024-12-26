@@ -51,6 +51,11 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
 
 ]
 
+
+#focus-slide(background:  rgb("#EB6237"))[
+  🗨️ Des questions ? 
+]
+
 #new-section-slide("Patrons de conception")
 
 #slide(title: "Décorateur")[
@@ -66,6 +71,13 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
 #slide(title: "Etat")[
 #image("images/state.png", width: 46%)
 ]
+
+
+#focus-slide(background:  rgb("#EB6237"))[
+  🗨️ Des questions ? 
+]
+
+
 
 #new-section-slide("Ecriture du code")
 
@@ -91,6 +103,10 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
 
 ]
 
+
+#focus-slide(background:  rgb("#EB6237"))[
+  🗨️ Des questions ? 
+]
 
 #new-section-slide("Architecture")
 

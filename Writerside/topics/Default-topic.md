@@ -23,30 +23,30 @@ Programme des séances :
 <tab title="LSI1">
 
 
-| Date                     | Sujet                                                                                                     |
-|--------------------------|-----------------------------------------------------------------------------------------------------------|
-| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
-| Vendredi 13 Février 2025 | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
-| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
-| Vendredi 21 Février 2025 | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
-| Vendredi 28 Février 2025 | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 7 Mars 2025     | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                         |
-| Vendredi 28 Mars 2025    | Retour sur les éléments du cours donnant le plus de difficultés                                           |
-| Vendredi 18 Avril 2024   | Examen blanc                                                                                              |
+| Date                     | Sujet                                                                                                |
+|--------------------------|------------------------------------------------------------------------------------------------------|
+| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                   |
+| Vendredi 13 Février 2025 | [Cours 2 : Tests Unitaire](Cours-2-Tests-Unitaires.md)                                               |
+| Lundi 17 Février 2025    | [Cours 3 : Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                        |
+| Vendredi 21 Février 2025 | [Cours 4 : Programmation Générique](Cours-5-Programmation-Reflexive.md) & [Cours 5 : Élements de programmation orientée fonction](Cours-4-Element-de-programmation-orientee-fonction.md)                      |
+| Vendredi 28 Février 2025 | [Cours 6 : Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md) |
+| Vendredi 7 Mars 2025     | [Cours 7 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                    |
+| Vendredi 28 Mars 2025    | Retour sur les éléments du cours donnant le plus de difficultés                                      |
+| Vendredi 18 Avril 2024   | Examen blanc                                                                                         |
 
 </tab>
 <tab title="LSI2">
 
-| Date                     | Sujet                                                                                                     |
-|--------------------------|-----------------------------------------------------------------------------------------------------------|
-| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                        |
-| Vendredi 13 Février 2025 | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                     |
-| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                              |
-| Jeudi 20 Février 2025    | [Cours 4: Elements de Programmation Fonctionnelle](Cours-4-Element-de-programmation-orientee-fonction.md) |
-| Vendredi 28 Février 2025 | [Cours 5: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)       |
-| Vendredi 28 Mars 2025    | [Cours 6 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                         |
-| Vendredi 18 Avril 2025   | Retour sur les éléments du cours donnant le plus de difficultés                                           |
-| Vendredi 2 Mai 2025      | Examen blanc                                                                                              |
+| Date                     | Sujet                                                                                                                                                                                    |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Vendredi 10 Février 2025 | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                                                                                                       |
+| Vendredi 13 Février 2025 | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                                                                                                    |
+| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                                                                                                             |
+| Jeudi 20 Février 2025    | [Cours 4 : Programmation Générique](Cours-5-Programmation-Reflexive.md) & [Cours 5 : Élements de programmation orientée fonction](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 28 Février 2025 | [Cours 6: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)                                                                                      |
+| Vendredi 28 Mars 2025    | [Cours 7 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                                                                                                        |
+| Vendredi 18 Avril 2025   | Retour sur les éléments du cours donnant le plus de difficultés                                                                                                                          |
+| Vendredi 2 Mai 2025      | Examen blanc                                                                                                                                                                             |
 
 </tab>
 </tabs>
