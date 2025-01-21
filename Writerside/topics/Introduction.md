@@ -29,15 +29,12 @@ Au moment de la correction, si je remarque une erreur, j'écrirai un commentaire
 
 ## Plagiat
 
-Le code écrit en binôme ne doit en aucun cas être partagé à d'autres binômes. Rien ne vous empêche de donner un coup de main à des camarades en difficulté en leur réexpliquant des concepts, mais en aucun cas en leur donnant du code. Toute tentative plagiat sera durement sanctionné sur votre note.
+Le code écrit en binôme ne doit en aucun cas être partagé à d'autres binômes. Rien ne vous empêche de donner un coup de main à des camarades en difficulté en leur réexpliquant des concepts, mais en aucun cas en leur donnant du code. Toute tentative plagiat sera durement sanctionnée. S'il vous plaît, ne faîtes pas ça, j'ai autre chose à faire qu'assister à des conseils de discipline.
 
-## Utilisation des outils dits d'"Intelligence Artificielle" type "LLM"
+## Utilisation des outils dits d'"Intelligence Artificielle" générative type "LLM"
 
-Je n'ai rien à priori contre l'utilisation des outils d'AI/LLM, si ce n'est que je les trouve inefficaces dans le cadre du développement logiciel, en effet, à cause de leur fonctionnement statistique, on ne peut pas du tout faire confiance aux résultats qu'ils nous fournissent. Il est donc en général beaucoup plus fiable et rapide de chercher la réponse à une question qu'on se pose dans la documentation de notre outil, sur stackoverflow.com ou même sur un moteur de recherche (google.com ou autre). Le contenu qu'on trouve à ces endroits est normalement écrit par des humaines, et donc plus fiable.
+L'école interdit formellement l'utilisation des outils d'"Intelligence Artificielle" générative type "LLM" dans les rendus. Personnellement, je trouve que ce choix de la part de l'EFREI n'est pas une mauvaise idée. Pourquoi ?
 
-Aussi les outils d'IA type LLM ont un impact écologique très important, car leur entraiment et leur utilisation consomme beaucoup d'électricité, ils ont donc un impact fort sur l'utilisation de ressources limitées ainsi que sur le climat de notre planète. Leur utilité assez marginale par rapport à ce fait les rend à mon avis nocifs.
+Dans le cadre de mon métier d'ingénieur en développement logiciel, je trouve les outils d'"Intelligence Artificielle" générative type "LLM" inefficaces. En effet, à cause de leur fonctionnement statistique, on ne peut pas du tout faire confiance aux résultats qu'ils nous fournissent. Il est donc en général beaucoup plus fiable et rapide de chercher la réponse à une question qu'on se pose dans la documentation de notre outil, sur stackoverflow.com ou même sur un moteur de recherche (google.com ou autre). Le contenu qu'on trouve à ces endroits est normalement écrit par des humaines, et donc plus fiable.
 
-Si vous tenez (malgré tout) à utiliser des outils d'IA type LLM, je vous demanderai deux choses : 
-
-1. Vous vérifiez les informations qui vous sont données par le LLM par une source fiable. Encore une fois, ces outils ne sont pas fiables.
-2. Vous comprenez les informations qui vous sont données par le LLM. Ne m'apportez pas du code généré par la machine pour me demander de vous l'expliquer.
+Aussi les outils d'IA type LLM ont un impact écologique très important, car leur entraiment et leur utilisation consomme beaucoup d'électricité, ils ont donc un impact fort sur l'utilisation de ressources limitées ainsi que sur le climat de notre planète. Leur utilité assez marginale par rapport à ce fait les rend à mon avis nocif.

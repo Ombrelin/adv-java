@@ -13,7 +13,7 @@
   title: [Java Avancé],
   subtitle: [Cours 0 : Présentation],
   authors: ([Arsène Lapostolet]),
-  date: [19 Janvier 2024],
+  date: [10 Février 2025],
 )
 
 #slide(title: [Qui suis-je ?])[
@@ -58,7 +58,7 @@
     - Revue de code
     - Découpés en plusieurs livrables
   2. Devoir Ecrit
-    - 21 Mars 2023
+    - Jeudi 15 mai 2025
     - Questions de cours + Exercice d'analyse avec code fourni
     - Pas d'écriture de code sur papier
 ]

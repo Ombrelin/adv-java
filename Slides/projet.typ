@@ -13,11 +13,11 @@
   title: [Java Avancé],
   subtitle: [Projet],
   authors: ([Arsène Lapostolet]),
-  date: [19 Janvier 2024],
+  date: [10 Février 2025],
 )
 
 #slide(title: [Concept])[
-  - Coder un Monopoly
+  - Coder un Monopoly Villejuif
   - Simulation des règles du domaine
   - Jeu en réseau
   - En bînomes
@@ -53,14 +53,11 @@
 
 #slide(title: [Outils "IA" (LLMs)])[
 
+- Interdits par l'école
 - Pas fiable ➡️ inéfficace
 - Utilisez plutôt documentation / stackoverflow / google.com
-- Impacte écologique important
+- Impact écologique important
 
-Si vous voulez vraiment : 
-
-1. Vérifiez 
-2. Comprenez
 ]
 
 #slide(title: [Modalités])[
@@ -93,25 +90,25 @@ Si vous voulez vraiment :
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Des questions ? 
+  🗨️ Des questions ? 
 ]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Description du template du projet
+  🔍 Description du template du projet
 ]
 
 #slide(title: [Livrable 1 : Jets de dés, plateau, déplacement])[
   #side-by-side[
     - Les joueurs ne peuvent que passer leur tour
     - Les joueurs se déplacent par jet de dés
-    - Données du plateau dans un fichier CSV de ressources
+    - Données du plateau à parser depuis dans un fichier CSV de ressources fourni
 ][
   #figure(image("./images/board.png", width:68%))
 ]
 ]
     
 #focus-slide(background:  rgb("#EB6237"))[
-  Présentation des tests d'intégration]
+  🔍 Présentation des tests d'intégration]
 
 #focus-slide(background:  rgb("#EB6237"))[
-  Go ! Lancez vous pour le setup du projet]
+  🏁 Go ! Lancez vous pour le démarrage du projet]

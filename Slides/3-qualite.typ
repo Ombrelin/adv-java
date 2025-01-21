@@ -13,7 +13,7 @@
   title: [Java Avancé],
   subtitle: [Cours 3 : Qualité Logicielle],
   authors: ([Arsène Lapostolet]),
-  date: [25 Janvier 2024],
+  date: [17 Février 2025],
 )
 
 #new-section-slide("Concepts")
@@ -35,7 +35,7 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
   - Code modulaire
   - Couplages moins forts
 
-  _-> Le code est plus facile et test, maintenir, refactorer_ 
+  _-> Le code est plus facile à tester, maintenir, refactorer_ 
 ]
 
 #slide(title: "Conteneur d'injection de dépendance (IoC Container)")[
@@ -48,6 +48,7 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
 
   - Spring
   - Context Dependency Injection (standard JakartaEE)
+  - Guice
 
 ]
 
@@ -123,4 +124,8 @@ _ex : `List` avec `LinkedList`/`ArrayList`_
       - Couche interface
       - Couche infrastructure
     ]
+]
+
+#focus-slide(background:  rgb("#EB6237"))[
+  🗨️ Des questions ? 
 ]

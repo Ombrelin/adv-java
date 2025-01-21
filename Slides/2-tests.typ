@@ -13,7 +13,7 @@
   title: [Java Avancé],
   subtitle: [Cours 2 : Tests Unitaires],
   authors: ([Arsène Lapostolet]),
-  date: [22 Janvier 2024],
+  date: [13 Février 2025],
 )
 
 
@@ -22,7 +22,7 @@
 #slide(title: "Tests automatiques")[
   - Du code qui vérifie le fonctionnement de l'application
   - Détecter le bugs majeurs en 1 clic
-  - Plus safe de changer le code
+  - On est plus confiant quand on doit changer le code
 
   #text(style:"italic", "Meilleure qualité & fiabilité du logiciel")
 ]
@@ -33,7 +33,7 @@
 
 * Unité* : méthode, classe, petit groupe de classe ayant un fort lien logique.
 
-#text(style:"italic", "Aide a trouver les bug, mais ne permet pas de dire qu'il n'y en a pas")
+#text(style:"italic", "Aide a trouver les bugs, mais ne permet pas de dire qu'il n'y en a pas")
 
 ]
 
@@ -154,7 +154,7 @@ when(apiClientMock.getUserRepository(testUsername))
 #new-section-slide("Qualité de tests")
 
 #slide(title: "Conception de tests et couplage")[
-  Ecrire un test -> sanctuariser une interface (si on refactor on doit refactorer le test aussi) 
+  Ecrire un test sanctuarise une interface (si on refactor on doit refactorer le test aussi) 
 
   Cela a du sens pour : 
 

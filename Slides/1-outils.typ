@@ -13,7 +13,7 @@
   title: [Java Avancé],
   subtitle: [Cours 1 : Outillage],
   authors: ([Arsène Lapostolet]),
-  date: [19 Janvier 2024],
+  date: [10 Février 2025],
 )
 
 #slide(title: [Les outils du module])[
@@ -147,10 +147,10 @@ Intéraction :
 
 - Serveur git
 - Open source
-- Intègre un d'intégration continue
+- Intègre un module d'intégration continue (Gitlab CI)
 - Revue de code
 - Très utilisé dans l'industrie
-- Projets privés gratuits sur gitlab.com
+- Projets (et forks) privés gratuits sur gitlab.com
 ]
 
 #new-section-slide("Gradle")
