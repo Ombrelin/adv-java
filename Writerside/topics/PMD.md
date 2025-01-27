@@ -69,7 +69,7 @@ plugins {
 
 pmd {
     ruleSetFiles = files("ruleset.xml")
-    ruleSets = listOf()
+    ruleSets = []
     toolVersion = "7.5.0"
 }
 
