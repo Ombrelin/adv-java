@@ -6,7 +6,7 @@ Le projet se déroulera sur GitLab, vous aurez donc besoin de créer un compte s
 
 ## Binômes
 
-Ce projet est à faire par binôme. Une fois que vous avez choisi votre binôme, renseignez le sur le document Excel présent dans l'équipe Teams, pour me communiquer votre binôme, votre nom d'utilisateur GitLab ainsi que celui de votre binôme.
+Ce projet est à faire par binôme. Une fois que vous avez choisi votre binôme, renseignez le sur [ce document Excel](https://efrei365net-my.sharepoint.com/:x:/g/personal/arsene_lapostolet_intervenants_efrei_net/Ebe_SCA7SplGvBFiY2RYlY0BtYBns04gbDJKmka6ffWLhQ?e=qHzsV4), pour me communiquer votre binôme, votre nom d'utilisateur GitLab ainsi que celui de votre binôme.
 
 ## Forker le projet
 
