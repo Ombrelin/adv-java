@@ -4,7 +4,7 @@
 
 #show: clean-theme.with(
   logo: image("images/efrei.jpg"),
-  footer: [Arsène Lapostolet, EFREI Paris],
+  footer: [EFREI Paris, Arsène Lapostolet & Nada Nahle],
   short-title: [EFREI LSI L3 ALSI62-CTP : Java Avancé],
   color: rgb("#EB6237")
 )
@@ -12,8 +12,7 @@
 #title-slide(
   title: [Java Avancé],
   subtitle: [Cours 4 : Eléments de programmation orienté fonction],
-  authors: ([Arsène Lapostolet]),
-  date: [20 Février 2025],
+  authors: ([Arsène Lapostolet & Nada Nahle])
 )
 
 #new-section-slide("Concepts")

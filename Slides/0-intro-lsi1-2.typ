@@ -4,7 +4,7 @@
 
 #show: clean-theme.with(
   logo: image("images/efrei.jpg"),
-  footer: [Arsène Lapostolet, EFREI Paris],
+  footer: [EFREI Paris, Arsène Lapostolet & Nada Nahle],
   short-title: [EFREI LSI L3 ALSI62-CTP : Java Avancé],
   color: rgb("#EB6237")
 )
@@ -12,8 +12,7 @@
 #title-slide(
   title: [Java Avancé],
   subtitle: [Cours 0 : Présentation],
-  authors: ([Arsène Lapostolet]),
-  date: [10 Février 2025],
+  authors: ([Arsène Lapostolet & Nada Nahle]),
 )
 
 #slide(title: [Qui suis-je ?])[
@@ -21,8 +20,9 @@
   - Ingénieur en développement logiciel chez enercoop (fourniture et production d'énergie renouvelable)
   - EFREI LSI P2022
   - arsene\@lapostolet.fr
+  - 2e année en tant qu'enseignant
 
-  #text(style: "italic", [2e année en tant qu'enseignant (n'hésitez pas à me faire des retours pour m'aider à m'améliorer !)])
+  #text(style: "italic", [Je travaille sur le module avec ma collègue Nada Nahle qui assure le cours pour la classe LSI3.])
 ]
 
 #slide(title: [Objectifs du module])[
