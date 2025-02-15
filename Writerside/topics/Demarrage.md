@@ -104,6 +104,13 @@ Mettre à jour la configuration Gradle de votre module (le module `simulation`, 
 ```Groovy
 plugins {
     id 'java-library'
+    id 'pmd'
+}
+
+pmd {
+    ruleSetFiles = files("../ruleset.xml")
+    ruleSets = []
+    toolVersion = "7.5.0"
 }
 
 repositories {
