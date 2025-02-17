@@ -45,6 +45,11 @@ apt install temurin-21-jdk
 ```
 
 </tab>
+<tab title="Linux (Fedora/CentOS/RHEL">
+```bash
+yum install temurin-21-jdk
+```
+</tab>
 </tabs>
 
 Pour vérifier la bonne installation du JDK :
