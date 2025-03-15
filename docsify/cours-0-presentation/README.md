@@ -1,0 +1,112 @@
+# Cours 0 : Présentation
+
+## Qui sommes-nous ?
+
+Nous sommes deux enseignants à intervenir sur le module.
+
+### Nada Nahle (LSI3)
+
+Je suis Nada Nahle. Je suis docteur auto-entrepreneur en Informatique. Je fais actuellement des cours d'informatique dans différentes écoles d'ingénieurs. J'enseigne le développement logiciel depuis des années, sur plusieurs types d'applications (desktop, web, mobile), et en utilisant différents langages de programmation dont essentiellement Java.
+
+### Arsène Lapostolet (LSI1 et LSI2)
+
+Je suis Arsène Lapostolet. J'occupe actuellement le poste d'ingénieur en dévelopment logiciel chez [enercoop](https://www.enercoop.fr/), une société coopérative qui produit et fournit de l'électricité renouvelable. J'ai été diplômé de l'EFREI sur le parcours LSI en 2022. Mon travail au quotidien est en Java, et je pratique également régulièrement C#, Kotlin, Typescript sur mes projets personnels.
+
+Vous pouvez me trouver sur : 
+
+- [Github](https://github.com/Ombrelin)
+- [StackOverflow](https://stackoverflow.com/users/11834812/ombrelin)
+- [LinkedIn](https://www.linkedin.com/in/arsenelapostolet/)
+
+Et également par email : [arsene@lapostolet.fr](mailto:arsene@lapostolet.fr)
+
+> C'est seulement ma deuxième année en tant qu'enseignant. N'hésitez pas à me faire des retours sur le module à tout moment, afin que je puisse m'améliorer.
+
+## Fonctionnement du module
+
+Le support principal du module est le site sur lequel vous lisez ces lignes. Chaque sujet correspond à une séance de cours. Chaque cours est à lire avant la séance de TP qui correspond, un récap rapide sera fait en début de séances pour ceux qui n'ont pas eu le temps, mais vous gagnez beaucoup à au moins lire le cours à l'avance. Il est possible d'écrire des questions via Teams ou email entre deux séances, j'y répondrai dès que possible. Il est bien sûr également possible de poser des questions, demander une explication à tout moment en classe.
+
+Programme des séances :
+
+<!-- tabs:start -->
+
+#### **LSI1 (Arsène Lapostolet)**
+
+
+| Date                     | Sujet                                                                                                |
+|--------------------------|------------------------------------------------------------------------------------------------------|
+| Lundi 10 Février 2025    | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                   |
+| Jeudis 13 Février 2025   | [Cours 2 : Tests Unitaire](Cours-2-Tests-Unitaires.md)                                               |
+| Lundi 17 Février 2025    | [Cours 3 : Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                        |
+| Jeudi 20 Février 2025    | [Cours 4 : Programmation Générique](Cours-5-Programmation-Reflexive.md) & [Cours 5 : Élements de programmation orientée fonction](Cours-4-Element-de-programmation-orientee-fonction.md)                      |
+| Vendredi 28 Février 2025 | [Cours 6 : Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md) |
+| Vendredi 7 Mars 2025     | [Cours 7 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                    |
+| Vendredi 28 Mars 2025    | Retour sur les éléments du cours donnant le plus de difficultés                                      |
+| Vendredi 18 Avril 2024   | Examen blanc                                                                                         |
+
+#### **LSI2 (Arsène Lapostolet)**
+
+| Date                     | Sujet                                                                                                                                                                                    |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Lundi 10 Février 2025    | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                                                                                                       |
+| Jeudi 13 Février 2025    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                                                                                                    |
+| Lundi 17 Février 2025    | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                                                                                                             |
+| Vendredi 21 Février 2025 | [Cours 4 : Programmation Générique](Cours-5-Programmation-Reflexive.md) & [Cours 5 : Élements de programmation orientée fonction](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 28 Février 2025 | [Cours 6: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)                                                                                      |
+| Vendredi 28 Mars 2025    | [Cours 7 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                                                                                                        |
+| Vendredi 18 Avril 2025   | Retour sur les éléments du cours donnant le plus de difficultés                                                                                                                          |
+| Vendredi 2 Mai 2025      | Examen blanc                                                                                                                                                                             |
+
+#### **LSI3 (Nada Nahle)**
+
+| Date                     | Sujet                                                                                                                                                                                    |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Vendredi 7 Février 2025  | Cours 0 : Présentation, [Cours 1: Outillage](Cours-1-Outillage.md)                                                                                                                       |
+| Mardi 11 Février 2025    | [Cours 2: Tests Unitaire](Cours-2-Tests-Unitaires.md)                                                                                                                                    |
+| Vendredi 14 Février 2025 | [Cours 3: Qualité Logicielle](Cours-3-Qualite-Logicielle.md)                                                                                                                             |
+| Jeudi 27 Février 2025    | [Cours 4 : Programmation Générique](Cours-5-Programmation-Reflexive.md) & [Cours 5 : Élements de programmation orientée fonction](Cours-4-Element-de-programmation-orientee-fonction.md) |
+| Vendredi 14 Mars 2025    | [Cours 6: Programmation Parallèle et Asynchrone](Cours-5-Programmation-Parrallele-et-Asynchrone.md)                                                                                      |
+| Vendredi 4 Avril 2025    | [Cours 7 : Programmation Réseau](Cours-6-Programmation-Reseau.md)                                                                                                                        |
+| Vendredi 11 Avril 2025   | Retour sur les éléments du cours donnant le plus de difficultés                                                                                                                          |
+| Vendredi 2 Mai 2025      | Examen blanc                                                                                                                                                                             |
+
+
+</tab>
+<!-- tabs:end -->
+
+## Evaluation
+
+### Un projet
+
+Le projet va se dérouler tout au long du module, il sera effectué en binôme. Il porte sur un sujet spécifique, que je fournis. Il met en œuvre les notions du cours. Le projet est découpé en plusieurs livrables, la completion de chaque livrable rapporte une partie des points du projet. La completion d'un livrable est définie par le fait de passer des tests automatisés (tests d'intégration) que je fournis. Chaque livrable fait l'objet d'une revue de code avec des conseils pour améliorer la qualité. Après cette revue et les retours implémentés, une note de qualité vient pondérer les points rapportés par le livrable.
+
+### Un devoir écrit
+
+Un devoir écrit aura lieu le **jeudi 15 mai 2025**. Il comportera des questions de cours simples, des questions de cours plus complexes, et un exercice d'analyse sur un code fourni. Il se fera sur papier, mais ne demandera pas d'écrire de code sur papier.
+
+## Séance Type
+
+🚨 ***À faire avant la séance : Avoir lu le cours pour la séance à venir*** 🚨
+
+Déroulement : 
+
+1. Je fais un petit récap du cours en 10-15 minutes
+2. Séance de Questions & Réponse sur le cours
+3. Travail autonome sur le projet, je suis disponible pour aider
+
+## Prérequis
+
+Les prérequis du cours sont les suivants :
+
+- Bases de la programmation impérative (savoir faire du code avec des variables, des conditions, des boucles et des fonctions)
+- Base de la programmation objet en Java (savoir utiliser des classes pour modéliser des problèmes, l'encapsulation de données et les interfaces/classes abstraites)
+- Utiliser du système de gestion de version Git
+- Utiliser un débogueur pas-à-pas pour trouver les soucis d'un code
+
+Si vous pensez ne pas être à l'aise avec ces prérequis, surtout, dites-le-moi en privé (mail, message teams).
+
+Je vous propose également des contenus qui peuvent vous aider à rattraper certains des prérequis à ce cours si vous ne vous sentez pas tout à fait à l'aise avec :
+
+- [Git](Git.md)
+- [Base de la Programmation Orientée Objet](Base-de-la-Programmtion-Objet.md)
+- [Débogueur](Debogueur.md)
