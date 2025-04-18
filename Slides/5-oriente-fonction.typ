@@ -11,7 +11,7 @@
 
 #title-slide(
   title: [Java Avancé],
-  subtitle: [Cours 4 : Eléments de programmation orienté fonction],
+  subtitle: [Cours 5 : Eléments de programmation orienté fonction],
   authors: ([Arsène Lapostolet & Nada Nahle])
 )
 

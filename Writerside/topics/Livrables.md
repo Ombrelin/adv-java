@@ -172,7 +172,17 @@ run {
 ```
 
 </step>
-<step> Ajouter les dépendances et références de projet requises au script de build de ces modules.</step>
+<step>
+Ajouter les dépendances et références de projet requises au script de build de ces modules.
+Pour le module `client` ajoutez les lignes suivantes avant la déclaration des dépendances : 
+
+```Groovy
+project.evaluationDependsOn(":core")
+project.evaluationDependsOn(":simulation")
+project.evaluationDependsOn(":server")
+```
+
+</step>
 <step>
 
 Dans le module `client`, créez une classe de test qui étend `BaseMultiplayerMonopolyGameTests` et implémente les méthodes abstraites avec vos propres classes.

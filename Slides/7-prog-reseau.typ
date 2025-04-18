@@ -19,7 +19,7 @@
 
 #slide(title: "Socket")[
 
-*Thread* : flux d'entrée/sortie réseau.
+*Socket* : flux d'entrée/sortie réseau.
 
 - Même interface que les autres entrées/sortie (fichiers, console)
 - Utilise les couches réseau TCP ou UDP pour communiquer avec d'autres machines

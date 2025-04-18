@@ -10,7 +10,7 @@
 )
 #title-slide(
   title: [Java Avancé],
-  subtitle: [Cours 3 : Qualité Logicielle],
+  subtitle: [Cours 4 : Généricité],
   authors: ([Arsène Lapostolet & Nada Nahle])
 )
 
